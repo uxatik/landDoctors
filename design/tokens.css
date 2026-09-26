@@ -61,3 +61,12 @@
   --content-max: 40rem;
   --tap-min: 48px;
 }
+
+/* Landing page additions (derived from Designfoli tokens only; see D12). */
+:root {
+  /* Deeper take on the brand gradient so white text on it passes AA (≥ 6.9:1). */
+  --gradient-brand-deep: linear-gradient(135deg, var(--color-primary-600) 0%, color-mix(in srgb, var(--color-new) 70%, black) 100%);
+  /* Brand gradient for large headline words only (≥ 3:1 on white at display size). */
+  --gradient-brand-text: linear-gradient(90deg, var(--color-primary-600) 0%, var(--color-new) 100%);
+  --container-max: 72rem;
+}

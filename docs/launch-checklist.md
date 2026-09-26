@@ -19,6 +19,8 @@ Tick these before real customers see the site.
 
 ## Content and prices
 - [ ] Real prices set in `/admin/packages` and **Price confirmed** ticked for each package.
+- [ ] Same prices on the home page (`messages/bn.json` and `messages/en.json` → `landing.pricing.packages`).
+- [ ] Home page claims checked as true: association membership, how experts are checked, refund wording, payment methods (bKash, Nagad, Rocket, card) live on SSLCommerz.
 - [ ] Package scope and exclusions checked by the consultants who will deliver them.
 - [ ] Real hotline and WhatsApp numbers in the environment variables.
 - [ ] Hotline hours decided and added to the home page (currently not shown).

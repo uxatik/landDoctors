@@ -4,30 +4,49 @@ import AxeBuilder from "@axe-core/playwright";
 const CATEGORIES = ["pre_purchase_check", "mutation", "survey", "inheritance", "record_correction", "dispute"];
 
 test.describe("Home (Bangla)", () => {
-  test("asks about the land problem and lists six categories", async ({ page }) => {
+  test("leads with the promise and lists six categories", async ({ page }) => {
     await page.goto("/");
-    await expect(page.getByRole("heading", { level: 1, name: "আপনার জমির সমস্যা কী?" })).toBeVisible();
+    await expect(page.getByRole("heading", { level: 1, name: /জমির কাজে দালাল নয়,\s*যাচাই করা বিশেষজ্ঞ/ })).toBeVisible();
+    await expect(page.getByRole("heading", { level: 2, name: "আপনার জমির সমস্যা কী?" })).toBeVisible();
     for (const c of CATEGORIES) {
-      await expect(page.locator(`a[href="/help?category=${c}"]`)).toHaveCount(1);
+      await expect(page.locator(`#services a[href="/help?category=${c}"]`)).toHaveCount(1);
     }
-    await page.locator('a[href="/help?category=mutation"]').click();
+    await page.locator('#services a[href="/help?category=mutation"]').click();
     await expect(page).toHaveURL(/\/help\?category=mutation$/);
   });
 
   test("shows call and WhatsApp with the number as text", async ({ page }) => {
     await page.goto("/");
-    const call = page.getByRole("link", { name: /কল করুন/ });
+    const call = page.getByRole("link", { name: /কল করুন/ }).first();
     await expect(call).toHaveAttribute("href", "tel:+8801711000001");
     await expect(page.getByText("01711-000001").first()).toBeVisible();
-    const wa = page.getByRole("link", { name: "WhatsApp" });
+    const wa = page.getByRole("link", { name: "WhatsApp", exact: true });
     await expect(wa).toHaveAttribute("href", /^https:\/\/wa\.me\/8801711000002\?text=/);
   });
 
   test("says where field work is available and that first call is free", async ({ page }) => {
     await page.goto("/");
-    await expect(page.getByText("এখন সেবা দিচ্ছি: সাভার ও গাজীপুর")).toBeVisible();
-    await expect(page.getByText(/প্রথম ১০ মিনিটের কল ফ্রি/)).toBeVisible();
-    await expect(page.getByText(/নগদ টাকা/)).toBeVisible();
+    await expect(page.getByText("এখন সেবা দিচ্ছি: সাভার ও গাজীপুর").first()).toBeVisible();
+    await expect(page.getByText(/প্রথম ১০ মিনিটের কল ফ্রি/).first()).toBeVisible();
+    await expect(page.getByText(/নগদ টাকা/).first()).toBeVisible();
+  });
+
+  test("shows prices up front with government fees separate", async ({ page }) => {
+    await page.goto("/");
+    const pricing = page.locator("#pricing");
+    await expect(pricing.getByText("৳1,000")).toBeVisible();
+    await expect(pricing.getByText("৳6,000")).toBeVisible();
+    await expect(pricing.getByText("৳8,000")).toBeVisible();
+    await expect(pricing.getByText(/সরকারি ফি আলাদা/).first()).toBeVisible();
+  });
+
+  test("answers common questions and publishes them for search engines", async ({ page }) => {
+    await page.goto("/");
+    const q = page.locator("#faq summary").filter({ hasText: "ল্যান্ডডক্টর কি সরকারি অফিস?" });
+    await q.click();
+    await expect(page.getByText(/ল্যান্ডডক্টর একটি বেসরকারি সেবা/)).toBeVisible();
+    const ld = await page.locator('script[type="application/ld+json"]').textContent();
+    expect(JSON.parse(ld ?? "{}")["@type"]).toBe("FAQPage");
   });
 
   test("has no serious accessibility problems and no sideways scroll", async ({ page }) => {
@@ -43,11 +62,11 @@ test.describe("Home (Bangla)", () => {
 test.describe("Home (English)", () => {
   test("mirrors the Bangla page", async ({ page }) => {
     await page.goto("/en");
-    await expect(page.getByRole("heading", { level: 1, name: "What is your land problem?" })).toBeVisible();
+    await expect(page.getByRole("heading", { level: 1, name: /Verified land experts\.\s*Not middlemen\./ })).toBeVisible();
     for (const c of CATEGORIES) {
-      await expect(page.locator(`a[href="/en/help?category=${c}"]`)).toHaveCount(1);
+      await expect(page.locator(`#services a[href="/en/help?category=${c}"]`)).toHaveCount(1);
     }
-    await expect(page.getByText("Now serving Savar and Gazipur")).toBeVisible();
+    await expect(page.getByText("Now serving Savar and Gazipur").first()).toBeVisible();
     const results = await new AxeBuilder({ page }).analyze();
     expect(results.violations.filter((v) => v.impact === "serious" || v.impact === "critical")).toEqual([]);
   });

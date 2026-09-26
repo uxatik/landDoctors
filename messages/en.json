@@ -233,5 +233,259 @@
       "body": "Please call or message us on WhatsApp and we'll help."
     },
     "ref": "Case number"
+  },
+  "nav": {
+    "label": "Main menu",
+    "services": "Services",
+    "pricing": "Pricing",
+    "how": "How it works",
+    "faq": "FAQ",
+    "start": "Tell us your problem"
+  },
+  "landing": {
+    "hero": {
+      "intro": "Khatian, mutation, land surveys or a check before you buy. Surveyors and land experts look at your papers and show you the right way. Price written upfront, government fees listed separately.",
+      "primary": "Tell us your problem →",
+      "assurance": [
+        "First 10-minute call is free",
+        "No cash in hand",
+        "Pay by bKash, Nagad, Rocket or card"
+      ],
+      "titleLead": "Verified land experts.",
+      "titleAccent": "Not middlemen."
+    },
+    "mock": {
+      "label": "Sample: the offer a customer receives",
+      "sample": "Sample",
+      "case": "Case",
+      "offerTitle": "Your offer",
+      "package": "Land health report",
+      "scope": "Checks of the deed chain, khatian, mutation and land tax",
+      "delivery": "Written report in Bangla in 7 days",
+      "service": "Service price",
+      "govt": "Government fees (with receipt)",
+      "total": "Total",
+      "pay": "Pay now →",
+      "expertLabel": "Your expert",
+      "expertRole": "Surveyor · Savar",
+      "verified": "Verified",
+      "statusTitle": "Case status",
+      "statuses": [
+        "Problem received",
+        "Free call done",
+        "Offer sent",
+        "Work in progress"
+      ],
+      "now": "Now",
+      "callTitle": "Free call",
+      "callBody": "10 minutes · today 4 pm",
+      "formName": "Name",
+      "formPhone": "Mobile",
+      "formProblem": "Problem",
+      "payTitle": "Secure payment",
+      "payMethods": [
+        "bKash",
+        "Nagad",
+        "Rocket",
+        "Card"
+      ],
+      "payNote": "A receipt for every payment"
+    },
+    "docs": {
+      "title": "The papers we work with",
+      "items": [
+        "Deed (dolil)",
+        "Khatian (CS, SA, RS, BS)",
+        "Porcha",
+        "Mutation and DCR",
+        "Land tax receipt",
+        "Mouza map"
+      ]
+    },
+    "services": {
+      "eyebrow": "Services",
+      "title": "What is your land problem?",
+      "intro": "Pick your problem. The form takes two minutes, then we call you.",
+      "start": "Start",
+      "note": "Phone advice is available from anywhere in Bangladesh. Need field work in another district? Join the waiting list.",
+      "waitlist": "Join the waiting list →"
+    },
+    "pricing": {
+      "eyebrow": "Pricing",
+      "title": "Know the price first. No surprises later.",
+      "intro": "Every offer lists the scope, the time, the service price and government fees separately. You pay only if you agree.",
+      "from": "from",
+      "popular": "Before you buy",
+      "packages": [
+        {
+          "name": "30-minute session",
+          "price": 1000,
+          "from": false,
+          "desc": "Advice from an expert by phone or WhatsApp call, plus a short written summary of next steps.",
+          "points": [
+            "Which papers you need, where to go",
+            "Written summary after the call"
+          ],
+          "where": "From anywhere, including abroad"
+        },
+        {
+          "name": "Field survey",
+          "price": 6000,
+          "from": true,
+          "desc": "A surveyor visits the land, measures it, marks the boundaries and gives a written result with a sketch.",
+          "points": [
+            "On-site measurement and boundary marks",
+            "Result with sketch in 5 days"
+          ],
+          "where": "Savar and Gazipur"
+        },
+        {
+          "name": "Land health report",
+          "price": 8000,
+          "from": true,
+          "desc": "Before you buy: checks of the deed chain, khatian, mutation, land tax and known disputes.",
+          "points": [
+            "Five checks",
+            "Written Bangla report in 5–7 days"
+          ],
+          "where": "Savar and Gazipur"
+        }
+      ],
+      "choose": "Start →",
+      "note": "The final price is written in your offer after the free call. Survey and report prices can rise with the size of the land or the work. Government fees are extra."
+    },
+    "how": {
+      "eyebrow": "How it works",
+      "title": "Four steps to a clear answer",
+      "steps": [
+        {
+          "title": "Tell us the problem",
+          "body": "Fill in the form or call us. Your name, mobile number and the problem. That's all."
+        },
+        {
+          "title": "Free 10-minute call",
+          "body": "Our team calls you, understands the problem and tells you which papers are needed."
+        },
+        {
+          "title": "A fixed-price offer",
+          "body": "You get a link by SMS or WhatsApp: scope, time, price and government fees."
+        },
+        {
+          "title": "The expert starts work",
+          "body": "After payment a verified expert does the work. They are paid only once the work is delivered."
+        }
+      ]
+    },
+    "experts": {
+      "eyebrow": "Experts",
+      "title": "Who does your work",
+      "intro": "Members of the Bangladesh Land Surveyor Association who work locally in Savar and Gazipur.",
+      "points": [
+        "We check every expert ourselves: identity, membership and experience",
+        "Nobody can sign themselves up; our team creates every profile",
+        "No expert gets a case from an office where they have worked"
+      ],
+      "rolesTitle": "Types of expert",
+      "roles": [
+        "Surveyors and amins",
+        "Retired land officials",
+        "Land lawyers",
+        "Deed writers"
+      ],
+      "cardAreas": "Areas",
+      "cardAreasValue": "Savar, Gazipur",
+      "cardSkills": "Skills",
+      "cardSkillsValue": "Surveys, boundaries, khatian",
+      "cardChecks": [
+        "Identity checked",
+        "Association member",
+        "Experience checked"
+      ]
+    },
+    "safety": {
+      "eyebrow": "Safety",
+      "title": "Your money and your data, both protected",
+      "items": [
+        {
+          "title": "No cash in hand",
+          "body": "Every payment goes through LandDoctor. Never give cash to an expert."
+        },
+        {
+          "title": "Government fees separate",
+          "body": "Government fees are shown separately with receipts, never mixed into the service price."
+        },
+        {
+          "title": "No room for bribes",
+          "body": "We never promise to speed up government work. Right advice, right papers and field work."
+        },
+        {
+          "title": "We don't keep your papers",
+          "body": "Photos of documents are seen on WhatsApp. Nothing is stored on our website."
+        },
+        {
+          "title": "Refund policy",
+          "body": "Cancel before work starts for a full refund. After work starts, we refund the part not yet done."
+        },
+        {
+          "title": "A way to complain",
+          "body": "If anything goes wrong, call the hotline. Every complaint is recorded with your case number."
+        }
+      ],
+      "refundLink": "Read the refund policy →"
+    },
+    "nrb": {
+      "title": "Living abroad? Handle land at home from where you are",
+      "body": "Talk on WhatsApp, pay online and get the report on your phone. Our expert visits the land for you.",
+      "cta": "Message us on WhatsApp →"
+    },
+    "faq": {
+      "eyebrow": "FAQ",
+      "title": "Common questions",
+      "items": [
+        {
+          "q": "Is LandDoctor a government office?",
+          "a": "No. LandDoctor is a private service. Verified private experts give advice and do field work. Government applications follow government rules."
+        },
+        {
+          "q": "Do you speed up mutation or other government work?",
+          "a": "No. We never take money to speed things up. We tell you the right papers, the right application and the right way, so you don't have to keep going back."
+        },
+        {
+          "q": "Which areas do you serve?",
+          "a": "Field work (surveys, land health reports) is in Savar and Gazipur for now. Phone advice is available from anywhere in Bangladesh or abroad. For other areas, join the waiting list."
+        },
+        {
+          "q": "Is the free call really free?",
+          "a": "Yes. The first 10-minute call is free. You only get an offer and a price if you want the work done."
+        },
+        {
+          "q": "How do I pay?",
+          "a": "From the link in your offer, by bKash, Nagad, Rocket or card. Never give cash to an expert."
+        },
+        {
+          "q": "How do I send my papers?",
+          "a": "On the free call our team tells you which papers are needed. Send photos on WhatsApp. The website never collects documents."
+        },
+        {
+          "q": "What if I'm not happy with the work?",
+          "a": "Tell us within 7 days of delivery. We'll review it with the expert and fix it, or refund under our refund policy."
+        }
+      ]
+    },
+    "cta": {
+      "title": "Don't leave your land problem for later",
+      "body": "Tell us today. We'll call you to understand it, and the first 10 minutes are free."
+    },
+    "bar": {
+      "label": "Quick contact"
+    }
+  },
+  "footerExtra": {
+    "tagline": "Verified land experts at fixed prices.",
+    "services": "Services",
+    "company": "LandDoctor",
+    "policies": "Policies",
+    "contact": "Contact",
+    "areas": "Field work: Savar and Gazipur"
   }
 }

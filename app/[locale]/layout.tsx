@@ -1,7 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
-import { getTranslations, setRequestLocale } from "next-intl/server";
+import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
+import { preload } from "react-dom";
 import { routing } from "@/i18n/routing";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
@@ -20,7 +21,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return { title: { default: `${t("name")} — ${t("tagline")}`, template: `%s · ${t("name")}` }, description: t("tagline") };
 }
 
-export const viewport: Viewport = { width: "device-width", initialScale: 1, themeColor: "#1d6a4c" };
+export const viewport: Viewport = { width: "device-width", initialScale: 1, themeColor: "#423ED8" };
 
 export default async function LocaleLayout({
   children,
@@ -33,6 +34,11 @@ export default async function LocaleLayout({
   if (!hasLocale(routing.locales, locale)) notFound();
   setRequestLocale(locale);
   const t = await getTranslations("site");
+  // Send the browser only the strings that client components use (smaller page, less parsing).
+  const all = await getMessages();
+  const clientMessages = { site: all.site, help: all.help, categories: all.categories };
+  preload("/fonts/MonaSans-Regular-latin.woff2", { as: "font", type: "font/woff2", crossOrigin: "anonymous" });
+  preload("/fonts/MonaSans-Bold-latin.woff2", { as: "font", type: "font/woff2", crossOrigin: "anonymous" });
 
   return (
     <html lang={locale}>
@@ -40,9 +46,9 @@ export default async function LocaleLayout({
         <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:rounded-control focus:bg-surface focus:p-2">
           {t("skipToContent")}
         </a>
-        <NextIntlClientProvider>
+        <NextIntlClientProvider messages={clientMessages}>
           <SiteHeader />
-          <main id="main" className="mx-auto w-full flex-1 max-w-[var(--content-max)] px-4 pb-12">
+          <main id="main" className="w-full flex-1">
             {children}
           </main>
           <SiteFooter />

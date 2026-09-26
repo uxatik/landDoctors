@@ -1,91 +1,394 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
-import { CATEGORY_SLUGS } from "@/lib/content/categories";
-import { ContactButtons } from "@/components/ContactButtons";
+import { CATEGORY_SLUGS, type CategorySlug } from "@/lib/content/categories";
+import { publicEnv } from "@/lib/env";
+import { formatPhoneDisplay, toWhatsAppNumber } from "@/lib/phone";
+import { formatTaka } from "@/lib/money";
 import { MouzaSketch } from "@/components/MouzaSketch";
-import { ArrowIcon, CheckIcon } from "@/components/icons";
+import { Container, SectionHeading } from "@/components/landing/Section";
+import { LineIcon, type IconName } from "@/components/landing/LineIcon";
+import { ExpertCardMock, HeroMock, StepVisual } from "@/components/landing/Mocks";
+
+const CATEGORY_ICON: Record<CategorySlug, IconName> = {
+  pre_purchase_check: "searchCheck",
+  mutation: "stamp",
+  survey: "ruler",
+  inheritance: "users",
+  record_correction: "filePen",
+  dispute: "scale",
+};
+const SAFETY_ICONS: IconName[] = ["banknote", "receipt", "ban", "lock", "refund", "alert"];
+const PACKAGE_LINK: (CategorySlug | null)[] = [null, "survey", "pre_purchase_check"];
+
+type Pkg = { name: string; price: number; from: boolean; desc: string; points: string[]; where: string };
+type Step = { title: string; body: string };
+type Faq = { q: string; a: string };
+
+const BTN = "inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 font-semibold no-underline transition-colors duration-150";
+const BTN_PRIMARY = `${BTN} bg-accent text-on-accent shadow-[var(--shadow-glow-light)] hover:bg-accent-hover`;
+const BTN_SECONDARY = `${BTN} border border-line bg-surface text-ink hover:border-accent hover:text-accent`;
 
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const t = await getTranslations("home");
+  const bn = locale === "bn";
+  const t = await getTranslations("landing");
+  const th = await getTranslations("home");
   const tc = await getTranslations("categories");
-  const steps = t.raw("steps") as string[];
-  const trust = t.raw("trust") as string[];
+  const tContact = await getTranslations("contact");
+  const tFooter = await getTranslations("footer");
+  const tn = await getTranslations("nav");
+
+  const hotline = publicEnv.NEXT_PUBLIC_HOTLINE;
+  const waHref = `https://wa.me/${toWhatsAppNumber(publicEnv.NEXT_PUBLIC_WHATSAPP)}?text=${encodeURIComponent(tContact("whatsappText"))}`;
+  const assurance = t.raw("hero.assurance") as string[];
+  const docs = t.raw("docs.items") as string[];
+  const packages = t.raw("pricing.packages") as Pkg[];
+  const steps = t.raw("how.steps") as Step[];
+  const expertPoints = t.raw("experts.points") as string[];
+  const roles = t.raw("experts.roles") as string[];
+  const safety = t.raw("safety.items") as Step[];
+  const faqs = t.raw("faq.items") as Faq[];
+  const num = (n: number) => new Intl.NumberFormat(bn ? "bn-BD" : "en").format(n);
+  const [wide, ...rest] = CATEGORY_SLUGS;
+
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
+  };
 
   return (
-    <div className="flex flex-col gap-10 pt-4">
-      <section aria-labelledby="home-title" className="relative flex flex-col gap-3 sm:pr-44">
-        <MouzaSketch className="pointer-events-none absolute -right-4 -top-2 w-40 text-accent opacity-[0.10] sm:-right-8 sm:w-52 sm:opacity-[0.14]" />
-        <p className="relative inline-flex w-fit items-center gap-2 rounded-full bg-accent-soft px-3 py-1 text-sm font-semibold text-accent">
-          {t("serving")}
-        </p>
-        <h1 id="home-title" className="relative text-[length:var(--text-2xl)] font-bold">
-          {t("title")}
-        </h1>
-        <p className="relative max-w-prose text-muted">{t("intro")}</p>
+    <div className="relative">
+      {/* ───────────── Hero ───────────── */}
+      <section aria-labelledby="home-title" className="relative overflow-hidden pb-16 pt-10 sm:pt-16">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[520px]" style={{ background: "var(--gradient-glow)" }} />
+        <MouzaSketch className="pointer-events-none absolute -right-10 top-6 -z-10 hidden w-72 text-accent opacity-[0.08] lg:block" />
+        <MouzaSketch className="pointer-events-none absolute -left-16 top-40 -z-10 hidden w-60 -scale-x-100 text-accent opacity-[0.06] lg:block" />
+        <Container className="flex flex-col items-center gap-6 text-center">
+          <p className="inline-flex items-center gap-2 rounded-full border border-line bg-surface px-3 py-1 text-sm font-semibold text-ink shadow-[var(--shadow-sm-light)]">
+            <span className="relative flex size-2">
+              <span className="absolute inline-flex size-full animate-ping rounded-full bg-[var(--color-success)] opacity-60 motion-reduce:hidden" />
+              <span className="relative inline-flex size-2 rounded-full bg-[var(--color-success)]" />
+            </span>
+            {th("serving")}
+          </p>
+          <h1 id="home-title" className="max-w-4xl text-[2rem] font-bold min-[400px]:text-[2.25rem] leading-[1.15] tracking-tight text-ink sm:text-5xl lg:text-[4rem] lg:leading-[1.1]">
+            <span className="block">{t("hero.titleLead")}</span>{" "}
+            <span className="block bg-clip-text text-transparent [-webkit-box-decoration-break:clone] [box-decoration-break:clone]" style={{ backgroundImage: "var(--gradient-brand-text)" }}>
+              {t("hero.titleAccent")}
+            </span>
+          </h1>
+          <p className="max-w-2xl text-lg text-muted sm:text-xl">{t("hero.intro")}</p>
+          <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
+            <Link href="/help" className={BTN_PRIMARY}>{t("hero.primary")}</Link>
+            <a href={`tel:${hotline}`} className={BTN_SECONDARY}>
+              <LineIcon name="phone" size={18} />
+              {tContact("call")} <span dir="ltr" className="font-medium text-muted">{formatPhoneDisplay(hotline)}</span>
+            </a>
+          </div>
+          <ul className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-sm text-muted">
+            {assurance.map((a) => (
+              <li key={a} className="flex items-center gap-1.5">
+                <LineIcon name="check" size={16} className="text-verified" />
+                {a}
+              </li>
+            ))}
+          </ul>
+        </Container>
+        <Container className="mt-12 sm:mt-16">
+          <HeroMock />
+        </Container>
       </section>
 
-      <section aria-labelledby="choose-title" className="flex flex-col gap-3">
-        <h2 id="choose-title" className="text-lg font-semibold">
-          {t("chooseLabel")}
-        </h2>
-        <ul className="grid grid-cols-1 gap-3 min-[400px]:grid-cols-2">
-          {CATEGORY_SLUGS.map((slug) => (
-            <li key={slug}>
+      {/* ───────────── Papers strip ───────────── */}
+      <section aria-labelledby="docs-title" className="border-y border-line bg-surface py-8">
+        <Container className="flex flex-col items-center gap-5">
+          <h2 id="docs-title" className="text-sm font-semibold text-muted">{t("docs.title")}</h2>
+          <ul className="grid w-full grid-cols-2 gap-x-4 gap-y-3 sm:flex sm:flex-wrap sm:justify-center sm:gap-x-8">
+            {docs.map((d) => (
+              <li key={d} className="flex items-center gap-2 text-sm font-semibold text-[var(--color-neutral-600)] sm:text-base">
+                <LineIcon name="file" size={18} className="text-[var(--color-neutral-400)]" />
+                {d}
+              </li>
+            ))}
+          </ul>
+        </Container>
+      </section>
+
+      {/* ───────────── Services ───────────── */}
+      <section id="services" aria-labelledby="services-title" className="scroll-mt-20 py-16 sm:py-24">
+        <Container className="flex flex-col gap-10">
+          <SectionHeading id="services-title" eyebrow={t("services.eyebrow")} title={t("services.title")} intro={t("services.intro")} />
+          <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <li className="sm:col-span-2">
               <Link
-                href={{ pathname: "/help", query: { category: slug } }}
-                className="group flex h-full min-h-[var(--tap-min)] flex-col gap-1 rounded-card border border-line bg-surface p-4 no-underline hover:border-accent"
+                href={{ pathname: "/help", query: { category: wide } }}
+                className="group relative flex h-full flex-col gap-5 overflow-hidden rounded-card border border-line bg-surface p-4 no-underline sm:p-6 transition hover:border-accent hover:shadow-[var(--shadow-md-light)] sm:flex-row sm:items-center"
               >
-                <span className="flex items-start justify-between gap-2 font-semibold text-ink">
-                  {tc(`${slug}.name`)}
-                  <ArrowIcon className="mt-1 shrink-0 text-accent opacity-60 group-hover:opacity-100" />
-                </span>
-                <span className="text-sm text-muted">{tc(`${slug}.hint`)}</span>
+                <div className="flex flex-1 flex-col gap-3">
+                  <span className="flex size-11 items-center justify-center rounded-control text-white" style={{ background: "var(--gradient-brand-deep)" }}>
+                    <LineIcon name={CATEGORY_ICON[wide]} size={22} />
+                  </span>
+                  <h3 className="text-xl font-semibold text-ink">{tc(`${wide}.name`)}</h3>
+                  <p className="text-muted">{tc(`${wide}.hint`)}</p>
+                  <span className="mt-auto font-semibold text-accent">{t("services.start")} →</span>
+                </div>
+                <div aria-hidden="true" className="hidden flex-col gap-2 rounded-control border border-line bg-sunken p-4 sm:flex sm:w-60">
+                  {docs.slice(0, 5).map((d) => (
+                    <span key={d} className="flex items-center gap-2 text-sm text-ink">
+                      <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-verified-soft text-verified"><LineIcon name="check" size={12} /></span>
+                      {d}
+                    </span>
+                  ))}
+                </div>
               </Link>
             </li>
-          ))}
-        </ul>
-        <p className="text-sm text-muted">{t("servingNote")}</p>
-      </section>
-
-      <section aria-labelledby="talk-title" className="flex flex-col gap-3 rounded-panel bg-sunken p-4">
-        <h2 id="talk-title" className="text-lg font-semibold">
-          {t("orTalk")}
-        </h2>
-        <ContactButtons />
-      </section>
-
-      <section aria-labelledby="how-title" className="flex flex-col gap-3">
-        <h2 id="how-title" className="text-lg font-semibold">
-          {t("howTitle")}
-        </h2>
-        <ol className="flex flex-col gap-3">
-          {steps.map((s, i) => (
-            <li key={s} className="flex gap-3">
-              <span className="flex size-7 shrink-0 items-center justify-center rounded-full border-2 border-accent text-sm font-bold text-accent tabular-nums" aria-hidden="true">
-                {new Intl.NumberFormat(locale === "bn" ? "bn-BD" : "en").format(i + 1)}
-              </span>
-              <span className="pt-0.5">{s}</span>
+            {rest.map((slug) => (
+              <li key={slug}>
+                <Link
+                  href={{ pathname: "/help", query: { category: slug } }}
+                  className="group grid h-full grid-cols-[auto_1fr_auto] items-start gap-x-4 gap-y-1 rounded-card border border-line bg-surface p-4 no-underline transition hover:border-accent hover:shadow-[var(--shadow-md-light)] sm:flex sm:flex-col sm:gap-3 sm:p-6"
+                >
+                  <span className="row-span-2 flex size-11 items-center justify-center rounded-control bg-accent-soft text-accent transition-colors group-hover:bg-accent group-hover:text-on-accent">
+                    <LineIcon name={CATEGORY_ICON[slug]} size={22} />
+                  </span>
+                  <h3 className="text-lg font-semibold text-ink">{tc(`${slug}.name`)}</h3>
+                  <span aria-hidden="true" className="row-span-2 self-center text-accent sm:hidden">→</span>
+                  <p className="text-sm text-muted sm:text-base">{tc(`${slug}.hint`)}</p>
+                  <span className="mt-auto hidden pt-1 font-semibold text-accent sm:block">{t("services.start")} →</span>
+                </Link>
+              </li>
+            ))}
+            <li className="sm:col-span-2">
+              <div className="flex h-full flex-col justify-center gap-3 rounded-card border border-dashed border-line bg-sunken p-6 sm:flex-row sm:items-center sm:gap-6">
+                <span className="flex size-11 shrink-0 items-center justify-center rounded-control bg-surface text-accent">
+                  <LineIcon name="mapPin" size={22} />
+                </span>
+                <p className="flex-1 text-muted">{t("services.note")}</p>
+                <Link href={{ pathname: "/help" }} className="shrink-0 font-semibold text-accent no-underline hover:underline">
+                  {t("services.waitlist")}
+                </Link>
+              </div>
             </li>
-          ))}
-        </ol>
+          </ul>
+        </Container>
       </section>
 
-      <section aria-labelledby="trust-title" className="flex flex-col gap-3">
-        <h2 id="trust-title" className="text-lg font-semibold">
-          {t("trustTitle")}
-        </h2>
-        <ul className="flex flex-col gap-2">
-          {trust.map((s) => (
-            <li key={s} className="flex gap-2">
-              <CheckIcon className="mt-1 shrink-0 text-accent" />
-              <span>{s}</span>
-            </li>
-          ))}
-        </ul>
-        <p className="border-l-4 border-line pl-3 text-sm text-muted">{t("fasterNote")}</p>
+      {/* ───────────── Pricing ───────────── */}
+      <section id="pricing" aria-labelledby="pricing-title" className="scroll-mt-20 border-t border-line bg-surface py-16 sm:py-24">
+        <Container className="flex flex-col gap-10">
+          <SectionHeading id="pricing-title" eyebrow={t("pricing.eyebrow")} title={t("pricing.title")} intro={t("pricing.intro")} />
+          <ul className="grid grid-cols-1 gap-4 md:grid-cols-3">
+            {packages.map((p, i) => {
+              const featured = i === 2;
+              const cat = PACKAGE_LINK[i];
+              const price = formatTaka(p.price);
+              return (
+                <li
+                  key={p.name}
+                  className={`relative flex flex-col gap-4 rounded-card p-6 ${
+                    featured ? "border-2 border-accent bg-surface shadow-[var(--shadow-lg-light)]" : "border border-line bg-bg"
+                  }`}
+                >
+                  {featured && (
+                    <span className="absolute -top-3 left-6 rounded-full px-3 py-0.5 text-xs font-semibold text-white" style={{ background: "var(--gradient-brand-deep)" }}>
+                      {t("pricing.popular")}
+                    </span>
+                  )}
+                  <h3 className="text-lg font-semibold text-ink">{p.name}</h3>
+                  <p className="flex items-baseline gap-1.5 text-ink">
+                    {p.from && !bn && <span className="text-sm text-muted">{t("pricing.from")}</span>}
+                    <span className="text-4xl font-bold tracking-tight">{price}</span>
+                    {p.from && bn && <span className="text-sm text-muted">{t("pricing.from")}</span>}
+                  </p>
+                  <p className="text-muted">{p.desc}</p>
+                  <ul className="flex flex-col gap-2 border-t border-line pt-4">
+                    {p.points.map((pt) => (
+                      <li key={pt} className="flex gap-2 text-sm text-ink">
+                        <LineIcon name="check" size={18} className="mt-0.5 shrink-0 text-accent" />
+                        {pt}
+                      </li>
+                    ))}
+                    <li className="flex gap-2 text-sm text-ink">
+                      <LineIcon name="mapPin" size={18} className="mt-0.5 shrink-0 text-accent" />
+                      {p.where}
+                    </li>
+                  </ul>
+                  <Link
+                    href={cat ? { pathname: "/help", query: { category: cat } } : { pathname: "/help" }}
+                    className={`mt-auto ${featured ? BTN_PRIMARY : BTN_SECONDARY}`}
+                    aria-label={`${p.name}: ${t("pricing.choose")}`}
+                  >
+                    {t("pricing.choose")}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+          <p className="flex max-w-3xl gap-2 text-sm text-muted">
+            <LineIcon name="receipt" size={18} className="mt-0.5 shrink-0" />
+            {t("pricing.note")}
+          </p>
+        </Container>
       </section>
+
+      {/* ───────────── How it works ───────────── */}
+      <section id="how" aria-labelledby="how-title" className="scroll-mt-20 py-16 sm:py-24">
+        <Container className="flex flex-col gap-10">
+          <SectionHeading id="how-title" eyebrow={t("how.eyebrow")} title={t("how.title")} />
+          <ol className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {steps.map((s, i) => (
+              <li key={s.title} className="flex flex-col gap-4 rounded-card border border-line bg-surface p-4">
+                <StepVisual step={i} />
+                <div className="flex flex-col gap-1.5 px-1 pb-1">
+                  <span className="text-sm font-semibold text-accent">
+                    {bn ? "ধাপ" : "Step"} {num(i + 1)}
+                  </span>
+                  <h3 className="text-lg font-semibold text-ink">{s.title}</h3>
+                  <p className="text-sm text-muted">{s.body}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </Container>
+      </section>
+
+      {/* ───────────── Experts ───────────── */}
+      <section aria-labelledby="experts-title" className="border-t border-line bg-surface py-16 sm:py-24">
+        <Container className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+          <div className="flex flex-col gap-6">
+            <SectionHeading id="experts-title" eyebrow={t("experts.eyebrow")} title={t("experts.title")} intro={t("experts.intro")} />
+            <ul className="flex flex-col gap-3">
+              {expertPoints.map((p) => (
+                <li key={p} className="flex gap-3 text-ink">
+                  <span className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-accent-soft text-accent"><LineIcon name="check" size={14} /></span>
+                  {p}
+                </li>
+              ))}
+            </ul>
+            <div className="flex flex-col gap-2">
+              <p className="text-sm font-semibold text-muted">{t("experts.rolesTitle")}</p>
+              <ul className="flex flex-wrap gap-2">
+                {roles.map((r) => (
+                  <li key={r} className="rounded-full border border-line bg-bg px-3 py-1 text-sm text-ink">{r}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          <div className="relative mx-auto w-full max-w-md">
+            <div aria-hidden="true" className="absolute -inset-6 -z-10 rounded-[40px] opacity-70" style={{ background: "var(--gradient-glow)" }} />
+            <ExpertCardMock />
+          </div>
+        </Container>
+      </section>
+
+      {/* ───────────── Safety (Designfoli dark theme) ───────────── */}
+      <section data-theme="dark" aria-labelledby="safety-title" className="relative overflow-hidden bg-[var(--bg-base)] py-16 sm:py-24">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 h-80" style={{ background: "var(--gradient-glow)" }} />
+        <Container className="relative flex flex-col gap-10">
+          <SectionHeading id="safety-title" dark eyebrow={t("safety.eyebrow")} title={t("safety.title")} />
+          <ul className="grid grid-cols-1 gap-px overflow-hidden rounded-card border border-[var(--border-default)] bg-[var(--border-default)] sm:grid-cols-2 lg:grid-cols-3">
+            {safety.map((s, i) => (
+              <li key={s.title} className="flex flex-col gap-3 bg-[var(--bg-base)] p-6">
+                <span className="flex size-10 items-center justify-center rounded-control bg-[var(--bg-elevated)] text-[var(--color-primary-300)]">
+                  <LineIcon name={SAFETY_ICONS[i] ?? "check"} size={20} />
+                </span>
+                <h3 className="text-lg font-semibold text-[var(--fg-primary)]">{s.title}</h3>
+                <p className="text-[var(--fg-secondary)]">{s.body}</p>
+              </li>
+            ))}
+          </ul>
+          <div className="flex flex-col gap-3 text-sm text-[var(--fg-secondary)] sm:flex-row sm:items-center sm:justify-between">
+            <p>{tFooter("note")}</p>
+            <Link href="/legal/refund" className="font-semibold text-[var(--color-primary-300)] no-underline hover:underline">
+              {t("safety.refundLink")}
+            </Link>
+          </div>
+        </Container>
+      </section>
+
+      {/* ───────────── Living abroad ───────────── */}
+      <section aria-labelledby="nrb-title" className="py-16 sm:py-20">
+        <Container>
+          <div className="flex flex-col gap-5 rounded-panel border border-line bg-surface p-6 sm:flex-row sm:items-center sm:gap-8 sm:p-8">
+            <span className="flex size-14 shrink-0 items-center justify-center rounded-full bg-accent-soft text-accent">
+              <LineIcon name="globe" size={28} />
+            </span>
+            <div className="flex flex-1 flex-col gap-2">
+              <h2 id="nrb-title" className="text-xl font-semibold text-ink sm:text-2xl">{t("nrb.title")}</h2>
+              <p className="text-muted">{t("nrb.body")}</p>
+            </div>
+            <a href={waHref} target="_blank" rel="noopener noreferrer" className={`${BTN_SECONDARY} shrink-0`}>
+              {t("nrb.cta")}
+            </a>
+          </div>
+        </Container>
+      </section>
+
+      {/* ───────────── FAQ ───────────── */}
+      <section id="faq" aria-labelledby="faq-title" className="scroll-mt-20 border-t border-line bg-surface py-16 sm:py-24">
+        <Container className="grid gap-10 lg:grid-cols-[1fr_1.6fr] lg:gap-16">
+          <div className="contents lg:flex lg:flex-col lg:gap-6">
+            <SectionHeading id="faq-title" eyebrow={t("faq.eyebrow")} title={t("faq.title")} />
+            <div className="order-last flex flex-col gap-3 rounded-card bg-sunken p-5 lg:order-none">
+              <p className="font-semibold text-ink">{th("orTalk")}</p>
+              <div className="flex flex-wrap gap-3">
+                <a href={`tel:${hotline}`} className={`${BTN} min-h-11 bg-accent px-5 text-on-accent hover:bg-accent-hover`}>
+                  <LineIcon name="phone" size={18} /> {tContact("call")}
+                </a>
+                <a href={waHref} target="_blank" rel="noopener noreferrer" className={`${BTN} min-h-11 border border-accent px-5 text-accent hover:bg-accent-soft`}>
+                  {tContact("whatsapp")}
+                </a>
+              </div>
+              <p dir="ltr" className="text-sm font-semibold text-ink [text-align:start]">{formatPhoneDisplay(hotline)}</p>
+            </div>
+          </div>
+          <div className="flex flex-col divide-y divide-line border-y border-line">
+            {faqs.map((f) => (
+              <details key={f.q} className="group py-1">
+                <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 py-3 text-lg font-semibold text-ink [&::-webkit-details-marker]:hidden">
+                  {f.q}
+                  <span className="flex size-8 shrink-0 items-center justify-center rounded-full border border-line text-muted transition-transform duration-200 group-open:rotate-45">
+                    <LineIcon name="plus" size={16} />
+                  </span>
+                </summary>
+                <p className="pb-4 pr-12 text-muted">{f.a}</p>
+              </details>
+            ))}
+          </div>
+        </Container>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd).replace(/</g, "\\u003c") }} />
+      </section>
+
+      {/* ───────────── Final call to action ───────────── */}
+      <section aria-labelledby="cta-title" className="py-16 sm:py-20">
+        <Container>
+          <div className="relative flex flex-col items-center gap-5 overflow-hidden rounded-panel px-6 py-12 text-center text-white sm:py-16" style={{ background: "var(--gradient-brand-deep)" }}>
+            <MouzaSketch className="pointer-events-none absolute -right-6 -top-4 w-64 text-white opacity-[0.12]" />
+            <MouzaSketch className="pointer-events-none absolute -bottom-10 -left-8 w-56 text-white opacity-[0.08]" />
+            <p className="relative rounded-full bg-white/15 px-3 py-1 text-sm font-semibold text-white">{th("serving")}</p>
+            <h2 id="cta-title" className="relative max-w-2xl text-3xl font-bold leading-tight tracking-tight sm:text-5xl">{t("cta.title")}</h2>
+            <p className="relative max-w-xl text-lg text-white/90">{t("cta.body")}</p>
+            <div className="relative flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
+              <Link href="/help" className={`${BTN} bg-white text-[var(--color-primary-700)] hover:bg-[var(--color-primary-100)]`}>{t("hero.primary")}</Link>
+              <a href={`tel:${hotline}`} className={`${BTN} border border-white/60 text-white hover:bg-white/10`}>
+                <LineIcon name="phone" size={18} /> {tContact("call")}
+              </a>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* Phones: call and form always one tap away. Sticky inside the page, so it never covers the footer. */}
+      <nav aria-label={t("bar.label")} className="sticky bottom-0 z-30 border-t border-line bg-[color-mix(in_srgb,var(--color-surface)_92%,transparent)] px-4 py-3 backdrop-blur-md sm:hidden">
+        <div className="grid grid-cols-2 gap-3">
+          <a href={`tel:${hotline}`} className={`${BTN_SECONDARY} px-3`}>
+            <LineIcon name="phone" size={18} /> {tContact("call")}
+          </a>
+          <Link href="/help" className={`${BTN_PRIMARY} px-3`}>{tn("start")} →</Link>
+        </div>
+      </nav>
     </div>
   );
 }

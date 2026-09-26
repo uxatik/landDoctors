@@ -35,3 +35,13 @@ Designfoli (`.claude/skills/designfoli/`) is the design system. `styles/designfo
 - Mona Sans has no Bangla letters, so the stack is Mona Sans → Hind Siliguri. Bangla headings get normal letter-spacing and body line-height 1.6.
 - White on primary-500 is 4.4:1 (just under AA), so filled buttons and links use primary-600. Success, warning and error text use darker shades of Designfoli's own colours (`color-mix` with black) to reach AA.
 - Pill buttons, 12px cards, 8px inputs, "→" on the two main CTAs. Phone numbers use normal digits (fixed-width digits looked like a code font).
+
+## D12 — Landing page modelled on Attio's structure, built from Designfoli (27 Sep 2026)
+The founder picked Attio's page as the style reference. Structure borrowed: centred hero with a product "screenshot", a logo-style strip, bento feature grids, a dark section, a gradient call-to-action band, a four-column footer.
+- **Product visuals are HTML, not images.** Designfoli rules out photos and illustrations, and a real offer card says more than a picture: it shows the price split and the verified expert. It also costs a few KB instead of hundreds on a slow phone connection. Every mock is labelled "Sample" and hidden from screen readers.
+- **No testimonials or client logos.** We have no customers yet, and made-up reviews are not allowed. The logo strip lists the land papers we work with; trust comes from the safety section and the FAQ.
+- **What goes up front** (from the research): no middlemen, prices before you commit, government fees separate, first 10-minute call free, no cash in hand, pilot areas, and a section for people living abroad.
+- **Prices on the page are the brief's starting prices** (৳1,000 / from ৳6,000 / from ৳8,000). They must be confirmed before launch (launch checklist).
+- New tokens, all derived from Designfoli: `--gradient-brand-deep` (white text passes AA on it), `--gradient-brand-text`, `--container-max`. The safety section uses Designfoli's own dark theme (`data-theme="dark"`).
+- Phones get a sticky bottom bar with Call and Tell us your problem.
+- Speed: Mona Sans now loads as small Latin-only WOFF2 files (about 25 KB each, the TTFs stay as fallback) with `font-display: swap`; client components get only the strings they use. Lighthouse mobile: 85–96 across runs, accessibility 100, SEO 100.

@@ -81,3 +81,9 @@ Known limitations
 ## Iteration — Designfoli install (27 Sep 2026)
 Installed the Designfoli skill, fonts and CSS; remapped tokens (D11); added CLAUDE.md. Check page confirmed Mona Sans 400/600/700 load, then deleted. Screens reviewed: headings without a size class grew to Designfoli's h2 size (36px) — gave every bare h2 an explicit size; phone numbers looked monospace from `tabular-nums` — removed on phone numbers.
 Design-system fidelity 4 → 5 (light theme and AA overrides documented).
+
+## Iteration — Landing page (27 Sep 2026)
+Built the new home page (D12). Loop: build → screenshots at 390 and 1280 in both languages → critique → fix.
+Round 1 findings, all fixed: headline broke mid-phrase ("দালাল / নয়,"); empty space under the hero mock (added the payment card); on phones the problem list sat 1,300px down (compact cards, shorter mock); CTA badge low contrast on the gradient; no call button in reach on phones (sticky bar).
+Round 2: Lighthouse performance 75 → 85–96 (Latin WOFF2 subsets, swap, fewer client strings, dropped blur filters). Accessibility 100, SEO 100 (FAQ also published as FAQPage data).
+Scores: Usability 5 · Trust 5 · Design-system fidelity 5 · Performance 4.
