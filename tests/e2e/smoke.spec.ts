@@ -22,6 +22,7 @@ test("language toggle switches both ways", async ({ page }) => {
 
 test("no horizontal scroll", async ({ page }) => {
   await page.goto("/");
-  const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
+  // Compare with the configured viewport: phone emulation widens innerWidth to fit wide content.
+    const overflow = (await page.evaluate(() => document.documentElement.scrollWidth)) - page.viewportSize()!.width;
   expect(overflow).toBeLessThanOrEqual(0);
 });

@@ -54,7 +54,8 @@ test.describe("Home (Bangla)", () => {
     const results = await new AxeBuilder({ page }).analyze();
     const serious = results.violations.filter((v) => v.impact === "serious" || v.impact === "critical");
     expect(serious.map((v) => `${v.id}: ${v.nodes.length}`)).toEqual([]);
-    const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
+    // Compare with the configured viewport: phone emulation widens innerWidth to fit wide content.
+    const overflow = (await page.evaluate(() => document.documentElement.scrollWidth)) - page.viewportSize()!.width;
     expect(overflow).toBeLessThanOrEqual(0);
   });
 });

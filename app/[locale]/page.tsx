@@ -59,7 +59,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   };
 
   return (
-    <div className="relative">
+    <div className="relative overflow-x-clip">
       {/* ───────────── Hero ───────────── */}
       <section aria-labelledby="home-title" className="relative overflow-hidden pb-16 pt-10 sm:pt-16">
         <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[520px]" style={{ background: "var(--gradient-glow)" }} />
@@ -255,7 +255,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       </section>
 
       {/* ───────────── Experts ───────────── */}
-      <section aria-labelledby="experts-title" className="border-t border-line bg-surface py-16 sm:py-24">
+      <section aria-labelledby="experts-title" className="overflow-x-clip border-t border-line bg-surface py-16 sm:py-24">
         <Container className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
           <div className="flex flex-col gap-6">
             <SectionHeading id="experts-title" eyebrow={t("experts.eyebrow")} title={t("experts.title")} intro={t("experts.intro")} />
