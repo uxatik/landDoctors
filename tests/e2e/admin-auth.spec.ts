@@ -12,6 +12,13 @@ test.describe("Staff area without a database connection", () => {
     await expect(page.locator("#login-error")).toContainText("Database not connected");
   });
 
+  for (const path of ["/admin", "/admin/cases/1", "/admin/consultants", "/admin/packages", "/admin/waitlist", "/admin/complaints", "/admin/payouts"]) {
+    test(`${path} is protected`, async ({ page }) => {
+      await page.goto(path);
+      await expect(page).toHaveURL(/\/admin\/login/);
+    });
+  }
+
   test("staff pages are never indexed or cached", async ({ request }) => {
     const res = await request.get("/admin/login");
     expect(res.headers()["x-robots-tag"]).toContain("noindex");
