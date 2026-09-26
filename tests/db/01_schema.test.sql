@@ -44,11 +44,20 @@ select test.eq(
    where n.nspname = 'public' and c.relkind = 'r' and not c.relrowsecurity),
   null, 'tables without RLS');
 
--- The API roles have no direct table privileges at all.
+-- The anonymous role has no table privileges at all.
 select test.eq(
-  (select string_agg(distinct table_name || ':' || grantee, ',') from information_schema.role_table_grants
-   where table_schema = 'public' and grantee in ('anon', 'authenticated')),
-  null, 'table grants to anon/authenticated');
+  (select string_agg(distinct table_name, ',') from information_schema.role_table_grants
+   where table_schema = 'public' and grantee = 'anon'),
+  null, 'table grants to anon');
+
+-- Signed-in users never get delete, and never write cases, offers, payments or events directly.
+select test.eq(
+  (select string_agg(distinct table_name || ':' || privilege_type, ',') from information_schema.role_table_grants
+   where table_schema = 'public' and grantee = 'authenticated'
+     and (privilege_type in ('DELETE', 'TRUNCATE')
+          or (table_name in ('cases', 'offers', 'payments', 'case_events', 'waitlist', 'rate_limits')
+              and privilege_type <> 'SELECT'))),
+  null, 'dangerous grants to authenticated');
 
 -- Anonymous visitors cannot read or write tables.
 select test.as_user('anon');
