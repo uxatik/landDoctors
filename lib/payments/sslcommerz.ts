@@ -49,10 +49,12 @@ export async function initSession(cfg: SslcConfig, input: InitInput, fetchImpl: 
   });
   const res = await fetchImpl(`${host(cfg)}/gwprocess/v4/api.php`, { method: "POST", body });
   const json = (await res.json()) as { status?: string; GatewayPageURL?: string; failedreason?: string };
-  if (json.status !== "SUCCESS" || !json.GatewayPageURL?.startsWith("https://")) {
+  const gateway = json.GatewayPageURL ? new URL(json.GatewayPageURL) : null;
+  // Only ever send customers to SSLCommerz itself.
+  if (json.status !== "SUCCESS" || !gateway || gateway.protocol !== "https:" || !/(^|\.)sslcommerz\.com$/.test(gateway.hostname)) {
     throw new Error(`SSLCommerz init failed: ${json.failedreason ?? json.status ?? res.status}`);
   }
-  return json.GatewayPageURL;
+  return gateway.toString();
 }
 
 export type Validation =

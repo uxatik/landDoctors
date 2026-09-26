@@ -57,6 +57,14 @@ describe("initSession", () => {
     expect(body.body.get("ipn_url")).toBe("https://landdoctor.example/api/payments/ipn");
   });
 
+  it("refuses to redirect anywhere except SSLCommerz", async () => {
+    const fetchImpl = vi.fn(async () => new Response(JSON.stringify({ status: "SUCCESS", GatewayPageURL: "https://evil.example/pay" })));
+    await expect(initSession(cfg, {
+      tranId: TRAN, amount: 1, caseRef: "LD-0001", customerName: "N", customerPhone: "+8801712345678",
+      product: "x", siteUrl: "https://x.example", locale: "bn",
+    }, fetchImpl as unknown as typeof fetch)).rejects.toThrow();
+  });
+
   it("throws when the gateway refuses", async () => {
     const fetchImpl = vi.fn(async () => new Response(JSON.stringify({ status: "FAILED", failedreason: "Store Credential Error" })));
     await expect(initSession(cfg, {

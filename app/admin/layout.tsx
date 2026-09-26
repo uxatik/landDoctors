@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "@fontsource/hind-siliguri/400.css";
-import "@fontsource/hind-siliguri/600.css";
 import "@fontsource/hind-siliguri/700.css";
 import "../globals.css";
 

@@ -1,6 +1,9 @@
 import type { NextConfig } from "next";
 import createNextIntlPlugin from "next-intl/plugin";
 import { securityHeaders } from "./lib/security-headers";
+import { assertProductionEnv } from "./lib/env-check";
+
+assertProductionEnv();
 
 const withNextIntl = createNextIntlPlugin("./i18n/request.ts");
 

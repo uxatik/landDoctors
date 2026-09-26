@@ -42,3 +42,38 @@
 ## Rubric (reviewer, after Loop 7)
 Scope 5 · Correctness 4 (DB-backed flows not yet run end to end) · Security 5 · Usability 4 · Trust 5 · Design-system fidelity 4 (placeholder tokens) · Code quality 4 · Performance 4 (Lighthouse not yet run).
 Open: connect Supabase and run DB E2E; Lighthouse; Designfoli tokens.
+
+## Loop 8 — Tasks 8 & 9: staff login and case screens (26 Sep 2026)
+- Supabase SSR auth, password + TOTP (enrol with QR, verify), gate order: signed in → aal2 → active staff. Middleware refreshes the session and marks /admin no-store, noindex.
+- Case list (filters: status, area, date, case number) and case detail: details, status buttons (only allowed moves), consultant assignment (ineligible ones shown disabled with the reason), offer creation (price editable only by super admin), copy link + WhatsApp share, manual payment, refund with confirmation, notes, timeline with staff names.
+- Added migration 0005 (event actor → staff FK) for names on the timeline.
+- Tests: all /admin routes redirect to login without a session; headers; TOTP helper checked against RFC 6238. Sign-in E2E written, runs on the founder's Mac (E2E_DB=1).
+
+## Loop 9 — Tasks 10 & 11: offer page and payments
+- Offer page: package, scope, exclusions, delivery, service price and government fees on separate lines, total, consultant with verified badge, states open / price unconfirmed / expired / paid, "never pay cash", refund link, noindex.
+- SSLCommerz sandbox behind PAYMENTS_ENABLED: amount always from the offer (begin_online_payment), paid only after SSLCommerz validation API + DB amount check (mark_offer_paid, service role only), idempotent for repeated IPN/return, other attempts closed, card data never stored.
+- Tests: 05_payments SQL (wrong amount, double confirmation, second attempt after paid, unconfirmed price, roles), unit tests with fixtures (VALID/VALIDATED/failed/currency/amount format/risky/tran mismatch/network), E2E for result pages and switched-off gateway.
+
+## Loop 10 — Task 12: other admin screens
+- Consultants (create/edit, super admin only; government requires sanction ref), packages (price, share, days, price-confirmed), waiting list grouped by area, complaints (log + resolve, adds a note to the case), payouts (share + reimbursed government fees per consultant, mark paid).
+- Tests: payout calculation unit tests.
+
+## Loop 11 — Task 13: hardening and docs
+- CSP and security headers on every response; analytics only when IDs are set; staff creation script; README; launch checklist; database update file for projects set up earlier (tested on top of the first setup).
+- Production deploys now fail if the hotline/WhatsApp are placeholders or database keys are missing (found during QA: the placeholder number is built into pages when env vars are missing at build time).
+
+## Loop 12 — Task 14: full QA
+- Lighthouse mobile (simulated slow 4G): Home 91–95, Help 93, English home 92, privacy 99; accessibility 100 everywhere. Fix applied: dropped two unused font weights (≈150 KB less Bangla font).
+- Security review: restricted payment redirect to sslcommerz.com; no secret names in client bundles; PostCSS advisory fixed with an override (npm audit: 0 vulnerabilities).
+- Translation check: bn/en keys identical; no English left in Bangla strings.
+- Totals: unit 61, database 7 suites, browser 92 passed / 10 skipped (need the founder's Supabase).
+
+## Rubric (reviewer, after Loop 12)
+Scope 5 · Correctness 4 (Supabase-backed browser flows still to run on the founder's Mac) · Security 5 · Usability 4 · Trust 5 · Design-system fidelity 4 (placeholder tokens) · Code quality 4 · Performance 5.
+
+Known limitations
+- Browser tests that need Supabase (form submit, staff sign-in, offer page with data) are written but run only on the founder's Mac: this workspace cannot reach supabase.co.
+- CSP allows inline scripts (Next.js bootstrap); no user HTML is ever rendered, so the risk is low. Nonce-based CSP is a later improvement.
+- Consultant share on payouts comes from the package's current share, not a snapshot at offer time.
+- A forged "payment failed" POST can mark a pending attempt failed; a genuine SSLCommerz confirmation still marks it paid afterwards.
+- Legal pages are drafts; prices are placeholders; design tokens are placeholders.
