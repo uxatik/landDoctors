@@ -38,3 +38,12 @@ describe("display helpers", () => {
     expect(toWhatsAppNumber("+8801711000002")).toBe("8801711000002");
   });
 });
+
+import { formatTaka } from "@/lib/money";
+describe("formatTaka", () => {
+  it("uses the South Asian grouping with English digits", () => {
+    expect(formatTaka(8000)).toBe("৳8,000");
+    expect(formatTaka(125000)).toBe("৳1,25,000");
+    expect(formatTaka(0)).toBe("৳0");
+  });
+});
