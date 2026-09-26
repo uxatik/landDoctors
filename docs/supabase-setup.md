@@ -7,7 +7,7 @@ My build workspace can't reach supabase.co (blocked by its network rules), so th
 2. Open `supabase/setup.sql` from this folder in a text editor, copy everything, paste it in, press **Run**.
 3. You should see "Success. No rows returned". Check **Table Editor**: you should see tables like `cases`, `packages` (with 3 rows), `waitlist`.
 
-Run it only once. If it fails part-way, nothing is saved (it runs as one transaction). Send me the error text.
+Run it only once. If you already ran an older version, run the files in `supabase/updates/` instead. If it fails part-way, nothing is saved (it runs as one transaction). Send me the error text.
 
 ## 2. Fill in `.env.local` (in this folder)
 ```
@@ -34,3 +34,9 @@ Open http://localhost:3000/help, fill the form, press পাঠান. You shoul
 npx playwright install chromium
 E2E_DB=1 npm run e2e
 ```
+
+## 5. Create staff logins
+```
+node --env-file=.env.local scripts/create-staff.mjs you@example.com "Your Name" super_admin
+```
+Then open http://localhost:3000/admin/login, sign in with the temporary password, and scan the QR code with Google Authenticator. Also in Supabase → Authentication, turn **off** new sign-ups.

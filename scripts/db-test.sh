@@ -37,6 +37,16 @@ done
 
 pass=0; fail=0
 
+# A project set up from the first setup.sql (migrations 0001–0004 + seed) must accept the update file.
+"${PSQL[@]}" -d postgres -c "create database t_update"
+"${PSQL[@]}" -d t_update -f "$ROOT/tests/db/00_supabase_shim.sql"
+for f in "$ROOT"/supabase/migrations/000[1-4]_*.sql "$ROOT/supabase/seed.sql"; do "${PSQL[@]}" -d t_update -f "$f"; done
+if out="$("${PSQL[@]}" -d t_update -f "$ROOT/supabase/updates/001_after_first_setup.sql" 2>&1)"; then
+  echo "  ✓ supabase/updates/001 applies on top of the first setup"; pass=$((pass+1))
+else
+  echo "  ✗ supabase/updates/001"; echo "$out" | sed 's/^/      /'; fail=$((fail+1))
+fi
+
 # The one-file setup for the Supabase SQL editor must apply cleanly to a fresh project.
 "${PSQL[@]}" -d postgres -c "create database t_setup"
 "${PSQL[@]}" -d t_setup -f "$ROOT/tests/db/00_supabase_shim.sql"

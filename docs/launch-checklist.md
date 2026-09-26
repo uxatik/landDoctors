@@ -1,0 +1,40 @@
+# Launch checklist (what only the founder can do)
+
+Tick these before real customers see the site.
+
+## Legal and business
+- [ ] Lawyer in Bangladesh reviews the four legal pages (`lib/content/legal.ts`), then remove the DRAFT banner (`app/[locale]/legal/[slug]/page.tsx`).
+- [ ] Lawyer reviews the consultant agreement (share, no cash, conflict rule, liability).
+- [ ] Trade licence, TIN, business bank account, DBID.
+- [ ] SSLCommerz merchant approval (live store ID and password).
+- [ ] Written agreement with the association; family link disclosed.
+- [ ] Every Phase 1 consultant confirmed as **private**. Government employees only later, with sanction on file.
+
+## Supabase
+- [ ] `supabase/setup.sql` run once (or `supabase/updates/*` after an older setup).
+- [ ] Authentication: public sign-ups **off**; TOTP MFA **on**.
+- [ ] Staff created with `scripts/create-staff.mjs`; each has set up the authenticator app.
+- [ ] Remove any test or demo consultants and test cases.
+- [ ] Point-in-time backups: check your plan (the free plan has daily backups only).
+
+## Content and prices
+- [ ] Real prices set in `/admin/packages` and **Price confirmed** ticked for each package.
+- [ ] Package scope and exclusions checked by the consultants who will deliver them.
+- [ ] Real hotline and WhatsApp numbers in the environment variables.
+- [ ] Hotline hours decided and added to the home page (currently not shown).
+- [ ] Designfoli tokens swapped into `design/tokens.css`; check contrast (AA).
+- [ ] Bangla copy read by a native speaker on a phone.
+
+## Deployment
+- [ ] Private GitHub repository; backend developer invited to review `lib/payments/*`, `app/api/payments/*`, `supabase/migrations/*`.
+- [ ] Vercel project with all environment variables; `NEXT_PUBLIC_SITE_URL` = real domain.
+- [ ] Domain connected (.com now; .com.bd later if wanted).
+- [ ] `IP_HASH_SALT` set to a long random value.
+- [ ] Sandbox payment tested end to end on the deployed site (IPN needs a public URL).
+- [ ] Switch `SSLCOMMERZ_SANDBOX=false` only after merchant approval and one real small test payment.
+- [ ] Google Analytics and Clarity IDs added (optional).
+
+## Operations
+- [ ] Operations brother named, with hours.
+- [ ] One-page guides: triage call script, matching rules, sending offers, recording payments, refunds, complaints, weekly payouts.
+- [ ] Stop-loss numbers written down (see research report).
