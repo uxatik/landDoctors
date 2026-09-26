@@ -175,5 +175,63 @@
     "disclaimer": "Disclaimer",
     "hotline": "Hotline",
     "note": "LandDoctor is not a government office."
+  },
+  "offer": {
+    "metaTitle": "Your offer",
+    "caseLabel": "Case",
+    "title": "Our offer for you",
+    "scope": "What's included",
+    "exclusions": "What's not included",
+    "delivery": "Time",
+    "deliveryDays": "Within {days} days",
+    "deliveryNow": "During the call",
+    "servicePrice": "Service price",
+    "govtFees": "Government fees (charged at actual cost)",
+    "total": "Total",
+    "expert": "Your expert",
+    "verified": "Verified",
+    "areas": "Works in",
+    "roles": {
+      "surveyor": "Surveyor (amin)",
+      "retired_official": "Retired land official",
+      "advocate": "Land advocate",
+      "deed_writer": "Deed writer"
+    },
+    "pay": "Pay {amount}",
+    "payNote": "By bKash, Nagad, Rocket or card. LandDoctor holds the money; the expert is paid after delivery.",
+    "cash": "Never pay an expert in cash. If anyone asks, tell us.",
+    "refundLink": "Refund policy",
+    "expires": "Offer valid until {date}",
+    "manualTitle": "How to pay",
+    "manualBody": "Online payment is coming soon. For now, call or message us on WhatsApp with your case number to pay.",
+    "unconfirmedTitle": "Call us to confirm the price",
+    "unconfirmedBody": "The price for this offer isn't final yet. Please call or message us before paying.",
+    "expiredTitle": "This offer has expired",
+    "expiredBody": "Call or message us with your case number for a new offer.",
+    "paidTitle": "Already paid",
+    "paidBody": "Thank you. Your expert will start the work and we'll keep in touch."
+  },
+  "payResult": {
+    "success": {
+      "title": "Payment successful",
+      "body": "Thank you. We'll be in touch soon about your case."
+    },
+    "fail": {
+      "title": "Payment didn't go through",
+      "body": "No money was taken. Try again from your offer link, or call us."
+    },
+    "cancel": {
+      "title": "You cancelled the payment",
+      "body": "You can pay any time from your offer link."
+    },
+    "review": {
+      "title": "We're checking your payment",
+      "body": "If money was taken, don't worry: we're verifying it and will call you."
+    },
+    "error": {
+      "title": "Couldn't start the payment",
+      "body": "Please call or message us on WhatsApp and we'll help."
+    },
+    "ref": "Case number"
   }
 }
