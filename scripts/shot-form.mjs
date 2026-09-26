@@ -1,0 +1,11 @@
+import { chromium } from "@playwright/test";
+const [,, base, out] = process.argv;
+const b = await chromium.launch({ executablePath: "/opt/pw-browsers/chromium" });
+const p = await b.newPage({ viewport: { width: 360, height: 740 } });
+await p.goto(base + "/help?category=survey", { waitUntil: "load" });
+await p.locator("#area-other").check();
+await p.fill("#phone", "12345");
+await p.getByRole("button", { name: "পাঠান" }).click();
+await p.locator("#form-errors").waitFor();
+await p.screenshot({ path: out, fullPage: true });
+await b.close();

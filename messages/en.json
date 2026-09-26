@@ -59,5 +59,109 @@
     "call": "Call us",
     "whatsapp": "WhatsApp",
     "whatsappText": "Hello, I need help with a land matter."
+  },
+  "help": {
+    "title": "Tell us your problem",
+    "intro": "Send the form and we'll call you. The first 10-minute call is free, you pay nothing.",
+    "categoryLegend": "Type of problem",
+    "whereLegend": "Where is the land?",
+    "areas": {
+      "savar": "Savar",
+      "gazipur": "Gazipur",
+      "other": "Somewhere else"
+    },
+    "upazila": "Upazila or thana",
+    "upazilaHint": "For example: Savar, Ashulia, Kaliakair, Sreepur",
+    "district": "District",
+    "mouza": "Mouza (if you know it)",
+    "fieldNote": "Land surveys and pre-purchase checks are only done in Savar and Gazipur for now. Send the form and we'll add you to the waiting list and tell you when we start in your area.",
+    "docsLegend": "Which papers do you have?",
+    "docsHint": "Tick the ones you have. Don't send photos of papers here; we'll ask for them on WhatsApp later.",
+    "docs": {
+      "deed": "Deed (dolil)",
+      "khatian": "Khatian / porcha",
+      "mutation_dcr": "Mutation (DCR)",
+      "tax_receipt": "Land tax receipt",
+      "mouza_map": "Mouza map"
+    },
+    "description": "Briefly, what happened?",
+    "descriptionHint": "Optional. We'll understand on the call.",
+    "aboutLegend": "About you",
+    "name": "Your name",
+    "phone": "Mobile number",
+    "phoneHint": "For example 01712-345678",
+    "contactLegend": "How should we contact you?",
+    "contact": {
+      "call": "Phone call",
+      "whatsapp": "WhatsApp"
+    },
+    "privacy": "We only keep your name, phone number and the problem details. We don't share them with anyone.",
+    "submit": "Send",
+    "submitting": "Sending…",
+    "summaryTitle": "Please fix the following",
+    "errors": {
+      "category": {
+        "required": "Choose the type of problem"
+      },
+      "area": {
+        "required": "Choose where the land is"
+      },
+      "upazila": {
+        "required": "Enter the upazila or thana",
+        "invalid": "Enter a valid upazila name",
+        "too_long": "Keep the name under 60 characters"
+      },
+      "district": {
+        "required": "Enter the district",
+        "invalid": "Enter a valid district name",
+        "too_long": "Keep the name under 60 characters"
+      },
+      "mouza": {
+        "invalid": "Enter a valid mouza name",
+        "too_long": "Keep the mouza name under 60 characters"
+      },
+      "documents": {
+        "invalid": "Choose papers from the list"
+      },
+      "description": {
+        "invalid": "Check the description",
+        "too_long": "Keep it under 1000 characters"
+      },
+      "name": {
+        "required": "Enter your name",
+        "invalid": "Name must be at least 2 characters",
+        "too_long": "Keep the name under 80 characters"
+      },
+      "phone": {
+        "required": "Enter your mobile number",
+        "invalid": "Enter a valid mobile number, for example 01712-345678"
+      },
+      "contact_pref": {
+        "required": "Choose how we should contact you"
+      }
+    },
+    "formErrors": {
+      "rate_limited": "Too many attempts. Try again in an hour, or call us directly.",
+      "unavailable": "The form isn't working right now. Please call or message us on WhatsApp.",
+      "unknown": "Something went wrong. Try again, or call us directly."
+    },
+    "metaTitle": "Tell us your problem"
+  },
+  "thanks": {
+    "title": "Thank you, we've received it",
+    "refLabel": "Your case number",
+    "refHint": "Keep this number. Mention it on a call or WhatsApp and we'll find your case quickly.",
+    "nextTitle": "What happens next",
+    "next": [
+      "We'll call you soon",
+      "On a free 10-minute call we'll understand the problem",
+      "If needed, we'll send a fixed-price offer; you pay only if you agree"
+    ],
+    "waitlistTitle": "You're on the waiting list",
+    "waitlistBody": "Field work hasn't started in your area yet. We'll call you when it does. Meanwhile, call us if you'd like advice by phone.",
+    "receivedTitle": "Thank you",
+    "receivedBody": "We've received your details.",
+    "cashWarning": "No one from LandDoctor will ever ask you for cash in hand. If anyone does, tell us.",
+    "home": "Back to the home page"
   }
 }

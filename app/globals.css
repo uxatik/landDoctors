@@ -53,3 +53,11 @@ h1, h2, h3 {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Intake form: show the district field and the field-work note without JavaScript. */
+.intake:has(#area-other:checked) .district-field {
+  display: flex;
+}
+.intake:has(#area-other:checked):has(#category-survey:checked, #category-pre_purchase_check:checked) .field-note {
+  display: block;
+}
