@@ -45,3 +45,7 @@ The founder picked Attio's page as the style reference. Structure borrowed: cent
 - New tokens, all derived from Designfoli: `--gradient-brand-deep` (white text passes AA on it), `--gradient-brand-text`, `--container-max`. The safety section uses Designfoli's own dark theme (`data-theme="dark"`).
 - Phones get a sticky bottom bar with Call and Tell us your problem.
 - Speed: Mona Sans now loads as small Latin-only WOFF2 files (about 25 KB each, the TTFs stay as fallback) with `font-display: swap`; client components get only the strings they use. Lighthouse mobile: 85–96 across runs, accessibility 100, SEO 100.
+
+## D13 — Brand colour: deep teal instead of Designfoli violet (27 Sep 2026)
+The founder compared violet, deep teal and trust blue on the real page and chose teal: it reads as land and trust, not "tech app", and stays apart from government green, bKash pink and Nagad orange.
+Only the hue changed: the Designfoli primary scale, gradient partner, glow and shadow tints are overridden in the first block of `design/tokens.css` (the only place brand hex values live). Contrast: white on primary-600 5.6:1, primary-600 on white 5.6:1, on the soft tint 5.0:1, primary-300 on the dark section 10.6:1 — all AA. `CLAUDE.md` records the override so future UI work uses teal.

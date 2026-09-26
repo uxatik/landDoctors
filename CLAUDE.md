@@ -11,6 +11,7 @@
 - For LinkedIn or social graphics, use the "linkedin" section of designfoli-brand.json (sizes, templates, 64px safe margins).
 
 ## How Designfoli is applied in this project
+- **Brand colour override (D13): LandDoctor uses deep teal, not Designfoli violet.** Primary 500 `#14907A`, 600 `#0E7563` (buttons, links), gradient `#14907A → #0E7490`. The values live only in the first block of `design/tokens.css`; where Designfoli rules above say #5A6BFF / #A857F7, use these instead. Everything else in Designfoli applies unchanged.
 - The site uses Designfoli's light theme (`styles/designfoli.css`, loaded in `app/globals.css` in the base CSS layer).
 - `design/tokens.css` maps LandDoctor's token names onto Designfoli variables. Components use those names through Tailwind (e.g. `bg-accent`, `rounded-card`), never raw hex values.
 - Mona Sans has no Bangla letters, so the font stack is Mona Sans → Hind Siliguri. Latin text and digits render in Mona Sans; Bangla in Hind Siliguri.

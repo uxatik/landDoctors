@@ -1,4 +1,36 @@
 /*
+ * LandDoctor palette override (decision D13, 27 Sep 2026).
+ * The founder chose deep teal over Designfoli's violet: it reads as land and trust,
+ * and stays clearly apart from government green, bKash pink and Nagad orange.
+ * Only the brand hue changes; everything else is Designfoli. This block is the one
+ * place brand hex values live. Contrast on white: 600 = 5.6:1, 700 = 7.6:1 (AA).
+ */
+:root {
+  --color-primary-100: #E6F4F1;
+  --color-primary-200: #BFE3DB;
+  --color-primary-300: #8CCDC0;
+  --color-primary-400: #3FA98F;
+  --color-primary-500: #14907A;
+  --color-primary-600: #0E7563;
+  --color-primary-700: #0B5C4E;
+  /* Gradient partner (Designfoli's gradient ends in purple; ours ends in deep cyan). */
+  --color-new: #0E7490;
+  --color-new-bg: rgba(14, 116, 144, 0.14);
+  --gradient-primary: linear-gradient(135deg, var(--color-primary-500) 0%, var(--color-new) 100%);
+  --gradient-primary-dark: var(--gradient-primary);
+  --gradient-glow: radial-gradient(ellipse at 50% 0%, rgba(20, 144, 122, 0.30) 0%, transparent 70%);
+  --shadow-glow: 0 0 24px rgba(20, 144, 122, 0.45), 0 0 48px rgba(20, 144, 122, 0.2);
+  --shadow-glow-light: 0 0 24px rgba(20, 144, 122, 0.3);
+  --btn-secondary-bg-hover: rgba(20, 144, 122, 0.12);
+  --btn-secondary-border: rgba(20, 144, 122, 0.6);
+}
+[data-theme="dark"] {
+  --color-primary-400: #3FA98F;
+  --color-primary-500: #14907A;
+  --color-primary-600: #0E7563;
+}
+
+/*
  * LandDoctor → Designfoli token map.
  * Every value comes from styles/designfoli.css (the Designfoli design system, light theme).
  * Nothing here introduces a new hex value. Where Designfoli's own value fails WCAG AA
@@ -17,13 +49,12 @@
   --color-muted: var(--fg-secondary);         /* #475569 (fg-muted #94A3B8 is below AA for text) */
   --color-border: var(--color-neutral-200);   /* #D4D4DC */
 
-  /* Brand: primary-600 for filled buttons and text links, because white on
-     primary-500 (#5A6BFF) is 4.4:1, just under AA for 14–17px text. */
-  --color-accent: var(--color-primary-600);        /* #423ED8 */
-  --color-accent-hover: var(--color-primary-700);  /* #312EB0 */
-  --color-accent-soft: var(--color-primary-100);   /* #EAEBFF */
+  /* Brand: primary-600 for filled buttons and text links (white on it is 5.6:1). */
+  --color-accent: var(--color-primary-600);        /* #0E7563 */
+  --color-accent-hover: var(--color-primary-700);  /* #0B5C4E */
+  --color-accent-soft: var(--color-primary-100);   /* #E6F4F1 */
   --color-accent-contrast: var(--btn-primary-fg);  /* #FFFFFF */
-  --color-brand: var(--color-primary-500);         /* #5A6BFF decorative only */
+  --color-brand: var(--color-primary-500);         /* #14907A decorative only */
   --gradient-brand: var(--gradient-primary);
 
   /* Semantic (text shades derived from the Designfoli semantic colours for AA) */

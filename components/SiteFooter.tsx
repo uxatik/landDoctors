@@ -20,8 +20,8 @@ export async function SiteFooter() {
 
   return (
     <footer className="border-t border-line bg-surface">
-      <div className="mx-auto grid w-full max-w-[var(--container-max)] gap-10 px-4 py-12 text-sm sm:grid-cols-2 sm:px-6 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
-        <div className="flex flex-col gap-3">
+      <div className="mx-auto grid w-full max-w-[var(--container-max)] grid-cols-2 gap-x-6 gap-y-10 px-4 py-12 text-sm sm:px-6 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
+        <div className="col-span-2 flex flex-col gap-3 lg:col-span-1">
           <p className="flex items-center gap-2 text-lg font-bold text-ink">
             <LogoMark className="size-7" />
             {ts("name")}

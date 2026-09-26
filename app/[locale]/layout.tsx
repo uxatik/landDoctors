@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return { title: { default: `${t("name")} — ${t("tagline")}`, template: `%s · ${t("name")}` }, description: t("tagline") };
 }
 
-export const viewport: Viewport = { width: "device-width", initialScale: 1, themeColor: "#423ED8" };
+export const viewport: Viewport = { width: "device-width", initialScale: 1, themeColor: "#0E7563" };
 
 export default async function LocaleLayout({
   children,
