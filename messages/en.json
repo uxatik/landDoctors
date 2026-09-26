@@ -1,0 +1,9 @@
+{
+  "site": {
+    "name": "LandDoctor",
+    "tagline": "Verified land experts at fixed prices",
+    "switchLanguage": "বাংলা",
+    "switchLanguageLabel": "বাংলায় দেখুন",
+    "skipToContent": "Skip to main content"
+  }
+}

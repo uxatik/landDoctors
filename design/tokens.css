@@ -1,0 +1,59 @@
+/*
+ * LandDoctor design tokens — PLACEHOLDER until the Designfoli export arrives.
+ * Replace the values below; keep the token names. Record any change in docs/decisions.md.
+ * Contrast checked for WCAG AA: text on bg 14.9:1, muted on bg 5.6:1, accent-contrast on accent 6.6:1.
+ */
+:root {
+  /* Colour — paper, ink, paddy green, verified gold */
+  --color-bg: #f7f9f6;
+  --color-surface: #ffffff;
+  --color-surface-sunken: #eef2ef;
+  --color-text: #16231d;
+  --color-muted: #52625a;
+  --color-border: #d6dfd9;
+  --color-accent: #1d6a4c;
+  --color-accent-hover: #175a40;
+  --color-accent-soft: #e2eee7;
+  --color-accent-contrast: #ffffff;
+  --color-verified: #8a5f0f;
+  --color-verified-soft: #f6eedc;
+  --color-success: #1d6a4c;
+  --color-warning: #9a4a12;
+  --color-warning-soft: #f7eae0;
+  --color-danger: #a3302f;
+  --color-danger-soft: #f6e4e3;
+  --color-focus: #1f5fbf;
+
+  /* Type */
+  --font-body: "Hind Siliguri", "Noto Sans Bengali", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --text-xs: 0.8125rem;
+  --text-sm: 0.9375rem;
+  --text-base: 1.0625rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.5rem;
+  --text-2xl: 1.875rem;
+  --leading-body: 1.6;
+  --leading-tight: 1.25;
+
+  /* Space (4px grid) */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+
+  /* Shape */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-full: 999px;
+  --shadow-raised: 0 1px 2px rgba(22, 35, 29, 0.06), 0 2px 8px rgba(22, 35, 29, 0.06);
+
+  /* Layout */
+  --content-max: 40rem;
+  --tap-min: 48px;
+}
