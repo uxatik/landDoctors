@@ -3,9 +3,11 @@
 -- security: the anon/authenticated/service_role roles, auth.uid()/auth.jwt() read
 -- from request.jwt.claims, pgcrypto in the extensions schema, and Supabase's
 -- default grants (which our migrations must revoke).
-create role anon nologin noinherit;
-create role authenticated nologin noinherit;
-create role service_role nologin noinherit bypassrls;
+do $$ begin
+  if not exists (select 1 from pg_roles where rolname = 'anon') then create role anon nologin noinherit; end if;
+  if not exists (select 1 from pg_roles where rolname = 'authenticated') then create role authenticated nologin noinherit; end if;
+  if not exists (select 1 from pg_roles where rolname = 'service_role') then create role service_role nologin noinherit bypassrls; end if;
+end $$;
 
 create schema auth;
 create table auth.users (id uuid primary key, email text);

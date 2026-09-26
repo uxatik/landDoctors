@@ -8,3 +8,4 @@ playwright-report/
 .DS_Store
 .sync/
 next-env.d.ts.bak
+tsconfig.tsbuildinfo

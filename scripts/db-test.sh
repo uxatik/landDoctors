@@ -36,6 +36,16 @@ done
 "${PSQL[@]}" -d ld_template -f "$ROOT/tests/db/00_test_helpers.sql"
 
 pass=0; fail=0
+
+# The one-file setup for the Supabase SQL editor must apply cleanly to a fresh project.
+"${PSQL[@]}" -d postgres -c "create database t_setup"
+"${PSQL[@]}" -d t_setup -f "$ROOT/tests/db/00_supabase_shim.sql"
+if out="$("${PSQL[@]}" -d t_setup -f "$ROOT/supabase/setup.sql" 2>&1)" && \
+   [ "$("${PSQL[@]}" -d t_setup -c "select count(*) from public.packages")" -eq 3 ]; then
+  echo "  ✓ supabase/setup.sql applies cleanly and seeds 3 packages"; pass=$((pass+1))
+else
+  echo "  ✗ supabase/setup.sql"; echo "$out" | sed 's/^/      /'; fail=$((fail+1))
+fi
 for t in "$ROOT"/tests/db/[0-9][0-9]_*.test.sql; do
   name="$(basename "$t")"
   db="t_$(echo "$name" | tr -c 'a-z0-9' '_' | cut -c1-40)"
