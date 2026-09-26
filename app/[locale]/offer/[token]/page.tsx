@@ -53,7 +53,7 @@ export default async function OfferPage({ params }: { params: Promise<{ locale: 
         <h1 className="text-[length:var(--text-2xl)] font-bold">{t("title")}</h1>
       </div>
 
-      <section className="flex flex-col gap-3 rounded-lg border border-line bg-surface p-4" aria-labelledby="pkg">
+      <section className="flex flex-col gap-3 rounded-panel border border-line bg-surface p-4" aria-labelledby="pkg">
         <h2 id="pkg" className="text-lg font-semibold">{bn ? o.package_name_bn : o.package_name_en}</h2>
         <div>
           <h3 className="text-sm font-semibold text-muted">{t("scope")}</h3>
@@ -89,7 +89,7 @@ export default async function OfferPage({ params }: { params: Promise<{ locale: 
         </dl>
       </section>
 
-      <section className="flex flex-col gap-1 rounded-lg border border-line bg-surface p-4" aria-labelledby="expert">
+      <section className="flex flex-col gap-1 rounded-panel border border-line bg-surface p-4" aria-labelledby="expert">
         <h2 id="expert" className="text-sm font-semibold text-muted">{t("expert")}</h2>
         <p className="text-lg font-semibold">{o.consultant_name}</p>
         <p className="text-sm">
@@ -107,7 +107,7 @@ export default async function OfferPage({ params }: { params: Promise<{ locale: 
         <form action="/api/payments/init" method="post" className="flex flex-col gap-2">
           <input type="hidden" name="token" value={token} />
           <input type="hidden" name="locale" value={locale} />
-          <button className="min-h-[var(--tap-min)] rounded-md bg-accent px-4 text-lg font-semibold text-on-accent hover:bg-accent-hover">
+          <button className="min-h-[var(--tap-min)] rounded-full bg-accent px-4 text-lg font-semibold text-on-accent hover:bg-accent-hover">
             {t("pay", { amount: formatTaka(o.total) })}
           </button>
           <p className="text-sm text-muted">{t("payNote")}</p>
@@ -119,7 +119,7 @@ export default async function OfferPage({ params }: { params: Promise<{ locale: 
       {o.state === "expired" && <Notice title={t("expiredTitle")} body={t("expiredBody")} />}
       {o.state === "paid" && <Notice title={t("paidTitle")} body={t("paidBody")} tone="good" />}
 
-      <p className="rounded-md bg-warning-soft p-3 text-sm">{t("cash")}</p>
+      <p className="rounded-card bg-warning-soft p-3 text-sm">{t("cash")}</p>
       {o.state !== "paid" && <ContactButtons />}
       <Link href="/legal/refund" className="text-sm text-accent underline">{t("refundLink")}</Link>
     </div>
@@ -130,9 +130,9 @@ function Notice({ title, body, tone }: { title: string; body: string; tone?: "go
   return (
     <section
       data-testid="offer-notice"
-      className={`flex flex-col gap-1 rounded-md p-4 ${tone === "good" ? "bg-accent-soft" : "bg-sunken"}`}
+      className={`flex flex-col gap-1 rounded-card p-4 ${tone === "good" ? "bg-accent-soft" : "bg-sunken"}`}
     >
-      <h2 className="font-semibold">{title}</h2>
+      <h2 className="text-lg font-semibold">{title}</h2>
       <p>{body}</p>
     </section>
   );

@@ -1,0 +1,483 @@
+/* ============================================================
+   Designfoli Design System — CSS Custom Properties v1.0.0
+   ============================================================ */
+
+/* ── Mona Sans — Brand Typeface ───────────────────────── */
+/* Standard width */
+@font-face { font-family: 'Mona Sans'; src: url('fonts/MonaSans-ExtraLight.ttf') format('truetype'); font-weight: 200; font-style: normal; font-stretch: normal; }
+@font-face { font-family: 'Mona Sans'; src: url('fonts/MonaSans-ExtraLightItalic.ttf') format('truetype'); font-weight: 200; font-style: italic; font-stretch: normal; }
+@font-face { font-family: 'Mona Sans'; src: url('fonts/MonaSans-Light.ttf') format('truetype'); font-weight: 300; font-style: normal; font-stretch: normal; }
+@font-face { font-family: 'Mona Sans'; src: url('fonts/MonaSans-LightItalic.ttf') format('truetype'); font-weight: 300; font-style: italic; font-stretch: normal; }
+@font-face { font-family: 'Mona Sans'; src: url('fonts/MonaSans-Regular.ttf') format('truetype'); font-weight: 400; font-style: normal; font-stretch: normal; }
+@font-face { font-family: 'Mona Sans'; src: url('fonts/MonaSans-Italic.ttf') format('truetype'); font-weight: 400; font-style: italic; font-stretch: normal; }
+@font-face { font-family: 'Mona Sans'; src: url('fonts/MonaSans-Medium.ttf') format('truetype'); font-weight: 500; font-style: normal; font-stretch: normal; }
+@font-face { font-family: 'Mona Sans'; src: url('fonts/MonaSans-MediumItalic.ttf') format('truetype'); font-weight: 500; font-style: italic; font-stretch: normal; }
+@font-face { font-family: 'Mona Sans'; src: url('fonts/MonaSans-SemiBold.ttf') format('truetype'); font-weight: 600; font-style: normal; font-stretch: normal; }
+@font-face { font-family: 'Mona Sans'; src: url('fonts/MonaSans-SemiBoldItalic.ttf') format('truetype'); font-weight: 600; font-style: italic; font-stretch: normal; }
+@font-face { font-family: 'Mona Sans'; src: url('fonts/MonaSans-Bold.ttf') format('truetype'); font-weight: 700; font-style: normal; font-stretch: normal; }
+@font-face { font-family: 'Mona Sans'; src: url('fonts/MonaSans-BoldItalic.ttf') format('truetype'); font-weight: 700; font-style: italic; font-stretch: normal; }
+@font-face { font-family: 'Mona Sans'; src: url('fonts/MonaSans-ExtraBold.ttf') format('truetype'); font-weight: 800; font-style: normal; font-stretch: normal; }
+@font-face { font-family: 'Mona Sans'; src: url('fonts/MonaSans-ExtraBoldItalic.ttf') format('truetype'); font-weight: 800; font-style: italic; font-stretch: normal; }
+@font-face { font-family: 'Mona Sans'; src: url('fonts/MonaSans-Black.ttf') format('truetype'); font-weight: 900; font-style: normal; font-stretch: normal; }
+@font-face { font-family: 'Mona Sans'; src: url('fonts/MonaSans-BlackItalic.ttf') format('truetype'); font-weight: 900; font-style: italic; font-stretch: normal; }
+
+/* Width variants use distinct family names so each weight/style is unique.
+   Reference them via the --font-sans-* tokens (Condensed, SemiExpanded, Expanded). */
+
+/* SemiCondensed */
+@font-face { font-family: 'Mona Sans SemiCondensed'; src: url('fonts/MonaSans_SemiCondensed-Light.ttf') format('truetype'); font-weight: 300; font-style: normal; }
+@font-face { font-family: 'Mona Sans SemiCondensed'; src: url('fonts/MonaSans_SemiCondensed-Regular.ttf') format('truetype'); font-weight: 400; font-style: normal; }
+@font-face { font-family: 'Mona Sans SemiCondensed'; src: url('fonts/MonaSans_SemiCondensed-Medium.ttf') format('truetype'); font-weight: 500; font-style: normal; }
+@font-face { font-family: 'Mona Sans SemiCondensed'; src: url('fonts/MonaSans_SemiCondensed-SemiBold.ttf') format('truetype'); font-weight: 600; font-style: normal; }
+@font-face { font-family: 'Mona Sans SemiCondensed'; src: url('fonts/MonaSans_SemiCondensed-Bold.ttf') format('truetype'); font-weight: 700; font-style: normal; }
+@font-face { font-family: 'Mona Sans SemiCondensed'; src: url('fonts/MonaSans_SemiCondensed-ExtraBold.ttf') format('truetype'); font-weight: 800; font-style: normal; }
+@font-face { font-family: 'Mona Sans SemiCondensed'; src: url('fonts/MonaSans_SemiCondensed-Black.ttf') format('truetype'); font-weight: 900; font-style: normal; }
+
+/* Condensed */
+@font-face { font-family: 'Mona Sans Condensed'; src: url('fonts/MonaSans_Condensed-Light.ttf') format('truetype'); font-weight: 300; font-style: normal; }
+@font-face { font-family: 'Mona Sans Condensed'; src: url('fonts/MonaSans_Condensed-Regular.ttf') format('truetype'); font-weight: 400; font-style: normal; }
+@font-face { font-family: 'Mona Sans Condensed'; src: url('fonts/MonaSans_Condensed-Medium.ttf') format('truetype'); font-weight: 500; font-style: normal; }
+@font-face { font-family: 'Mona Sans Condensed'; src: url('fonts/MonaSans_Condensed-SemiBold.ttf') format('truetype'); font-weight: 600; font-style: normal; }
+@font-face { font-family: 'Mona Sans Condensed'; src: url('fonts/MonaSans_Condensed-Bold.ttf') format('truetype'); font-weight: 700; font-style: normal; }
+@font-face { font-family: 'Mona Sans Condensed'; src: url('fonts/MonaSans_Condensed-ExtraBold.ttf') format('truetype'); font-weight: 800; font-style: normal; }
+@font-face { font-family: 'Mona Sans Condensed'; src: url('fonts/MonaSans_Condensed-Black.ttf') format('truetype'); font-weight: 900; font-style: normal; }
+
+/* SemiExpanded */
+@font-face { font-family: 'Mona Sans SemiExpanded'; src: url('fonts/MonaSans_SemiExpanded-Light.ttf') format('truetype'); font-weight: 300; font-style: normal; }
+@font-face { font-family: 'Mona Sans SemiExpanded'; src: url('fonts/MonaSans_SemiExpanded-Regular.ttf') format('truetype'); font-weight: 400; font-style: normal; }
+@font-face { font-family: 'Mona Sans SemiExpanded'; src: url('fonts/MonaSans_SemiExpanded-Medium.ttf') format('truetype'); font-weight: 500; font-style: normal; }
+@font-face { font-family: 'Mona Sans SemiExpanded'; src: url('fonts/MonaSans_SemiExpanded-SemiBold.ttf') format('truetype'); font-weight: 600; font-style: normal; }
+@font-face { font-family: 'Mona Sans SemiExpanded'; src: url('fonts/MonaSans_SemiExpanded-Bold.ttf') format('truetype'); font-weight: 700; font-style: normal; }
+@font-face { font-family: 'Mona Sans SemiExpanded'; src: url('fonts/MonaSans_SemiExpanded-ExtraBold.ttf') format('truetype'); font-weight: 800; font-style: normal; }
+@font-face { font-family: 'Mona Sans SemiExpanded'; src: url('fonts/MonaSans_SemiExpanded-Black.ttf') format('truetype'); font-weight: 900; font-style: normal; }
+
+/* Expanded */
+@font-face { font-family: 'Mona Sans Expanded'; src: url('fonts/MonaSans_Expanded-ExtraLight.ttf') format('truetype'); font-weight: 200; font-style: normal; }
+@font-face { font-family: 'Mona Sans Expanded'; src: url('fonts/MonaSans_Expanded-Light.ttf') format('truetype'); font-weight: 300; font-style: normal; }
+@font-face { font-family: 'Mona Sans Expanded'; src: url('fonts/MonaSans_Expanded-Regular.ttf') format('truetype'); font-weight: 400; font-style: normal; }
+@font-face { font-family: 'Mona Sans Expanded'; src: url('fonts/MonaSans_Expanded-Medium.ttf') format('truetype'); font-weight: 500; font-style: normal; }
+@font-face { font-family: 'Mona Sans Expanded'; src: url('fonts/MonaSans_Expanded-SemiBold.ttf') format('truetype'); font-weight: 600; font-style: normal; }
+@font-face { font-family: 'Mona Sans Expanded'; src: url('fonts/MonaSans_Expanded-Bold.ttf') format('truetype'); font-weight: 700; font-style: normal; }
+@font-face { font-family: 'Mona Sans Expanded'; src: url('fonts/MonaSans_Expanded-ExtraBold.ttf') format('truetype'); font-weight: 800; font-style: normal; }
+@font-face { font-family: 'Mona Sans Expanded'; src: url('fonts/MonaSans_Expanded-Black.ttf') format('truetype'); font-weight: 900; font-style: normal; }
+@font-face { font-family: 'Mona Sans Expanded'; src: url('fonts/MonaSans_Expanded-BlackItalic.ttf') format('truetype'); font-weight: 900; font-style: italic; }
+
+/* ============================================================
+   1. COLOR TOKENS
+   ============================================================ */
+
+:root {
+  /* — Brand / Primary (Light Theme default) — */
+  --color-primary-100: #EAEBFF;
+  --color-primary-200: #C4C8FF;
+  --color-primary-300: #9BA3FF;
+  --color-primary-400: #7B87FF;
+  --color-primary-500: #5A6BFF;   /* Primary */
+  --color-primary-600: #423ED8;   /* Pressed / Dark */
+  --color-primary-700: #312EB0;
+
+  /* — Brand Gradient — */
+  --gradient-primary: linear-gradient(135deg, #5A6BFF 0%, #A857F7 100%); /* @kind color */
+  --gradient-primary-dark: linear-gradient(135deg, #5A6BFF 0%, #A857F7 100%); /* @kind color */
+  --gradient-glow: radial-gradient(ellipse at 50% 0%, rgba(90,107,255,0.35) 0%, transparent 70%); /* @kind color */
+
+  /* — Neutral Scale (Light) — */
+  --color-neutral-0:   #FFFFFF;
+  --color-neutral-50:  #F8FAFC;
+  --color-neutral-100: #F0F0F5;
+  --color-neutral-200: #D4D4DC;
+  --color-neutral-300: #ABACB4;
+  --color-neutral-400: #8B8B94;
+  --color-neutral-500: #717178;
+  --color-neutral-600: #475569;
+  --color-neutral-700: #2F3156;
+  --color-neutral-800: #1A2042;
+  --color-neutral-900: #131533;
+  --color-neutral-950: #08081F;
+
+  /* — Semantic Colors — */
+  --color-success:  #22C55E;
+  --color-warning:  #F59E0B;
+  --color-error:    #EF4444;
+  --color-info:     #3B82F6;
+  --color-new:      #A855F7;
+  --color-purple:   #8B5CF6;
+
+  /* — Semantic Surface Tints — */
+  --color-success-bg:  rgba(34, 197, 94, 0.12);
+  --color-warning-bg:  rgba(245, 158, 11, 0.12);
+  --color-error-bg:    rgba(239, 68, 68, 0.12);
+  --color-info-bg:     rgba(59, 130, 246, 0.12);
+  --color-new-bg:      rgba(168, 85, 247, 0.12);
+}
+
+/* ============================================================
+   2. LIGHT THEME (default)
+   ============================================================ */
+
+:root, [data-theme="light"] {
+  --bg-base:        var(--color-neutral-0);
+  --bg-surface:     var(--color-neutral-50);
+  --bg-elevated:    var(--color-neutral-100);
+  --bg-overlay:     rgba(255,255,255,0.85);
+
+  --fg-primary:     #0F172A;
+  --fg-secondary:   #475569;
+  --fg-muted:       #94A3B8;
+  --fg-disabled:    #CBD5E1;
+  --fg-inverse:     #FFFFFF;
+
+  --border-default: rgba(0,0,0,0.1);
+  --border-focus:   var(--color-primary-500);
+  --border-error:   var(--color-error);
+
+  --btn-primary-bg:          var(--color-primary-500);
+  --btn-primary-bg-hover:    var(--color-primary-400);
+  --btn-primary-bg-pressed:  var(--color-primary-600);
+  --btn-primary-fg:          #FFFFFF;
+
+  --btn-secondary-bg:         transparent;
+  --btn-secondary-bg-hover:   var(--color-primary-100);
+  --btn-secondary-border:     var(--color-primary-500);
+  --btn-secondary-fg:         var(--color-primary-500);
+
+  --input-bg:       var(--color-neutral-0);
+  --input-border:   var(--color-neutral-200);
+  --input-border-focus: var(--color-primary-500);
+  --input-fg:       var(--fg-primary);
+
+  --card-bg:        var(--color-neutral-0);
+  --card-border:    var(--color-neutral-200);
+  --shadow-card:    0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* ============================================================
+   3. DARK THEME
+   ============================================================ */
+
+[data-theme="dark"] {
+  --bg-base:        #0B0F1A;
+  --bg-surface:     #12172A;
+  --bg-elevated:    #1A2038;
+  --bg-overlay:     rgba(18,23,42,0.9);
+
+  --color-primary-500: #5A6BFF;
+  --color-primary-400: #7B87FF;
+  --color-primary-600: #423ED8;
+
+  --fg-primary:     #FFFFFF;
+  --fg-secondary:   #A0A8C0;
+  --fg-muted:       #6B7280;
+  --fg-disabled:    #374151;
+  --fg-inverse:     #0F172A;
+
+  --border-default: rgba(255,255,255,0.08);
+  --border-focus:   var(--color-primary-500);
+  --border-error:   var(--color-error);
+
+  --btn-primary-bg:          var(--color-primary-500);
+  --btn-primary-bg-hover:    var(--color-primary-400);
+  --btn-primary-bg-pressed:  var(--color-primary-600);
+  --btn-primary-fg:          #FFFFFF;
+
+  --btn-secondary-bg:         transparent;
+  --btn-secondary-bg-hover:   rgba(107,92,255,0.15);
+  --btn-secondary-border:     rgba(107,92,255,0.6);
+  --btn-secondary-fg:         var(--color-primary-400);
+
+  --input-bg:       #1A2038;
+  --input-border:   rgba(255,255,255,0.12);
+  --input-border-focus: var(--color-primary-500);
+  --input-fg:       #FFFFFF;
+
+  --card-bg:        #12172A;
+  --card-border:    rgba(255,255,255,0.06);
+  --shadow-card:    0 4px 20px rgba(0,0,0,0.5);
+}
+
+/* ============================================================
+   4. TYPOGRAPHY TOKENS
+   ============================================================ */
+
+:root {
+  --font-sans:   'Mona Sans', system-ui, -apple-system, sans-serif;
+  --font-sans-condensed:     'Mona Sans Condensed', 'Mona Sans', sans-serif;
+  --font-sans-semicondensed: 'Mona Sans SemiCondensed', 'Mona Sans', sans-serif;
+  --font-sans-semiexpanded:  'Mona Sans SemiExpanded', 'Mona Sans', sans-serif;
+  --font-sans-expanded:      'Mona Sans Expanded', 'Mona Sans', sans-serif;
+
+  /* — Type Scale — */
+  --text-display-size:    64px;
+  --text-display-lh:      72px;
+  --text-display-weight:  700;
+
+  --text-h1-size:    48px;
+  --text-h1-lh:      56px;
+  --text-h1-weight:  700;
+
+  --text-h2-size:    36px;
+  --text-h2-lh:      44px;
+  --text-h2-weight:  600;
+
+  --text-h3-size:    24px;
+  --text-h3-lh:      32px;
+  --text-h3-weight:  600;
+
+  --text-body-lg-size:    18px;
+  --text-body-lg-lh:      28px;
+  --text-body-lg-weight:  400;
+
+  --text-body-size:    16px;
+  --text-body-lh:      24px;
+  --text-body-weight:  400;
+
+  --text-body-sm-size:    14px;
+  --text-body-sm-lh:      20px;
+  --text-body-sm-weight:  400;
+
+  --text-caption-size:    12px;
+  --text-caption-lh:      18px;
+  --text-caption-weight:  400;
+}
+
+/* ============================================================
+   5. SEMANTIC TYPE CLASSES
+   ============================================================ */
+
+.text-display {
+  font-family: var(--font-sans);
+  font-size: var(--text-display-size);
+  line-height: var(--text-display-lh);
+  font-weight: var(--text-display-weight);
+  letter-spacing: -0.02em;
+}
+.text-h1, h1 {
+  font-family: var(--font-sans);
+  font-size: var(--text-h1-size);
+  line-height: var(--text-h1-lh);
+  font-weight: var(--text-h1-weight);
+  letter-spacing: -0.02em;
+}
+.text-h2, h2 {
+  font-family: var(--font-sans);
+  font-size: var(--text-h2-size);
+  line-height: var(--text-h2-lh);
+  font-weight: var(--text-h2-weight);
+  letter-spacing: -0.01em;
+}
+.text-h3, h3 {
+  font-family: var(--font-sans);
+  font-size: var(--text-h3-size);
+  line-height: var(--text-h3-lh);
+  font-weight: var(--text-h3-weight);
+}
+.text-body-lg {
+  font-family: var(--font-sans);
+  font-size: var(--text-body-lg-size);
+  line-height: var(--text-body-lg-lh);
+  font-weight: var(--text-body-lg-weight);
+}
+.text-body, body, p {
+  font-family: var(--font-sans);
+  font-size: var(--text-body-size);
+  line-height: var(--text-body-lh);
+  font-weight: var(--text-body-weight);
+}
+.text-body-sm {
+  font-family: var(--font-sans);
+  font-size: var(--text-body-sm-size);
+  line-height: var(--text-body-sm-lh);
+  font-weight: var(--text-body-sm-weight);
+}
+.text-caption {
+  font-family: var(--font-sans);
+  font-size: var(--text-caption-size);
+  line-height: var(--text-caption-lh);
+  font-weight: var(--text-caption-weight);
+}
+
+/* ============================================================
+   6. SPACING TOKENS
+   ============================================================ */
+
+:root {
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+}
+
+/* ============================================================
+   7. BORDER RADIUS
+   ============================================================ */
+
+:root {
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   12px;
+  --radius-xl:   16px;
+  --radius-full: 9999px;
+}
+
+/* ============================================================
+   8. SHADOWS & ELEVATION
+   ============================================================ */
+
+:root {
+  --shadow-sm:   0 1px 3px rgba(0,0,0,0.3), 0 1px 2px rgba(0,0,0,0.2);
+  --shadow-md:   0 4px 12px rgba(0,0,0,0.35);
+  --shadow-lg:   0 8px 24px rgba(0,0,0,0.4);
+  --shadow-xl:   0 16px 48px rgba(0,0,0,0.5);
+  --shadow-glow: 0 0 24px rgba(90,107,255,0.5), 0 0 48px rgba(90,107,255,0.25);
+
+  --shadow-sm-light:   0 1px 3px rgba(0,0,0,0.08);
+  --shadow-md-light:   0 4px 12px rgba(0,0,0,0.1);
+  --shadow-lg-light:   0 8px 24px rgba(0,0,0,0.12);
+  --shadow-xl-light:   0 16px 48px rgba(0,0,0,0.16);
+  --shadow-glow-light: 0 0 24px rgba(90,107,255,0.35);
+}
+
+/* ============================================================
+   9. COMPONENT UTILITIES
+   ============================================================ */
+
+/* Focus ring */
+.focus-ring:focus-visible {
+  outline: 2px solid var(--color-primary-500);
+  outline-offset: 2px;
+}
+
+/* Transitions */
+.transition-base {
+  transition: all 150ms ease-out;
+}
+
+/* ============================================================
+   10. BUTTON BASE STYLES
+   ============================================================ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  border-radius: var(--radius-full);
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  transition: all 150ms ease-out;
+  white-space: nowrap;
+  text-decoration: none;
+}
+.btn:focus-visible {
+  outline: 2px solid var(--color-primary-500);
+  outline-offset: 2px;
+}
+.btn-sm  { height: 32px; padding: 0 14px; font-size: 13px; }
+.btn-md  { height: 40px; padding: 0 20px; font-size: 14px; }
+.btn-lg  { height: 48px; padding: 0 28px; font-size: 16px; }
+
+.btn-primary {
+  background: var(--btn-primary-bg);
+  color: var(--btn-primary-fg);
+}
+.btn-primary:hover  { background: var(--btn-primary-bg-hover); }
+.btn-primary:active { background: var(--btn-primary-bg-pressed); transform: scale(0.98); }
+.btn-primary:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.btn-secondary {
+  background: var(--btn-secondary-bg);
+  color: var(--btn-secondary-fg);
+  border-color: var(--btn-secondary-border);
+}
+.btn-secondary:hover  { background: var(--btn-secondary-bg-hover); }
+.btn-secondary:active { transform: scale(0.98); }
+.btn-secondary:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* ============================================================
+   11. INPUT BASE STYLES
+   ============================================================ */
+
+.input-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+.input-label {
+  font-family: var(--font-sans);
+  font-size: var(--text-body-sm-size);
+  font-weight: 500;
+  color: var(--fg-secondary);
+}
+.input-control {
+  height: 40px;
+  padding: 0 var(--space-4);
+  background: var(--input-bg);
+  border: 1.5px solid var(--input-border);
+  border-radius: var(--radius-md);
+  font-family: var(--font-sans);
+  font-size: var(--text-body-size);
+  color: var(--input-fg);
+  transition: border-color 150ms ease-out;
+  outline: none;
+}
+.input-control:focus {
+  border-color: var(--input-border-focus);
+  box-shadow: 0 0 0 3px rgba(90,107,255,0.15);
+}
+.input-control.error {
+  border-color: var(--border-error);
+}
+.input-control:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.input-helper {
+  font-size: var(--text-caption-size);
+  color: var(--fg-muted);
+}
+.input-helper.error {
+  color: var(--color-error);
+}
+
+/* ============================================================
+   12. CARD BASE STYLES
+   ============================================================ */
+
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-card);
+}
+
+/* ============================================================
+   13. BADGE / TAG STYLES
+   ============================================================ */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 10px;
+  border-radius: var(--radius-full);
+  font-family: var(--font-sans);
+  font-size: var(--text-caption-size);
+  font-weight: 600;
+  line-height: 20px;
+}
+.badge-default  { background: rgba(107,92,255,0.15); color: var(--color-primary-400); }
+.badge-new      { background: rgba(168,85,247,0.15);  color: #C084FC; }
+.badge-beta     { background: rgba(59,130,246,0.15);  color: #60A5FA; }
+.badge-pro      { background: rgba(245,158,11,0.15);  color: #FCD34D; }
+.badge-success  { background: var(--color-success-bg); color: var(--color-success); }
+.badge-error    { background: var(--color-error-bg);   color: var(--color-error); }

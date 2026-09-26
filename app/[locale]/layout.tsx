@@ -37,7 +37,7 @@ export default async function LocaleLayout({
   return (
     <html lang={locale}>
       <body className="flex min-h-dvh flex-col">
-        <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:rounded-sm focus:bg-surface focus:p-2">
+        <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:rounded-control focus:bg-surface focus:p-2">
           {t("skipToContent")}
         </a>
         <NextIntlClientProvider>

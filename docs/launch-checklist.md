@@ -22,7 +22,7 @@ Tick these before real customers see the site.
 - [ ] Package scope and exclusions checked by the consultants who will deliver them.
 - [ ] Real hotline and WhatsApp numbers in the environment variables.
 - [ ] Hotline hours decided and added to the home page (currently not shown).
-- [ ] Designfoli tokens swapped into `design/tokens.css`; check contrast (AA).
+- [x] Designfoli tokens swapped into `design/tokens.css`; contrast checked (AA, see D11).
 - [ ] Bangla copy read by a native speaker on a phone.
 
 ## Deployment

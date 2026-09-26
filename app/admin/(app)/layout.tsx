@@ -23,7 +23,7 @@ export default async function StaffLayout({ children }: { children: React.ReactN
               {staff.name} · {staff.role === "super_admin" ? "Super admin" : "Operations"}
             </span>
             <form action={signOut}>
-              <button className="rounded-sm border border-line px-3 py-1.5">{A.nav.signOut}</button>
+              <button className="rounded-control border border-line px-3 py-1.5">{A.nav.signOut}</button>
             </form>
           </div>
         </div>
@@ -33,7 +33,7 @@ export default async function StaffLayout({ children }: { children: React.ReactN
               .filter((l) => !l.superAdmin || staff.role === "super_admin")
               .map((l) => (
                 <li key={l.href}>
-                  <Link href={l.href} className="block whitespace-nowrap rounded-sm px-3 py-2 hover:bg-accent-soft">
+                  <Link href={l.href} className="block whitespace-nowrap rounded-control px-3 py-2 hover:bg-accent-soft">
                     {l.label}
                   </Link>
                 </li>

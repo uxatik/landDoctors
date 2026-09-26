@@ -13,7 +13,7 @@ const ROLE: Record<string, string> = {
   surveyor: "সার্ভেয়ার · Surveyor", retired_official: "অবসরপ্রাপ্ত কর্মকর্তা · Retired official",
   advocate: "আইনজীবী · Advocate", deed_writer: "দলিল লেখক · Deed writer",
 };
-const INPUT = "rounded-sm border border-line bg-surface px-2 py-2 text-sm";
+const INPUT = "rounded-control border border-line bg-surface px-2 py-2 text-sm";
 
 function ConsultantForm({ k }: { k?: K }) {
   return (
@@ -51,7 +51,7 @@ function ConsultantForm({ k }: { k?: K }) {
         <label><input type="checkbox" name="active" defaultChecked={k?.active ?? true} /> সক্রিয় · Active</label>
         <label><input type="checkbox" name="is_demo" defaultChecked={k?.is_demo} /> ডেমো · Demo</label>
       </div>
-      <button className="w-fit rounded-sm bg-accent px-4 py-2 font-semibold text-on-accent">সংরক্ষণ · Save</button>
+      <button className="w-fit rounded-full bg-accent px-4 py-2 font-semibold text-on-accent">সংরক্ষণ · Save</button>
     </form>
   );
 }
@@ -65,13 +65,13 @@ export default async function ConsultantsPage({ searchParams }: { searchParams: 
   return (
     <div className="flex flex-col gap-4">
       <h1 className="text-xl font-bold">বিশেষজ্ঞ · Consultants</h1>
-      {sp.ok && <p role="status" className="rounded-md bg-accent-soft p-3 text-sm">{sp.ok}</p>}
-      {sp.error && <p role="alert" className="rounded-md border-2 border-danger bg-danger-soft p-3 text-sm">{sp.error}</p>}
+      {sp.ok && <p role="status" className="rounded-full bg-accent-soft p-3 text-sm">{sp.ok}</p>}
+      {sp.error && <p role="alert" className="rounded-card border-2 border-danger bg-danger-soft p-3 text-sm">{sp.error}</p>}
       {!isSuper && <p className="text-sm text-muted">শুধু দেখা যাবে; বদলাতে সুপার অ্যাডমিন লাগবে। · Read only.</p>}
 
       <ul className="flex flex-col gap-3">
         {data?.map((k) => (
-          <li key={k.id} className="rounded-md border border-line bg-surface p-4">
+          <li key={k.id} className="rounded-card border border-line bg-surface p-4">
             <div className="flex flex-wrap items-center gap-2">
               <strong>{k.name}</strong>
               <span className="text-sm text-muted">{ROLE[k.role]}</span>
@@ -97,8 +97,8 @@ export default async function ConsultantsPage({ searchParams }: { searchParams: 
       </ul>
 
       {isSuper && (
-        <section className="rounded-md border border-line bg-surface p-4">
-          <h2 className="mb-3 font-semibold">নতুন বিশেষজ্ঞ · Add consultant</h2>
+        <section className="rounded-card border border-line bg-surface p-4">
+          <h2 className="mb-3 text-base font-semibold">নতুন বিশেষজ্ঞ · Add consultant</h2>
           <ConsultantForm />
         </section>
       )}

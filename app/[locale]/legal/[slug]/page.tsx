@@ -23,7 +23,7 @@ export default async function LegalPage({ params }: { params: Promise<{ locale: 
 
   return (
     <article className="flex flex-col gap-6 pt-4">
-      <p role="note" className="rounded-md border-2 border-warning bg-warning-soft p-3 font-semibold text-warning">
+      <p role="note" className="rounded-card border-2 border-warning bg-warning-soft p-3 font-semibold text-warning">
         {t("draft")}
         <span className="block text-sm font-normal text-ink">{t("draftNote")}</span>
       </p>

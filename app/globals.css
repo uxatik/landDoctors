@@ -1,4 +1,6 @@
 @import "tailwindcss";
+/* Designfoli design system in the base layer, so utility classes can still size things. */
+@import "../styles/designfoli.css" layer(base);
 @import "../design/tokens.css";
 
 @theme inline {
@@ -14,15 +16,17 @@
   --color-on-accent: var(--color-accent-contrast);
   --color-verified: var(--color-verified);
   --color-verified-soft: var(--color-verified-soft);
-  --color-warning: var(--color-warning);
+  --color-warning: var(--color-warning-text);
   --color-warning-soft: var(--color-warning-soft);
   --color-danger: var(--color-danger);
   --color-danger-soft: var(--color-danger-soft);
   --font-sans: var(--font-body);
-  --radius-sm: var(--radius-sm);
-  --radius-md: var(--radius-md);
-  --radius-lg: var(--radius-lg);
+  --radius-control: var(--radius-control);
+  --radius-card: var(--radius-card);
+  --radius-panel: var(--radius-panel);
   --shadow-raised: var(--shadow-raised);
+  --color-brand: var(--color-brand);
+  --color-success-text: var(--color-success-text);
 }
 
 html {
@@ -40,6 +44,14 @@ body {
 h1, h2, h3 {
   line-height: var(--leading-tight);
   text-wrap: balance;
+}
+
+/* Bangla needs normal letter-spacing and a little more line height than Latin. */
+:lang(bn) :is(h1, h2, h3) {
+  letter-spacing: normal;
+}
+:lang(bn) p {
+  line-height: var(--leading-body);
 }
 
 :focus-visible {

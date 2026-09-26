@@ -30,10 +30,10 @@ type Payment = { id: number; amount: number; method: string; status: string; ref
 type Event = { id: number; at: string; kind: string; from_status: CaseStatus | null; to_status: CaseStatus | null; note: string | null; staff: { name: string } | null };
 type Pkg = { id: number; name_bn: string; name_en: string; base_price: number; price_confirmed: boolean; field_work: boolean };
 
-const BOX = "flex flex-col gap-3 rounded-md border border-line bg-surface p-4";
-const INPUT = "rounded-sm border border-line bg-surface px-2 py-2 text-sm";
-const BTN = "rounded-sm bg-accent px-3 py-2 text-sm font-semibold text-on-accent";
-const BTN_2 = "rounded-sm border border-line px-3 py-2 text-sm";
+const BOX = "flex flex-col gap-3 rounded-card border border-line bg-surface p-4";
+const INPUT = "rounded-control border border-line bg-surface px-2 py-2 text-sm";
+const BTN = "rounded-full bg-accent px-3 py-2 text-sm font-semibold text-on-accent";
+const BTN_2 = "rounded-full border border-line px-3 py-2 text-sm";
 
 /** Why a consultant can't take this case (mirrors assign_consultant), or null if they can. */
 function ineligibleReason(k: Consultant, c: CaseRow): string | null {
@@ -87,8 +87,8 @@ export default async function CasePage({
     <div className="flex flex-col gap-5">
       <Link href="/admin/cases" className="text-sm underline">← কেস তালিকা · All cases</Link>
 
-      {sp.ok && <p role="status" className="rounded-md bg-accent-soft p-3 text-sm text-accent">{sp.ok}</p>}
-      {sp.error && <p role="alert" className="rounded-md border-2 border-danger bg-danger-soft p-3 text-sm">{sp.error}</p>}
+      {sp.ok && <p role="status" className="rounded-full bg-accent-soft p-3 text-sm text-accent">{sp.ok}</p>}
+      {sp.error && <p role="alert" className="rounded-card border-2 border-danger bg-danger-soft p-3 text-sm">{sp.error}</p>}
 
       <div className="flex flex-wrap items-center gap-3">
         <h1 className="text-2xl font-bold tabular-nums">{c.ref}</h1>
@@ -98,7 +98,7 @@ export default async function CasePage({
 
       <div className="grid gap-4 lg:grid-cols-3">
         <section className={`${BOX} lg:col-span-2`} aria-label="Case details">
-          <h2 className="font-semibold">কেসের তথ্য · Details</h2>
+          <h2 className="text-base font-semibold">কেসের তথ্য · Details</h2>
           <dl className="grid grid-cols-[max-content_1fr] gap-x-4 gap-y-1 text-sm">
             <dt className="text-muted">সমস্যা</dt><dd>{CATEGORY_LABEL[c.category]}</dd>
             <dt className="text-muted">এলাকা</dt><dd>{AREA_LABEL[c.area]} · {c.upazila}{c.mouza ? ` · মৌজা ${c.mouza}` : ""}</dd>
@@ -111,11 +111,11 @@ export default async function CasePage({
               <span className="text-muted">({c.contact_pref === "call" ? "কল পছন্দ" : "WhatsApp পছন্দ"})</span>
             </dd>
           </dl>
-          {c.description && <p className="whitespace-pre-wrap rounded-sm bg-sunken p-3 text-sm">{c.description}</p>}
+          {c.description && <p className="whitespace-pre-wrap rounded-control bg-sunken p-3 text-sm">{c.description}</p>}
         </section>
 
         <section className={BOX} aria-label="Status">
-          <h2 className="font-semibold">অবস্থা বদলান · Change status</h2>
+          <h2 className="text-base font-semibold">অবস্থা বদলান · Change status</h2>
           {nextStatuses.length === 0 && <p className="text-sm text-muted">আর কোনো ধাপ নেই · No further steps</p>}
           {nextStatuses.map((to) => (
             <form key={to} action={bound(changeStatus)} className="flex flex-col gap-1">
@@ -129,7 +129,7 @@ export default async function CasePage({
 
       <div className="grid gap-4 lg:grid-cols-2">
         <section className={BOX} aria-label="Consultant">
-          <h2 className="font-semibold">বিশেষজ্ঞ · Consultant</h2>
+          <h2 className="text-base font-semibold">বিশেষজ্ঞ · Consultant</h2>
           <p className="text-sm">{assigned ? `${assigned.name} (${assigned.role})` : "এখনো ঠিক হয়নি · Not assigned"}</p>
           {!["closed", "cancelled", "refunded", "delivered"].includes(c.status) && (
             <form action={bound(assignConsultant)} className="flex flex-wrap gap-2">
@@ -150,7 +150,7 @@ export default async function CasePage({
         </section>
 
         <section className={BOX} aria-label="Offer">
-          <h2 className="font-semibold">প্রস্তাব · Offer</h2>
+          <h2 className="text-base font-semibold">প্রস্তাব · Offer</h2>
           {openOffer ? (
             <div className="flex flex-col gap-2 text-sm">
               <p>
@@ -158,10 +158,10 @@ export default async function CasePage({
                 <strong>{formatTaka(offerTotal)}</strong>
               </p>
               {!openOffer.price_confirmed && (
-                <p className="rounded-sm bg-warning-soft p-2">দাম এখনো নিশ্চিত নয়, তাই গ্রাহক অনলাইনে পেমেন্ট করতে পারবেন না। · Price not confirmed: no online payment.</p>
+                <p className="rounded-control bg-warning-soft p-2">দাম এখনো নিশ্চিত নয়, তাই গ্রাহক অনলাইনে পেমেন্ট করতে পারবেন না। · Price not confirmed: no online payment.</p>
               )}
               <p className="text-muted">মেয়াদ · Expires {formatDateTime(openOffer.expires_at)}</p>
-              <p className="break-all rounded-sm bg-sunken p-2 font-mono text-xs">{offerUrl}</p>
+              <p className="break-all rounded-control bg-sunken p-2 font-mono text-xs">{offerUrl}</p>
               <div className="flex flex-wrap gap-2">
                 <CopyButton text={offerUrl ?? ""} label="লিংক কপি · Copy link" />
                 <a className={BTN} target="_blank" rel="noopener noreferrer"
@@ -210,7 +210,7 @@ export default async function CasePage({
 
       <div className="grid gap-4 lg:grid-cols-2">
         <section className={BOX} aria-label="Payments">
-          <h2 className="font-semibold">পেমেন্ট · Payments</h2>
+          <h2 className="text-base font-semibold">পেমেন্ট · Payments</h2>
           {payments?.length ? (
             <ul className="text-sm">
               {payments.map((p) => (
@@ -251,7 +251,7 @@ export default async function CasePage({
         </section>
 
         <section className={BOX} aria-label="Timeline">
-          <h2 className="font-semibold">ইতিহাস · Timeline</h2>
+          <h2 className="text-base font-semibold">ইতিহাস · Timeline</h2>
           <ol className="flex flex-col gap-2 text-sm">
             {events?.map((e) => (
               <li key={e.id} className="border-l-2 border-line pl-3">

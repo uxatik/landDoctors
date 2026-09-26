@@ -96,7 +96,7 @@
       "whatsapp": "WhatsApp"
     },
     "privacy": "We only keep your name, phone number and the problem details. We don't share them with anyone.",
-    "submit": "Send",
+    "submit": "Send →",
     "submitting": "Sending…",
     "summaryTitle": "Please fix the following",
     "errors": {
@@ -197,7 +197,7 @@
       "advocate": "Land advocate",
       "deed_writer": "Deed writer"
     },
-    "pay": "Pay {amount}",
+    "pay": "Pay {amount} →",
     "payNote": "By bKash, Nagad, Rocket or card. LandDoctor holds the money; the expert is paid after delivery.",
     "cash": "Never pay an expert in cash. If anyone asks, tell us.",
     "refundLink": "Refund policy",

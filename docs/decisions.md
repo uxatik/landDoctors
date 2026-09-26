@@ -28,3 +28,10 @@ From the brief: surveys and land health reports only in Savar and Gazipur; other
 
 ## D9 — Unconfirmed prices cannot be paid (26 Sep 2026)
 Packages are seeded with the brief's starting prices and `price_confirmed = false`. The offer page shows "call us to confirm" instead of a Pay button until the super admin confirms real prices.
+
+## D11 — Designfoli installed, light theme, with Bangla and contrast adjustments (27 Sep 2026)
+Designfoli (`.claude/skills/designfoli/`) is the design system. `styles/designfoli.css` is its CSS with font paths changed from `fonts/` to `/fonts/` (fonts in `public/fonts/`), imported in the base CSS layer so page-level Tailwind classes can size headings. `design/tokens.css` maps our token names onto Designfoli variables; no new hex values.
+- Light theme, not the dark signature: most visitors read Bangla on cheap phones in daylight; light is easier to read.
+- Mona Sans has no Bangla letters, so the stack is Mona Sans → Hind Siliguri. Bangla headings get normal letter-spacing and body line-height 1.6.
+- White on primary-500 is 4.4:1 (just under AA), so filled buttons and links use primary-600. Success, warning and error text use darker shades of Designfoli's own colours (`color-mix` with black) to reach AA.
+- Pill buttons, 12px cards, 8px inputs, "→" on the two main CTAs. Phone numbers use normal digits (fixed-width digits looked like a code font).

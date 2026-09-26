@@ -16,7 +16,7 @@ export function CopyButton({ text, label }: { text: string; label: string }) {
           setDone(false);
         }
       }}
-      className="rounded-sm border border-accent px-3 py-1.5 text-sm font-semibold text-accent"
+      className="rounded-full border border-accent px-3 py-1.5 text-sm font-semibold text-accent"
     >
       {done ? "কপি হয়েছে · Copied" : label}
     </button>

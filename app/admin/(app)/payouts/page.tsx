@@ -38,12 +38,12 @@ export default async function PayoutsPage({ searchParams }: { searchParams: Prom
     <div className="flex flex-col gap-4">
       <h1 className="text-xl font-bold">বিশেষজ্ঞের পাওনা · Payouts</h1>
       <p className="text-sm text-muted">কাজ দেওয়া বা বন্ধ হওয়া কেস থেকে হিসাব। শেয়ার + বিশেষজ্ঞ যে সরকারি ফি দিয়েছেন। · Delivered/closed cases: share plus government fees they paid.</p>
-      {sp.ok && <p role="status" className="rounded-md bg-accent-soft p-3 text-sm">{sp.ok}</p>}
-      {sp.error && <p role="alert" className="rounded-md border-2 border-danger bg-danger-soft p-3 text-sm">{sp.error}</p>}
+      {sp.ok && <p role="status" className="rounded-full bg-accent-soft p-3 text-sm">{sp.ok}</p>}
+      {sp.error && <p role="alert" className="rounded-card border-2 border-danger bg-danger-soft p-3 text-sm">{sp.error}</p>}
 
       <ul className="flex flex-col gap-3">
         {lines.map((l) => (
-          <li key={l.consultantId} className="flex flex-wrap items-center justify-between gap-3 rounded-md border border-line bg-surface p-4 text-sm">
+          <li key={l.consultantId} className="flex flex-wrap items-center justify-between gap-3 rounded-card border border-line bg-surface p-4 text-sm">
             <div>
               <strong>{l.consultantName}</strong>
               <p className="text-muted">{l.caseRefs.join(", ")}</p>
@@ -53,14 +53,14 @@ export default async function PayoutsPage({ searchParams }: { searchParams: Prom
               <input type="hidden" name="consultant_id" value={l.consultantId} />
               <input type="hidden" name="amount" value={l.total} />
               <input type="hidden" name="case_ids" value={l.caseIds.join(",")} />
-              <button className="rounded-sm bg-accent px-3 py-2 font-semibold text-on-accent">পরিশোধ করা হয়েছে · Mark paid</button>
+              <button className="rounded-full bg-accent px-3 py-2 font-semibold text-on-accent">পরিশোধ করা হয়েছে · Mark paid</button>
             </form>
           </li>
         ))}
         {lines.length === 0 && <li className="text-muted">কোনো পাওনা নেই · Nothing due</li>}
       </ul>
 
-      <h2 className="pt-2 font-semibold">আগের পরিশোধ · Past payouts</h2>
+      <h2 className="pt-2 text-base font-semibold">আগের পরিশোধ · Past payouts</h2>
       <ul className="text-sm">
         {payouts?.map((p) => (
           <li key={p.id} className="border-b border-line py-1 tabular-nums">

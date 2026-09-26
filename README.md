@@ -59,4 +59,4 @@ Payments are marked paid only after the server asks SSLCommerz's validation API,
 
 ## Design tokens
 
-All colours, type sizes, spacing and radii come from `design/tokens.css`. Replace the values there with the Designfoli export; keep the token names.
+The design system is Designfoli (`.claude/skills/designfoli/`, CSS in `styles/designfoli.css`, fonts in `public/fonts/`). `design/tokens.css` maps the project's token names onto Designfoli variables. See `CLAUDE.md` and `docs/decisions.md` D11.

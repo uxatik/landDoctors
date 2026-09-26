@@ -35,7 +35,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             <li key={slug}>
               <Link
                 href={{ pathname: "/help", query: { category: slug } }}
-                className="group flex h-full min-h-[var(--tap-min)] flex-col gap-1 rounded-md border border-line bg-surface p-4 no-underline hover:border-accent"
+                className="group flex h-full min-h-[var(--tap-min)] flex-col gap-1 rounded-card border border-line bg-surface p-4 no-underline hover:border-accent"
               >
                 <span className="flex items-start justify-between gap-2 font-semibold text-ink">
                   {tc(`${slug}.name`)}
@@ -49,8 +49,8 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         <p className="text-sm text-muted">{t("servingNote")}</p>
       </section>
 
-      <section aria-labelledby="talk-title" className="flex flex-col gap-3 rounded-lg bg-sunken p-4">
-        <h2 id="talk-title" className="font-semibold">
+      <section aria-labelledby="talk-title" className="flex flex-col gap-3 rounded-panel bg-sunken p-4">
+        <h2 id="talk-title" className="text-lg font-semibold">
           {t("orTalk")}
         </h2>
         <ContactButtons />

@@ -9,3 +9,4 @@ playwright-report/
 .sync/
 next-env.d.ts.bak
 tsconfig.tsbuildinfo
+designfoli-package/

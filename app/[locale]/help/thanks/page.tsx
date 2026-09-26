@@ -29,7 +29,7 @@ export default async function ThanksPage({
       ) : validRef ? (
         <section className="flex flex-col gap-3">
           <h1 className="text-[length:var(--text-2xl)] font-bold">{t("title")}</h1>
-          <div className="flex flex-col gap-1 rounded-lg border-2 border-accent bg-surface p-4">
+          <div className="flex flex-col gap-1 rounded-panel border-2 border-accent bg-surface p-4">
             <span className="text-sm text-muted">{t("refLabel")}</span>
             <span className="text-2xl font-bold tracking-wide text-accent tabular-nums" dir="ltr">{validRef}</span>
             <span className="text-sm text-muted">{t("refHint")}</span>
@@ -47,7 +47,7 @@ export default async function ThanksPage({
           <p>{t("receivedBody")}</p>
         </section>
       )}
-      <p className="rounded-md bg-warning-soft p-3 text-sm">{t("cashWarning")}</p>
+      <p className="rounded-card bg-warning-soft p-3 text-sm">{t("cashWarning")}</p>
       <ContactButtons />
       <Link href="/" className="text-accent underline">{t("home")}</Link>
     </div>

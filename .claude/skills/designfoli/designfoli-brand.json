@@ -1,0 +1,234 @@
+{
+  "$schema": "https://designfoli.com/brand-guideline.schema.json",
+  "meta": {
+    "brand": "Designfoli",
+    "version": "1.0.0",
+    "lastUpdated": "2026-06-27",
+    "description": "Portable brand guideline for Designfoli — a web app for UX designers to build and publish portfolio case studies. Use this file to keep visual identity consistent across the website, marketing, and LinkedIn content.",
+    "usage": "Hand this JSON to a content/design agent. Treat every value here as a hard constraint. Do NOT invent new colors, fonts, or styles outside this file. When a value is missing, derive it harmoniously from the closest token (e.g. tints via opacity, shades within the documented scale)."
+  },
+
+  "voice": {
+    "personality": ["Direct", "Empowering", "Confident", "Modern", "Professional but warm"],
+    "tone": "Speaks to designers as capable professionals. Action-oriented, concise, never corporate or stiff. Sits in the modern design-tool space (think Framer, Notion, Figma).",
+    "audience": "UX/product designers building portfolios and case studies; design-curious professionals and hiring managers in their network.",
+    "do": [
+      "Lead with a strong, short hook in the first line",
+      "Use verbs in CTAs: 'Get Started', 'Learn More', 'Try Now'",
+      "Speak to 'you' (the designer/reader), not 'we'",
+      "Keep sentences tight — remove filler words",
+      "Use the arrow glyph → for forward motion in CTAs and links"
+    ],
+    "dont": [
+      "No emoji in product UI (sparingly acceptable in LinkedIn copy, but never as a crutch)",
+      "No hype words or buzzword stacking",
+      "No long preambles — get to the point",
+      "Avoid overusing 'I' / 'we'"
+    ],
+    "casing": {
+      "headlines": "Title Case for major headings, e.g. 'Build Better. Faster. Together.'",
+      "uiLabels": "Sentence case, occasionally Title Case for CTAs",
+      "body": "Standard sentence case"
+    },
+    "exampleCopy": {
+      "hero": "Build better. Faster. Together.",
+      "subtitle": "Use this system to create intuitive and beautiful user experiences.",
+      "cardHeadline": "Design at the speed of AI",
+      "cardBody": "Transform ideas into UI designs for mobile and web applications.",
+      "cta": ["Try Now →", "Learn More →", "Get Started Free"]
+    }
+  },
+
+  "color": {
+    "primary": {
+      "DEFAULT": "#5A6BFF",
+      "100": "#EAEBFF",
+      "200": "#C4C8FF",
+      "300": "#9BA3FF",
+      "400": "#7B87FF",
+      "500": "#5A6BFF",
+      "600": "#423ED8",
+      "700": "#312EB0",
+      "usage": "The single brand color. Use for primary CTAs, links, active states, accents, and the gradient. 500 is the canonical primary."
+    },
+    "gradient": {
+      "primary": "linear-gradient(135deg, #5A6BFF 0%, #A857F7 100%)",
+      "stops": ["#5A6BFF", "#A857F7"],
+      "angle": "135deg",
+      "usage": "Hero backgrounds, glows, gradient text, key highlight panels. Violet → purple. Do not introduce other gradients."
+    },
+    "neutral": {
+      "0": "#FFFFFF",
+      "50": "#F8FAFC",
+      "100": "#F0F0F5",
+      "200": "#D4D4DC",
+      "300": "#ABACB4",
+      "400": "#8B8B94",
+      "500": "#717178",
+      "600": "#475569",
+      "700": "#2F3156",
+      "800": "#1A2042",
+      "900": "#131533",
+      "950": "#08081F"
+    },
+    "semantic": {
+      "success": "#22C55E",
+      "warning": "#F59E0B",
+      "error": "#EF4444",
+      "info": "#3B82F6",
+      "new": "#A855F7",
+      "purple": "#8B5CF6"
+    },
+    "themes": {
+      "light": {
+        "isDefault": true,
+        "background": "#FFFFFF",
+        "surface": "#F8FAFC",
+        "elevated": "#F0F0F5",
+        "textPrimary": "#0F172A",
+        "textSecondary": "#475569",
+        "textMuted": "#94A3B8",
+        "border": "rgba(0,0,0,0.1)"
+      },
+      "dark": {
+        "isHeroIdentity": true,
+        "background": "#0B0F1A",
+        "surface": "#12172A",
+        "elevated": "#1A2038",
+        "textPrimary": "#FFFFFF",
+        "textSecondary": "#A0A8C0",
+        "textMuted": "#6B7280",
+        "border": "rgba(255,255,255,0.08)",
+        "note": "Dark is the signature look for product/brand hero moments. Deep navy backgrounds with violet accents. Prefer dark for bold, high-impact LinkedIn graphics."
+      }
+    }
+  },
+
+  "typography": {
+    "fontFamily": {
+      "primary": "Mona Sans",
+      "fallback": "system-ui, -apple-system, sans-serif",
+      "source": "https://github.com/github/mona-sans",
+      "license": "SIL Open Font License 1.1 (free for commercial use)",
+      "note": "Mona Sans is a free, open-source variable font. Install it in any tool (Canva, Figma, Google Slides) for exact brand match. No serif or mono in brand materials."
+    },
+    "widths": {
+      "condensed": "75%",
+      "semiCondensed": "87.5%",
+      "regular": "100%",
+      "semiExpanded": "112.5%",
+      "expanded": "125%",
+      "note": "Use Expanded Black for big, punchy display headlines on social graphics — it's a distinctive brand move."
+    },
+    "weights": [200, 300, 400, 500, 600, 700, 800, 900],
+    "scale": {
+      "display": { "size": 64, "lineHeight": 72, "weight": 700, "letterSpacing": "-0.02em", "usage": "Hero / cover headlines" },
+      "h1":      { "size": 48, "lineHeight": 56, "weight": 700, "letterSpacing": "-0.02em" },
+      "h2":      { "size": 36, "lineHeight": 44, "weight": 600, "letterSpacing": "-0.01em" },
+      "h3":      { "size": 24, "lineHeight": 32, "weight": 600 },
+      "bodyLarge": { "size": 18, "lineHeight": 28, "weight": 400 },
+      "body":      { "size": 16, "lineHeight": 24, "weight": 400 },
+      "bodySmall": { "size": 14, "lineHeight": 20, "weight": 400 },
+      "caption":   { "size": 12, "lineHeight": 18, "weight": 400 }
+    },
+    "rules": [
+      "Minimum body text 16px (12pt print).",
+      "Headlines tight with negative letter-spacing.",
+      "Pair a heavy headline (700-900) with a regular (400) body for contrast."
+    ]
+  },
+
+  "spacing": {
+    "baseUnit": 8,
+    "scale": { "1": 4, "2": 8, "3": 12, "4": 16, "5": 20, "6": 24, "8": 32, "10": 40, "12": 48, "16": 64, "20": 80, "24": 96 },
+    "note": "Everything sits on an 8px grid. Section padding 64–96px, card padding 24px."
+  },
+
+  "radius": {
+    "sm": 4, "md": 8, "lg": 12, "xl": 16, "full": 9999,
+    "usage": "Cards 12px, inputs/buttons 8px or full pill, badges/tags full pill."
+  },
+
+  "shadows": {
+    "sm": "0 1px 3px rgba(0,0,0,0.30)",
+    "md": "0 4px 12px rgba(0,0,0,0.35)",
+    "lg": "0 8px 24px rgba(0,0,0,0.40)",
+    "xl": "0 16px 48px rgba(0,0,0,0.50)",
+    "glow": "0 0 24px rgba(90,107,255,0.50), 0 0 48px rgba(90,107,255,0.25)",
+    "note": "Elevation comes from background-color steps more than heavy shadows. Glow (primary) reserved for CTAs and hero highlights."
+  },
+
+  "iconography": {
+    "style": "Clean, minimal, 1.5–2px stroke, rounded caps — Lucide Icons style",
+    "source": "https://lucide.dev",
+    "decorativeMark": "✦ (sparkle/star) used as a brand accent on cards",
+    "rules": ["No icon fonts", "No emoji in product UI", "Arrow → as text CTA suffix"]
+  },
+
+  "imagery": {
+    "photography": "None in the core UI system — prefer clean flat surfaces, product mockups, and UI screenshots.",
+    "illustration": "None. Use real UI mockups (dashboards, phone frames) as visual interest.",
+    "backgrounds": "Solid deep-navy (dark) or clean white/F8FAFC (light). Gradient glow panels for hero moments. No textures or patterns."
+  },
+
+  "linkedin": {
+    "purpose": "Keep LinkedIn content visually consistent with the Designfoli website so the audience recognizes the brand across surfaces.",
+    "formats": {
+      "squarePost":      { "width": 1080, "height": 1080, "ratio": "1:1", "use": "Carousels, single graphics, quote cards" },
+      "portraitPost":    { "width": 1080, "height": 1350, "ratio": "4:5", "use": "Highest feed real-estate — preferred for single image posts" },
+      "carouselPDF":     { "width": 1080, "height": 1350, "ratio": "4:5", "use": "Document/carousel posts — design each page at this size" },
+      "landscapeLink":   { "width": 1200, "height": 627,  "ratio": "1.91:1", "use": "Link share preview / blog promo" },
+      "coverBanner":     { "width": 1584, "height": 396,  "ratio": "4:1", "use": "Profile / company page banner" },
+      "profilePicture":  { "width": 400,  "height": 400,  "ratio": "1:1" }
+    },
+    "templates": {
+      "hookCard": {
+        "background": "#0B0F1A (dark) or gradient #5A6BFF→#A857F7",
+        "headline": "Mona Sans Expanded Black, white, 64–96px, max 6 words",
+        "accent": "Single primary #5A6BFF underline, dot, or → glyph",
+        "footer": "Small handle/logo lockup bottom-left, muted #A0A8C0"
+      },
+      "carouselPage": {
+        "background": "Alternate #FFFFFF and #F8FAFC pages, or stay dark for a bold set",
+        "pageNumber": "Caption size, muted, bottom-right",
+        "title": "h2 (36px) weight 600",
+        "body": "bodyLarge (18px), max ~40 words per page",
+        "consistentMargins": "64px safe margin on all sides"
+      },
+      "quoteCard": {
+        "background": "gradient or dark",
+        "quote": "h1 weight 700, white",
+        "attribution": "bodySmall, primary-300 #9BA3FF"
+      },
+      "statCard": {
+        "bigNumber": "Display 64px Expanded Black, primary #5A6BFF or gradient text",
+        "label": "bodySmall muted below"
+      }
+    },
+    "rules": [
+      "Always include the ✦ mark or wordmark for brand recall.",
+      "One primary color only — #5A6BFF. Use the gradient for emphasis, never random colors.",
+      "Mona Sans everywhere. If unavailable in the tool, fall back to Inter or system-ui (closest match).",
+      "Keep 64px safe margins so nothing clips in the feed crop.",
+      "Dark navy + violet = the signature look. Use it for high-impact posts.",
+      "Headlines: max 6–8 words. Let whitespace breathe.",
+      "Never stretch the logo, never recolor it outside the palette."
+    ],
+    "contentPillars": [
+      "UX case study breakdowns",
+      "Portfolio tips for designers",
+      "Design process & systems thinking",
+      "Behind-the-scenes of building Designfoli"
+    ]
+  },
+
+  "tokensCss": {
+    "note": "For developers — these mirror the website's CSS custom properties so web and social stay in lockstep.",
+    "--color-primary": "#5A6BFF",
+    "--gradient-primary": "linear-gradient(135deg, #5A6BFF 0%, #A857F7 100%)",
+    "--font-sans": "'Mona Sans', system-ui, sans-serif",
+    "--radius-card": "12px",
+    "--bg-dark": "#0B0F1A",
+    "--bg-light": "#FFFFFF"
+  }
+}

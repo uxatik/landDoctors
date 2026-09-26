@@ -24,7 +24,7 @@ export async function SiteFooter() {
         </nav>
         <p>
           {t("hotline")}:{" "}
-          <a href={`tel:${hotline}`} className="font-semibold text-ink tabular-nums" dir="ltr">
+          <a href={`tel:${hotline}`} className="font-semibold text-ink" dir="ltr">
             {formatPhoneDisplay(hotline)}
           </a>
         </p>

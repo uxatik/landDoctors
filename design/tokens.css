@@ -1,57 +1,61 @@
 /*
- * LandDoctor design tokens — PLACEHOLDER until the Designfoli export arrives.
- * Replace the values below; keep the token names. Record any change in docs/decisions.md.
- * Contrast checked for WCAG AA: text on bg 14.9:1, muted on bg 5.6:1, accent-contrast on accent 6.6:1.
+ * LandDoctor → Designfoli token map.
+ * Every value comes from styles/designfoli.css (the Designfoli design system, light theme).
+ * Nothing here introduces a new hex value. Where Designfoli's own value fails WCAG AA
+ * for small text on white, we use the darker step of the same scale, or derive a shade
+ * of the same semantic colour with color-mix (as designfoli-brand.json allows:
+ * "derive it harmoniously from the closest token"). See docs/decisions.md D11.
  */
 :root {
-  /* Colour — paper, ink, paddy green, verified gold */
-  --color-bg: #f7f9f6;
-  --color-surface: #ffffff;
-  --color-surface-sunken: #eef2ef;
-  --color-text: #16231d;
-  --color-muted: #52625a;
-  --color-border: #d6dfd9;
-  --color-accent: #1d6a4c;
-  --color-accent-hover: #175a40;
-  --color-accent-soft: #e2eee7;
-  --color-accent-contrast: #ffffff;
-  --color-verified: #8a5f0f;
-  --color-verified-soft: #f6eedc;
-  --color-success: #1d6a4c;
-  --color-warning: #9a4a12;
-  --color-warning-soft: #f7eae0;
-  --color-danger: #a3302f;
-  --color-danger-soft: #f6e4e3;
-  --color-focus: #1f5fbf;
+  /* Surfaces */
+  --color-bg: var(--bg-surface);              /* #F8FAFC page */
+  --color-surface: var(--card-bg);            /* #FFFFFF cards, inputs */
+  --color-surface-sunken: var(--bg-elevated); /* #F0F0F5 quiet panels */
 
-  /* Type */
-  --font-body: "Hind Siliguri", "Noto Sans Bengali", system-ui, -apple-system, "Segoe UI", sans-serif;
+  /* Text */
+  --color-text: var(--fg-primary);            /* #0F172A */
+  --color-muted: var(--fg-secondary);         /* #475569 (fg-muted #94A3B8 is below AA for text) */
+  --color-border: var(--color-neutral-200);   /* #D4D4DC */
+
+  /* Brand: primary-600 for filled buttons and text links, because white on
+     primary-500 (#5A6BFF) is 4.4:1, just under AA for 14–17px text. */
+  --color-accent: var(--color-primary-600);        /* #423ED8 */
+  --color-accent-hover: var(--color-primary-700);  /* #312EB0 */
+  --color-accent-soft: var(--color-primary-100);   /* #EAEBFF */
+  --color-accent-contrast: var(--btn-primary-fg);  /* #FFFFFF */
+  --color-brand: var(--color-primary-500);         /* #5A6BFF decorative only */
+  --gradient-brand: var(--gradient-primary);
+
+  /* Semantic (text shades derived from the Designfoli semantic colours for AA) */
+  --color-verified: color-mix(in srgb, var(--color-success) 55%, black);
+  --color-verified-soft: var(--color-success-bg);
+  --color-success-text: color-mix(in srgb, var(--color-success) 55%, black);
+  --color-warning-text: color-mix(in srgb, var(--color-warning) 55%, black);
+  --color-warning-soft: var(--color-warning-bg);
+  --color-danger: color-mix(in srgb, var(--color-error) 75%, black);
+  --color-danger-soft: var(--color-error-bg);
+  --color-focus: var(--color-primary-500);
+
+  /* Type: Mona Sans for Latin text and digits; Mona Sans has no Bangla letters,
+     so Bangla falls through to Hind Siliguri. */
+  --font-body: "Mona Sans", "Hind Siliguri", "Noto Sans Bengali", system-ui, -apple-system, sans-serif;
+  /* Same Designfoli font first, with the Bangla fallback added so <p> and headings
+     (which Designfoli styles with --font-sans) render Bangla in Hind Siliguri. */
+  --font-sans: var(--font-body);
   --text-xs: 0.8125rem;
   --text-sm: 0.9375rem;
   --text-base: 1.0625rem;
   --text-lg: 1.25rem;
   --text-xl: 1.5rem;
   --text-2xl: 1.875rem;
-  --leading-body: 1.6;
+  --leading-body: 1.6;   /* Bangla conjuncts need more room than Designfoli's 1.5 */
   --leading-tight: 1.25;
 
-  /* Space (4px grid) */
-  --space-1: 0.25rem;
-  --space-2: 0.5rem;
-  --space-3: 0.75rem;
-  --space-4: 1rem;
-  --space-5: 1.25rem;
-  --space-6: 1.5rem;
-  --space-8: 2rem;
-  --space-10: 2.5rem;
-  --space-12: 3rem;
-
-  /* Shape */
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 16px;
-  --radius-full: 999px;
-  --shadow-raised: 0 1px 2px rgba(22, 35, 29, 0.06), 0 2px 8px rgba(22, 35, 29, 0.06);
+  /* Shape: Designfoli radius scale (inputs 8px, cards 12px, pills full) */
+  --radius-control: var(--radius-md);  /* 8px */
+  --radius-card: var(--radius-lg);     /* 12px */
+  --radius-panel: var(--radius-xl);    /* 16px */
+  --shadow-raised: var(--shadow-sm-light);
 
   /* Layout */
   --content-max: 40rem;

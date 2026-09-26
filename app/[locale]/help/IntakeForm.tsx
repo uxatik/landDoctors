@@ -26,9 +26,9 @@ const FIELD_ANCHOR: Record<IntakeField, string> = {
 };
 
 const INPUT =
-  "w-full rounded-sm border border-line bg-surface px-3 py-2.5 text-base text-ink aria-[invalid=true]:border-danger";
+  "w-full rounded-control border border-line bg-surface px-3 py-2.5 text-base text-ink aria-[invalid=true]:border-danger";
 const CHOICE =
-  "flex min-h-[var(--tap-min)] cursor-pointer items-center gap-3 rounded-sm border border-line bg-surface px-3 py-2 has-[:checked]:border-accent has-[:checked]:bg-accent-soft";
+  "flex min-h-[var(--tap-min)] cursor-pointer items-center gap-3 rounded-control border border-line bg-surface px-3 py-2 has-[:checked]:border-accent has-[:checked]:bg-accent-soft";
 
 function SubmitButton() {
   const t = useTranslations("help");
@@ -38,7 +38,7 @@ function SubmitButton() {
       type="submit"
       disabled={pending}
       aria-disabled={pending}
-      className="min-h-[var(--tap-min)] w-full rounded-md bg-accent px-4 font-semibold text-on-accent hover:bg-accent-hover disabled:opacity-70"
+      className="min-h-[var(--tap-min)] w-full rounded-full bg-accent px-4 font-semibold text-on-accent hover:bg-accent-hover disabled:opacity-70"
     >
       {pending ? t("submitting") : t("submit")}
     </button>
@@ -72,7 +72,7 @@ export function IntakeForm({ idempotencyKey, initialCategory }: { idempotencyKey
   return (
     <form action={formAction} noValidate className="intake flex flex-col gap-8">
       {(errorFields.length > 0 || state.formError) && (
-        <div id="form-errors" ref={summaryRef} tabIndex={-1} role="alert" className="flex flex-col gap-2 rounded-md border-2 border-danger bg-danger-soft p-4">
+        <div id="form-errors" ref={summaryRef} tabIndex={-1} role="alert" className="flex flex-col gap-2 rounded-card border-2 border-danger bg-danger-soft p-4">
           {state.formError ? (
             <p className="font-semibold">{t(`formErrors.${state.formError}`)}</p>
           ) : (
@@ -139,7 +139,7 @@ export function IntakeForm({ idempotencyKey, initialCategory }: { idempotencyKey
           ))}
         </div>
 
-        <p className="field-note hidden rounded-md bg-warning-soft p-3 text-sm" role="note">
+        <p className="field-note hidden rounded-card bg-warning-soft p-3 text-sm" role="note">
           {t("fieldNote")}
         </p>
 
@@ -205,7 +205,7 @@ export function IntakeForm({ idempotencyKey, initialCategory }: { idempotencyKey
         </div>
         <div className="flex flex-col gap-1">
           <label htmlFor="phone" className="font-medium">{t("phone")}</label>
-          <input id="phone" name="phone" type="tel" inputMode="tel" autoComplete="tel" dir="ltr" className={`${INPUT} tabular-nums`}
+          <input id="phone" name="phone" type="tel" inputMode="tel" autoComplete="tel" dir="ltr" className={INPUT}
             defaultValue={v?.phone} maxLength={20} aria-invalid={!!errors.phone} aria-describedby={describedBy("phone", "phone-hint")} />
           <p id="phone-hint" className="text-sm text-muted">{t("phoneHint")}</p>
           {err("phone")}

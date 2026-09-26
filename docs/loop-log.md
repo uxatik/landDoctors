@@ -77,3 +77,7 @@ Known limitations
 - Consultant share on payouts comes from the package's current share, not a snapshot at offer time.
 - A forged "payment failed" POST can mark a pending attempt failed; a genuine SSLCommerz confirmation still marks it paid afterwards.
 - Legal pages are drafts; prices are placeholders; design tokens are placeholders.
+
+## Iteration — Designfoli install (27 Sep 2026)
+Installed the Designfoli skill, fonts and CSS; remapped tokens (D11); added CLAUDE.md. Check page confirmed Mona Sans 400/600/700 load, then deleted. Screens reviewed: headings without a size class grew to Designfoli's h2 size (36px) — gave every bare h2 an explicit size; phone numbers looked monospace from `tabular-nums` — removed on phone numbers.
+Design-system fidelity 4 → 5 (light theme and AA overrides documented).

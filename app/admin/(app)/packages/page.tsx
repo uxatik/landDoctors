@@ -8,7 +8,7 @@ type P = {
   exclusions_bn: string; exclusions_en: string; delivery_days: number; base_price: number;
   consultant_share_pct: number; field_work: boolean; price_confirmed: boolean; active: boolean;
 };
-const INPUT = "rounded-sm border border-line bg-surface px-2 py-2 text-sm";
+const INPUT = "rounded-control border border-line bg-surface px-2 py-2 text-sm";
 
 export default async function PackagesPage({ searchParams }: { searchParams: Promise<{ ok?: string; error?: string }> }) {
   await requireStaff({ superAdmin: true });
@@ -22,11 +22,11 @@ export default async function PackagesPage({ searchParams }: { searchParams: Pro
         &quot;দাম নিশ্চিত&quot; টিক না দেওয়া পর্যন্ত গ্রাহক অনলাইনে পেমেন্ট করতে পারবেন না। দাম বদলালে আগের প্রস্তাবের দাম বদলায় না।
         · Customers can pay online only after &quot;Price confirmed&quot; is ticked. Changing a price doesn&apos;t change offers already sent.
       </p>
-      {sp.ok && <p role="status" className="rounded-md bg-accent-soft p-3 text-sm">{sp.ok}</p>}
-      {sp.error && <p role="alert" className="rounded-md border-2 border-danger bg-danger-soft p-3 text-sm">{sp.error}</p>}
+      {sp.ok && <p role="status" className="rounded-full bg-accent-soft p-3 text-sm">{sp.ok}</p>}
+      {sp.error && <p role="alert" className="rounded-card border-2 border-danger bg-danger-soft p-3 text-sm">{sp.error}</p>}
 
       {data?.map((p) => (
-        <form key={p.id} action={savePackage} className="grid gap-2 rounded-md border border-line bg-surface p-4 text-sm sm:grid-cols-2">
+        <form key={p.id} action={savePackage} className="grid gap-2 rounded-card border border-line bg-surface p-4 text-sm sm:grid-cols-2">
           <input type="hidden" name="id" value={p.id} />
           <div className="flex flex-wrap items-center gap-2 sm:col-span-2">
             <strong className="text-base">{p.name_bn}</strong>
@@ -46,7 +46,7 @@ export default async function PackagesPage({ searchParams }: { searchParams: Pro
             <label><input type="checkbox" name="price_confirmed" defaultChecked={p.price_confirmed} /> দাম নিশ্চিত · Price confirmed</label>
             <label><input type="checkbox" name="active" defaultChecked={p.active} /> সক্রিয় · Active</label>
           </div>
-          <button className="w-fit rounded-sm bg-accent px-4 py-2 font-semibold text-on-accent">সংরক্ষণ · Save</button>
+          <button className="w-fit rounded-full bg-accent px-4 py-2 font-semibold text-on-accent">সংরক্ষণ · Save</button>
         </form>
       ))}
     </div>

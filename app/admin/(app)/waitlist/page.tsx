@@ -20,8 +20,8 @@ export default async function WaitlistPage() {
     <div className="flex flex-col gap-4">
       <h1 className="text-xl font-bold">অপেক্ষার তালিকা · Waiting list</h1>
       <p className="text-sm text-muted">কোন এলাকায় পরের সেবা চালু করবেন, তা এখান থেকে বোঝা যায়। · Shows where to expand next.</p>
-      <section className="rounded-md border border-line bg-surface p-4">
-        <h2 className="mb-2 font-semibold">এলাকা অনুযায়ী · By area</h2>
+      <section className="rounded-card border border-line bg-surface p-4">
+        <h2 className="mb-2 text-base font-semibold">এলাকা অনুযায়ী · By area</h2>
         <ol className="grid gap-1 text-sm sm:grid-cols-2">
           {ranked.map(([k, n]) => (
             <li key={k} className="flex justify-between gap-4 border-b border-line py-1">
@@ -31,7 +31,7 @@ export default async function WaitlistPage() {
           {ranked.length === 0 && <li className="text-muted">এখনো কেউ নেই · Empty</li>}
         </ol>
       </section>
-      <div className="overflow-x-auto rounded-md border border-line bg-surface">
+      <div className="overflow-x-auto rounded-card border border-line bg-surface">
         <table className="w-full min-w-[600px] text-left text-sm">
           <thead className="bg-sunken text-xs text-muted">
             <tr><th className="px-3 py-2">তারিখ</th><th className="px-3 py-2">এলাকা</th><th className="px-3 py-2">সমস্যা</th><th className="px-3 py-2">ফোন</th></tr>
@@ -42,7 +42,7 @@ export default async function WaitlistPage() {
                 <td className="px-3 py-2 tabular-nums">{formatDateTime(r.created_at)}</td>
                 <td className="px-3 py-2">{r.district} · {r.upazila}</td>
                 <td className="px-3 py-2">{CATEGORY_LABEL[r.category] ?? r.category}</td>
-                <td className="px-3 py-2 tabular-nums"><a href={`tel:${r.phone}`} className="underline">{formatPhoneDisplay(r.phone)}</a></td>
+                <td className="px-3 py-2"><a href={`tel:${r.phone}`} className="underline">{formatPhoneDisplay(r.phone)}</a></td>
               </tr>
             ))}
           </tbody>

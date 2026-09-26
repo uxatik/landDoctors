@@ -9,7 +9,7 @@ export async function ContactButtons() {
   const whatsapp = publicEnv.NEXT_PUBLIC_WHATSAPP;
   const waHref = `https://wa.me/${toWhatsAppNumber(whatsapp)}?text=${encodeURIComponent(t("whatsappText"))}`;
   const btn =
-    "inline-flex min-h-[var(--tap-min)] items-center justify-center gap-2 rounded-md px-4 font-semibold no-underline";
+    "inline-flex min-h-[var(--tap-min)] items-center justify-center gap-2 rounded-full px-4 font-semibold no-underline";
 
   return (
     <div className="grid grid-cols-2 gap-3">
@@ -22,7 +22,7 @@ export async function ContactButtons() {
         <span>{t("whatsapp")}</span>
       </a>
       <p className="col-span-2 text-center text-sm text-muted">
-        <span className="font-semibold tabular-nums text-ink" dir="ltr">
+        <span className="font-semibold text-ink" dir="ltr">
           {formatPhoneDisplay(hotline)}
         </span>
       </p>

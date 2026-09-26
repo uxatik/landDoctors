@@ -31,7 +31,7 @@ export default async function CasesPage({
 
   const { data, error } = await query.returns<Row[]>();
   const rows = data ?? [];
-  const sel = "rounded-sm border border-line bg-surface px-2 py-2 text-sm";
+  const sel = "rounded-control border border-line bg-surface px-2 py-2 text-sm";
 
   return (
     <div className="flex flex-col gap-4">
@@ -63,14 +63,14 @@ export default async function CasesPage({
           কেস নম্বর · Case no.
           <input name="q" placeholder="LD-0001" defaultValue={sp.q ?? ""} className={`${sel} w-28`} />
         </label>
-        <button className="rounded-sm bg-accent px-4 py-2 text-sm font-semibold text-on-accent">খুঁজুন · Filter</button>
+        <button className="rounded-full bg-accent px-4 py-2 text-sm font-semibold text-on-accent">খুঁজুন · Filter</button>
         <Link href="/admin/cases" className="px-2 py-2 text-sm underline">মুছুন · Clear</Link>
       </form>
 
       {error && <p role="alert" className="text-danger">লোড করা যায়নি · Could not load cases.</p>}
       <p className="text-sm text-muted">{rows.length} টি কেস · cases</p>
 
-      <div className="overflow-x-auto rounded-md border border-line bg-surface">
+      <div className="overflow-x-auto rounded-card border border-line bg-surface">
         <table className="w-full min-w-[760px] text-left text-sm">
           <thead className="bg-sunken text-xs text-muted">
             <tr>
@@ -95,7 +95,7 @@ export default async function CasesPage({
                 <td className="px-3 py-2">
                   {r.customer_name}
                   <br />
-                  <span className="tabular-nums text-muted">{formatPhoneDisplay(r.customer_phone)}</span>
+                  <span className="text-muted">{formatPhoneDisplay(r.customer_phone)}</span>
                 </td>
                 <td className="px-3 py-2">{r.consultants?.name ?? "—"}</td>
                 <td className="px-3 py-2">
