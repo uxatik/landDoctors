@@ -163,5 +163,17 @@
     "receivedBody": "We've received your details.",
     "cashWarning": "No one from LandDoctor will ever ask you for cash in hand. If anyone does, tell us.",
     "home": "Back to the home page"
+  },
+  "legal": {
+    "draft": "DRAFT – needs lawyer review",
+    "draftNote": "This text has not yet been reviewed by a lawyer."
+  },
+  "footer": {
+    "terms": "Terms",
+    "refund": "Refunds",
+    "privacy": "Privacy",
+    "disclaimer": "Disclaimer",
+    "hotline": "Hotline",
+    "note": "LandDoctor is not a government office."
   }
 }

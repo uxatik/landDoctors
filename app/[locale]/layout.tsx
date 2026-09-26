@@ -4,6 +4,7 @@ import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import { SiteHeader } from "@/components/SiteHeader";
+import { SiteFooter } from "@/components/SiteFooter";
 import "@fontsource/hind-siliguri/400.css";
 import "@fontsource/hind-siliguri/500.css";
 import "@fontsource/hind-siliguri/600.css";
@@ -36,15 +37,16 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale}>
-      <body className="min-h-dvh">
+      <body className="flex min-h-dvh flex-col">
         <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:rounded-sm focus:bg-surface focus:p-2">
           {t("skipToContent")}
         </a>
         <NextIntlClientProvider>
           <SiteHeader />
-          <main id="main" className="mx-auto w-full max-w-[var(--content-max)] px-4 pb-12">
+          <main id="main" className="mx-auto w-full flex-1 max-w-[var(--content-max)] px-4 pb-12">
             {children}
           </main>
+          <SiteFooter />
         </NextIntlClientProvider>
       </body>
     </html>
