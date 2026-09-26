@@ -17,9 +17,10 @@ export async function signIn(_prev: LoginState, formData: FormData): Promise<Log
   redirect("/admin/mfa");
 }
 
-export type MfaState = { error?: string; factorId?: string; qr?: string; secret?: string };
+export type MfaState = { error?: string; detail?: string; factorId?: string; qr?: string; secret?: string };
 
 /** Creates a new TOTP factor (removing any half-finished one) and returns its QR code. */
+/** Form action (works with or without JavaScript). */
 export async function startEnrol(): Promise<MfaState> {
   const supabase = await staffClient();
   const { data: factors } = await supabase.auth.mfa.listFactors();
@@ -27,7 +28,8 @@ export async function startEnrol(): Promise<MfaState> {
     if (f.factor_type === "totp" && f.status !== "verified") await supabase.auth.mfa.unenroll({ factorId: f.id });
   }
   const { data, error } = await supabase.auth.mfa.enroll({ factorType: "totp", friendlyName: `LandDoctor ${Date.now()}` });
-  if (error || !data) return { error: "unknown" };
+  // Staff-only page: showing Supabase's reason helps fix setup problems (e.g. TOTP switched off).
+  if (error || !data) return { error: "unknown", detail: error?.message };
   return { factorId: data.id, qr: data.totp.qr_code, secret: data.totp.secret };
 }
 

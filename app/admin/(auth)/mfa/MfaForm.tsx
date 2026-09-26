@@ -1,28 +1,31 @@
 "use client";
 
-import { useActionState, useState, useTransition } from "react";
+import { useActionState } from "react";
 import { A } from "@/lib/admin/strings";
 import { startEnrol, verifyCode, type MfaState } from "../actions";
 
 export function MfaForm({ verifiedFactorId }: { verifiedFactorId?: string }) {
-  const [enrol, setEnrol] = useState<MfaState>({});
-  const [starting, startTransition] = useTransition();
+  const [enrol, enrolAction, starting] = useActionState<MfaState, FormData>(startEnrol, {});
   const [state, action, pending] = useActionState<MfaState, FormData>(verifyCode, {});
   const factorId = verifiedFactorId ?? enrol.factorId;
 
   if (!factorId) {
     return (
-      <div className="flex flex-col gap-3">
-        {enrol.error && <p role="alert" className="text-danger">{A.mfa.errors.unknown}</p>}
+      <form action={enrolAction} className="flex flex-col gap-3">
+        {enrol.error && (
+          <p role="alert" className="rounded-md border-2 border-danger bg-danger-soft p-3 text-sm">
+            {A.mfa.errors.unknown}
+            {enrol.detail && <span className="block text-muted">Supabase: {enrol.detail}</span>}
+          </p>
+        )}
         <button
-          type="button"
+          type="submit"
           disabled={starting}
-          onClick={() => startTransition(async () => setEnrol(await startEnrol()))}
           className="min-h-[var(--tap-min)] rounded-md bg-accent px-4 font-semibold text-on-accent disabled:opacity-70"
         >
           {A.mfa.setupButton}
         </button>
-      </div>
+      </form>
     );
   }
 
