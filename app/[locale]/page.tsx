@@ -99,7 +99,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             <MouzaSketch className="pointer-events-none absolute -bottom-12 -left-10 hidden w-60 text-white opacity-[0.08] lg:block" />
             <div className="relative">
               <h2 id="services-title" className="mb-6 text-center text-[1.375rem] font-bold tracking-tight min-[400px]:text-2xl sm:text-3xl">{t("services.title")}</h2>
-              <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
+              <ul className="mx-auto grid max-w-4xl grid-cols-2 gap-3 sm:grid-cols-3 lg:gap-4">
                 {CATEGORY_SLUGS.map((slug, i) => (
                   <li key={slug}>
                     <Link
