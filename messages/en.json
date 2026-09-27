@@ -303,13 +303,8 @@
       ]
     },
     "services": {
-      "eyebrow": "Services",
       "title": "What's your land problem?",
-      "intro": "Pick one. We'll call you.",
-      "start": "Start",
-      "note": "Field work in Savar and Gazipur. Phone advice anywhere.",
-      "waitlist": "Other area? Join the waiting list →",
-      "orTalk": "Rather talk? Call or WhatsApp us"
+      "orTalk": "Rather talk?"
     },
     "pricing": {
       "eyebrow": "Pricing",

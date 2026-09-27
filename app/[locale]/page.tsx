@@ -80,13 +80,20 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             </span>
           </h1>
           <p className="max-w-2xl text-lg text-muted">{t("hero.intro")}</p>
+          <ul className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-sm text-muted">
+            {assurance.map((a) => (
+              <li key={a} className="flex items-center gap-1.5">
+                <LineIcon name="check" size={16} className="text-verified" />
+                {a}
+              </li>
+            ))}
+          </ul>
         </Container>
 
         <div id="services" className="scroll-mt-20">
           <Container className="mt-10 flex flex-col gap-6 sm:mt-12">
             <div className="flex flex-col items-center gap-1 text-center">
               <h2 id="services-title" className="text-2xl font-bold tracking-tight text-ink sm:text-3xl">{t("services.title")}</h2>
-              <p className="text-muted">{t("services.intro")}</p>
             </div>
             <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {CATEGORY_SLUGS.map((slug, i) => (
@@ -112,31 +119,16 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                 </li>
               ))}
             </ul>
-            <p className="flex flex-col items-center gap-1 text-center text-sm text-muted sm:flex-row sm:justify-center sm:gap-2">
-              <span className="inline-flex items-center gap-1.5"><LineIcon name="mapPin" size={16} className="hidden shrink-0 text-accent sm:block" /> {t("services.note")}</span>
-              <Link href="/help" className="font-semibold text-accent no-underline hover:underline">{t("services.waitlist")}</Link>
+            <p className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-center text-muted">
+              <span>{t("services.orTalk")}</span>
+              <a href={`tel:${hotline}`} className="inline-flex items-center gap-1.5 font-semibold text-accent no-underline hover:underline">
+                <LineIcon name="phone" size={16} /> {tContact("call")} <span dir="ltr">{formatPhoneDisplay(hotline)}</span>
+              </a>
+              <span aria-hidden="true" className="hidden text-line sm:inline">·</span>
+              <a href={waHref} target="_blank" rel="noopener noreferrer" className="font-semibold text-accent no-underline hover:underline">
+                {tContact("whatsapp")}
+              </a>
             </p>
-
-            <div className="mx-auto flex w-full max-w-3xl flex-col items-center gap-4 rounded-panel border border-line bg-surface p-5 sm:flex-row sm:justify-between sm:p-6">
-              <p className="text-center font-semibold text-ink sm:text-left">{t("services.orTalk")}</p>
-              <div className="grid w-full grid-cols-2 gap-3 sm:flex sm:w-auto">
-                <a href={`tel:${hotline}`} className={`${BTN_PRIMARY} px-4`}>
-                  <LineIcon name="phone" size={18} /> {tContact("call")}
-                </a>
-                <a href={waHref} target="_blank" rel="noopener noreferrer" className={`${BTN_SECONDARY} px-4`}>
-                  {tContact("whatsapp")}
-                </a>
-              </div>
-            </div>
-            <p dir="ltr" className="-mt-2 text-center text-sm font-semibold text-ink">{formatPhoneDisplay(hotline)}</p>
-            <ul className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-sm text-muted">
-              {assurance.map((a) => (
-                <li key={a} className="flex items-center gap-1.5">
-                  <LineIcon name="check" size={16} className="text-verified" />
-                  {a}
-                </li>
-              ))}
-            </ul>
           </Container>
         </div>
       </section>

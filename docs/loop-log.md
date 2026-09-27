@@ -93,3 +93,6 @@ Moved the six problem cards into the hero (D14); on a 390×844 phone the headlin
 
 ## Iteration — Shorter copy (27 Sep 2026)
 Rewrote every landing section in Bangla and English: one short line per idea, same facts (price, free 10 minutes, no cash, pilot areas, verified experts, fees separate, refunds). Page height down about 11% (desktop 7,234 → 6,440px; phone 11,370 → 10,176px). Category hints shortened (they appear only on the home page).
+
+## Iteration — Quieter hero (27 Sep 2026)
+Founder asked to remove the clutter under the problem cards. Removed the "pick one" line and the area/waiting-list line (area is in the badge and on the price cards; other areas are handled in the form). The contact box became one line (call with number · WhatsApp). The three promises moved up under the headline.
