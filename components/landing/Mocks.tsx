@@ -1,11 +1,8 @@
 // Small product visuals drawn in HTML (step cards, expert card): a few KB instead of images.
 // All are marked as samples and hidden from screen readers; each has a visible caption.
 import { getTranslations } from "next-intl/server";
-import { formatTaka } from "@/lib/money";
 import { LineIcon } from "./LineIcon";
 
-const SERVICE = 8000;
-const GOVT = 450;
 
 async function mockT() {
   return getTranslations("landing.mock");
@@ -48,10 +45,13 @@ export async function StepVisual({ step }: { step: number }) {
     );
   if (step === 2)
     return (
-      <div aria-hidden="true" className={`${frame} text-xs`}>
-        <div className="flex justify-between"><span className="text-muted">{t("service")}</span><span className="font-medium text-ink">{formatTaka(SERVICE)}</span></div>
-        <div className="flex justify-between"><span className="text-muted">{t("govt")}</span><span className="font-medium text-ink">{formatTaka(GOVT)}</span></div>
-        <div className="flex justify-between border-t border-line pt-2 text-sm font-bold text-ink"><span>{t("total")}</span><span>{formatTaka(SERVICE + GOVT)}</span></div>
+      <div aria-hidden="true" className={frame}>
+        {(t.raw("proposalItems") as string[]).map((item) => (
+          <div key={item} className="flex items-center gap-2 text-sm text-ink">
+            <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-verified-soft text-verified"><LineIcon name="check" size={12} /></span>
+            {item}
+          </div>
+        ))}
       </div>
     );
   return (

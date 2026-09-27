@@ -1,7 +1,7 @@
 {
   "site": {
     "name": "LandDoctor",
-    "tagline": "Verified land experts at fixed prices",
+    "tagline": "Verified land experts in Bangladesh",
     "switchLanguage": "বাংলা",
     "switchLanguageLabel": "বাংলায় দেখুন",
     "skipToContent": "Skip to main content"
@@ -12,27 +12,27 @@
   "categories": {
     "pre_purchase_check": {
       "name": "Check before buying land",
-      "hint": "Check deed, khatian and land tax"
+      "hint": "Deed, khatian and tax verification"
     },
     "mutation": {
       "name": "Mutation (namjari)",
-      "hint": "From application to DCR"
+      "hint": "Support from application to DCR"
     },
     "survey": {
       "name": "Land survey",
-      "hint": "Measure land, mark boundaries"
+      "hint": "Measurement and boundary marking"
     },
     "inheritance": {
       "name": "Inheritance and division",
-      "hint": "Split by faraiz rules"
+      "hint": "Shares under faraiz rules"
     },
     "record_correction": {
       "name": "Correct a record error",
-      "hint": "Wrong name, plot or area"
+      "hint": "Correcting name, plot or area"
     },
     "dispute": {
       "name": "Possession and disputes",
-      "hint": "What to do, where to go"
+      "hint": "Guidance on the right next steps"
     }
   },
   "contact": {
@@ -42,7 +42,7 @@
   },
   "help": {
     "title": "Tell us your problem",
-    "intro": "Send the form and we'll call you. The first 10-minute call is free, you pay nothing.",
+    "intro": "Submit the form and we'll contact you. Your first 10-minute consultation is free.",
     "categoryLegend": "Type of problem",
     "whereLegend": "Where is the land?",
     "areas": {
@@ -64,8 +64,8 @@
       "tax_receipt": "Land tax receipt",
       "mouza_map": "Mouza map"
     },
-    "description": "Briefly, what happened?",
-    "descriptionHint": "Optional. We'll understand on the call.",
+    "description": "Briefly describe the problem",
+    "descriptionHint": "Optional. We'll take the details by phone.",
     "aboutLegend": "About you",
     "name": "Your name",
     "phone": "Mobile number",
@@ -133,15 +133,15 @@
     "refHint": "Keep this number. Mention it on a call or WhatsApp and we'll find your case quickly.",
     "nextTitle": "What happens next",
     "next": [
-      "We'll call you soon",
-      "On a free 10-minute call we'll understand the problem",
-      "If needed, we'll send a fixed-price offer; you pay only if you agree"
+      "Our team will call you shortly",
+      "A free 10-minute consultation to understand your case",
+      "If needed, a written proposal; you pay only once you approve it"
     ],
     "waitlistTitle": "You're on the waiting list",
     "waitlistBody": "Field work hasn't started in your area yet. We'll call you when it does. Meanwhile, call us if you'd like advice by phone.",
     "receivedTitle": "Thank you",
     "receivedBody": "We've received your details.",
-    "cashWarning": "No one from LandDoctor will ever ask you for cash in hand. If anyone does, tell us.",
+    "cashWarning": "No one from LandDoctor will ever ask you for cash. If anyone does, please let us know.",
     "home": "Back to the home page"
   },
   "legal": {
@@ -166,7 +166,7 @@
     "deliveryDays": "Within {days} days",
     "deliveryNow": "During the call",
     "servicePrice": "Service price",
-    "govtFees": "Government fees (charged at actual cost)",
+    "govtFees": "Government fees (as per receipt)",
     "total": "Total",
     "expert": "Your expert",
     "verified": "Verified",
@@ -178,8 +178,8 @@
       "deed_writer": "Deed writer"
     },
     "pay": "Pay {amount} →",
-    "payNote": "By bKash, Nagad, Rocket or card. LandDoctor holds the money; the expert is paid after delivery.",
-    "cash": "Never pay an expert in cash. If anyone asks, tell us.",
+    "payNote": "By bKash, Nagad, Rocket or card. LandDoctor holds the payment; the expert is paid once the work is delivered.",
+    "cash": "Never pay an expert in cash. If anyone asks, please let us know.",
     "refundLink": "Refund policy",
     "expires": "Offer valid until {date}",
     "manualTitle": "How to pay",
@@ -198,7 +198,7 @@
     },
     "fail": {
       "title": "Payment didn't go through",
-      "body": "No money was taken. Try again from your offer link, or call us."
+      "body": "No payment was taken. Try again from your offer link, or call us."
     },
     "cancel": {
       "title": "You cancelled the payment",
@@ -206,7 +206,7 @@
     },
     "review": {
       "title": "We're checking your payment",
-      "body": "If money was taken, don't worry: we're verifying it and will call you."
+      "body": "We're verifying your payment. If an amount was deducted, don't worry; we'll contact you."
     },
     "error": {
       "title": "Couldn't start the payment",
@@ -224,55 +224,39 @@
   },
   "landing": {
     "hero": {
-      "intro": "Verified surveyors check your papers and show you the right way. Price known upfront.",
+      "intro": "Professional guidance from experienced surveyors on deeds, mutation and land surveys.",
       "primary": "Tell us your problem →",
       "assurance": [
-        "First 10 minutes free",
-        "No cash in hand",
-        "bKash, Nagad, Rocket, card"
+        "First 10-minute consultation free",
+        "Verified local experts",
+        "Transparent, written process"
       ],
-      "titleLead": "Verified land experts.",
-      "titleAccent": "Not middlemen."
+      "titleLead": "Verified land experts",
+      "titleAccent": "for every land matter"
     },
     "mock": {
-      "label": "Sample offer",
       "sample": "Sample",
-      "case": "Case",
-      "offerTitle": "Your offer",
-      "package": "Land health report",
-      "scope": "Checks of the deed chain, khatian, mutation and land tax",
-      "delivery": "Written report in Bangla in 7 days",
-      "service": "Service price",
-      "govt": "Government fees (with receipt)",
-      "total": "Total",
-      "pay": "Pay now →",
-      "expertLabel": "Your expert",
       "expertRole": "Surveyor · Savar",
       "verified": "Verified",
-      "statusTitle": "Case status",
       "statuses": [
-        "Problem received",
-        "Free call done",
-        "Offer sent",
+        "Request received",
+        "Consultation done",
+        "Proposal sent",
         "Work in progress"
       ],
-      "now": "Now",
-      "callTitle": "Free call",
-      "callBody": "10 minutes · today 4 pm",
+      "callTitle": "Initial consultation",
+      "callBody": "10 minutes · free",
       "formName": "Name",
       "formPhone": "Mobile",
       "formProblem": "Problem",
-      "payTitle": "Secure payment",
-      "payMethods": [
-        "bKash",
-        "Nagad",
-        "Rocket",
-        "Card"
-      ],
-      "payNote": "A receipt for every payment"
+      "proposalItems": [
+        "Scope of work",
+        "Timeline",
+        "Assigned expert"
+      ]
     },
     "docs": {
-      "title": "Papers we handle",
+      "title": "Documents we work with",
       "items": [
         "Deed (dolil)",
         "Khatian (CS, SA, RS, BS)",
@@ -283,34 +267,34 @@
       ]
     },
     "services": {
-      "title": "What's your land problem?",
-      "orTalk": "Rather talk?"
+      "title": "Which service do you need?",
+      "orTalk": "Prefer to talk?"
     },
     "pricing": {
       "eyebrow": "Pricing",
-      "title": "Price first. No surprises.",
-      "intro": "Pay only if you agree.",
+      "title": "Services and pricing",
+      "intro": "You pay only after approving the proposal.",
       "from": "from",
       "popular": "Before you buy",
       "packages": [
         {
-          "name": "30-minute session",
+          "name": "30-minute consultation",
           "price": 1000,
           "from": false,
-          "desc": "Expert advice by phone or WhatsApp.",
+          "desc": "Direct advice from an expert by phone or WhatsApp.",
           "points": [
-            "Written next steps"
+            "Written summary of next steps"
           ],
-          "where": "Anywhere, even abroad"
+          "where": "From anywhere, including abroad"
         },
         {
-          "name": "Field survey",
+          "name": "Land survey",
           "price": 6000,
           "from": true,
-          "desc": "A surveyor measures the land and marks the boundaries.",
+          "desc": "An amin measures the land on site and marks the boundaries.",
           "points": [
-            "Written result with sketch",
-            "In 5 days"
+            "Written report with sketch",
+            "Within 5 working days"
           ],
           "where": "Savar and Gazipur"
         },
@@ -318,47 +302,47 @@
           "name": "Land health report",
           "price": 8000,
           "from": true,
-          "desc": "Before you buy: deed, khatian, mutation, tax and disputes checked.",
+          "desc": "Before purchase: deed, khatian, mutation, tax and litigation checks.",
           "points": [
             "Written report in Bangla",
-            "In 5–7 days"
+            "Within 5–7 working days"
           ],
           "where": "Savar and Gazipur"
         }
       ],
       "choose": "Start →",
-      "note": "Final price is in your offer. It may rise with land size. Government fees extra."
+      "note": "The final price is stated in your written proposal and may vary with land size. Government fees are separate."
     },
     "how": {
-      "eyebrow": "How it works",
-      "title": "Four steps to a clear answer",
+      "eyebrow": "Process",
+      "title": "How it works",
       "steps": [
         {
-          "title": "Tell us",
-          "body": "By form or phone, in two minutes."
+          "title": "Tell us your need",
+          "body": "By online form or phone."
         },
         {
-          "title": "Free call",
-          "body": "We understand the problem in 10 minutes."
+          "title": "Initial consultation",
+          "body": "A free 10-minute call to understand your case."
         },
         {
-          "title": "Fixed-price offer",
-          "body": "Price and government fees listed separately."
+          "title": "Written proposal",
+          "body": "Scope and timeline, in writing."
         },
         {
           "title": "Work begins",
-          "body": "A verified expert starts after payment."
+          "body": "A verified expert takes on your case."
         }
       ]
     },
     "experts": {
       "eyebrow": "Experts",
-      "title": "Who does the work",
-      "intro": "Local surveyors in Savar and Gazipur, members of the Land Surveyor Association.",
+      "title": "Our experts",
+      "intro": "Experienced local surveyors in Savar and Gazipur, members of the Bangladesh Land Surveyor Association.",
       "points": [
-        "We check identity and membership",
-        "No one can sign themselves up",
-        "No one gets cases from a former office"
+        "Identity, membership and experience verified",
+        "Joined by invitation only",
+        "No cases from former workplaces, to avoid conflicts of interest"
       ],
       "rolesTitle": "Types of expert",
       "roles": [
@@ -372,91 +356,91 @@
       "cardSkills": "Skills",
       "cardSkillsValue": "Surveys, boundaries, khatian",
       "cardChecks": [
-        "Identity checked",
+        "Identity verified",
         "Association member",
-        "Experience checked"
+        "Experience verified"
       ]
     },
     "safety": {
       "eyebrow": "Safety",
-      "title": "Your money and data, protected",
+      "title": "Safety and transparency",
       "items": [
         {
-          "title": "No cash in hand",
-          "body": "Every payment goes through LandDoctor."
+          "title": "Secure payments",
+          "body": "All payments go through LandDoctor; no cash."
         },
         {
           "title": "Government fees separate",
-          "body": "With receipts, never mixed into our price."
+          "body": "Listed separately, with receipts."
         },
         {
-          "title": "No bribes",
-          "body": "We never promise faster government work."
+          "title": "Ethical practice",
+          "body": "We never promise to speed up government processes."
         },
         {
-          "title": "We don't keep papers",
-          "body": "Photos are only viewed on WhatsApp."
+          "title": "Data privacy",
+          "body": "Your documents are not stored on our servers."
         },
         {
-          "title": "Refunds",
-          "body": "Full refund if you cancel before work starts."
+          "title": "Refund policy",
+          "body": "Full refund if cancelled before work begins."
         },
         {
-          "title": "Complaints",
-          "body": "Call the hotline. Every complaint is logged."
+          "title": "Complaint handling",
+          "body": "Every complaint is logged and resolved against your case number."
         }
       ],
-      "refundLink": "Refund policy →"
+      "refundLink": "Read the refund policy →"
     },
     "nrb": {
-      "title": "Living abroad?",
-      "body": "Talk on WhatsApp, pay online. Our expert visits your land.",
-      "cta": "Message on WhatsApp →"
+      "title": "For Bangladeshis abroad",
+      "body": "Consult on WhatsApp and pay online; our local expert handles the site work.",
+      "cta": "Contact on WhatsApp →"
     },
     "faq": {
       "eyebrow": "FAQ",
-      "title": "Questions",
+      "title": "Frequently asked questions",
       "items": [
         {
           "q": "Is LandDoctor a government office?",
-          "a": "No, it's a private service. Government applications follow government rules."
+          "a": "No. LandDoctor is a private advisory service. Government applications follow government procedures."
         },
         {
-          "q": "Can you speed up government work?",
-          "a": "No. We show you the right papers and steps, so you don't keep going back."
+          "q": "Do you speed up government work?",
+          "a": "No. We advise on the right documents and procedures, so you avoid unnecessary delays."
         },
         {
-          "q": "Which areas do you cover?",
-          "a": "Field work in Savar and Gazipur. Phone advice from anywhere, even abroad."
+          "q": "Which areas do you serve?",
+          "a": "Site work is currently available in Savar and Gazipur. Phone consultations are available from anywhere, including abroad."
         },
         {
-          "q": "Is the call really free?",
-          "a": "Yes, the first 10 minutes. You pay only if you want the work done."
+          "q": "Is the initial consultation free?",
+          "a": "Yes, the first 10 minutes are free. If you wish to proceed, we send a written proposal."
         },
         {
           "q": "How do I pay?",
-          "a": "Through your offer link: bKash, Nagad, Rocket or card."
+          "a": "Through the link in your proposal, by bKash, Nagad, Rocket or card."
         },
         {
-          "q": "How do I send papers?",
-          "a": "Photos on WhatsApp. We'll tell you which ones on the call."
+          "q": "How do I send my documents?",
+          "a": "Send photos of the relevant documents on WhatsApp. We'll tell you which ones during the consultation."
         },
         {
-          "q": "Not happy with the work?",
-          "a": "Tell us within 7 days. We fix it or refund you."
+          "q": "What if I'm not satisfied?",
+          "a": "Let us know within 7 days of delivery. We'll review it and correct the work, or refund under our refund policy."
         }
       ]
     },
     "cta": {
-      "title": "Don't let land problems wait",
-      "body": "Tell us today. First 10 minutes free."
+      "title": "Get expert advice today",
+      "body": "Your first 10-minute consultation is free."
     },
     "bar": {
       "label": "Quick contact"
     }
   },
   "footerExtra": {
-    "tagline": "Verified land experts, fixed prices.",
+    "tagline": "Verified land experts. Transparent process.",
     "services": "Services",
     "company": "LandDoctor",
     "policies": "Policies",

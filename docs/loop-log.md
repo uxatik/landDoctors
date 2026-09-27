@@ -108,3 +108,6 @@ Founder correction: the teal background was meant only for "কোন কাজ�
 
 ## Iteration — Offer sample removed (27 Sep 2026)
 Founder asked to drop the "প্রস্তাবে যা যা থাকে" block and its browser-frame sample from the pricing section; unused sample components and strings deleted.
+
+## Iteration — Professional tone in both languages (27 Sep 2026)
+Founder: remove slang ("দালাল"), money talk outside pricing, and casual phrasing. Rewrote headline ("জমির সমস্যায় যাচাইকৃত ভূমি বিশেষজ্ঞ" / "Verified land experts for every land matter"), services, steps (step 3 is now "লিখিত প্রস্তাব" with a scope/timeline/expert checklist instead of prices), pricing, experts, safety ("নিরাপত্তা ও স্বচ্ছতা"), FAQ, form, thank-you and payment messages. Money is mentioned only in the pricing section, the offer and payment pages. "জমি মাপজোখ" → "জমি পরিমাপ" everywhere.

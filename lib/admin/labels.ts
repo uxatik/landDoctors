@@ -27,7 +27,7 @@ export const STATUS_TONE: Record<CaseStatus, string> = {
 export const CATEGORY_LABEL: Record<string, string> = {
   pre_purchase_check: "কেনার আগে যাচাই · Pre-purchase check",
   mutation: "নামজারি · Mutation",
-  survey: "মাপজোখ · Survey",
+  survey: "পরিমাপ · Survey",
   inheritance: "ওয়ারিশ · Inheritance",
   record_correction: "রেকর্ড সংশোধন · Record correction",
   dispute: "বিরোধ · Dispute",
