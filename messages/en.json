@@ -308,7 +308,8 @@
       "intro": "Pick your problem. The form takes two minutes, then we call you.",
       "start": "Start",
       "note": "Phone advice is available from anywhere in Bangladesh. Need field work in another district? Join the waiting list.",
-      "waitlist": "Join the waiting list →"
+      "waitlist": "Join the waiting list →",
+      "orTalk": "Prefer not to fill a form? Talk to us directly"
     },
     "pricing": {
       "eyebrow": "Pricing",
@@ -352,7 +353,14 @@
         }
       ],
       "choose": "Start →",
-      "note": "The final price is written in your offer after the free call. Survey and report prices can rise with the size of the land or the work. Government fees are extra."
+      "note": "The final price is written in your offer after the free call. Survey and report prices can rise with the size of the land or the work. Government fees are extra.",
+      "offerTitle": "The offer you get after the free call",
+      "offerPoints": [
+        "The scope of work and how many days it takes",
+        "Service price and government fees on separate lines",
+        "Which verified expert will do the work",
+        "A payment link, only if you agree"
+      ]
     },
     "how": {
       "eyebrow": "How it works",

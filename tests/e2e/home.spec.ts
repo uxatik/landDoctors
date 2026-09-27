@@ -17,10 +17,10 @@ test.describe("Home (Bangla)", () => {
 
   test("shows call and WhatsApp with the number as text", async ({ page }) => {
     await page.goto("/");
-    const call = page.getByRole("link", { name: /কল করুন/ }).first();
+    const call = page.locator("#services").getByRole("link", { name: /কল করুন/ });
     await expect(call).toHaveAttribute("href", "tel:+8801711000001");
     await expect(page.getByText("01711-000001").first()).toBeVisible();
-    const wa = page.getByRole("link", { name: "WhatsApp", exact: true });
+    const wa = page.locator("#services").getByRole("link", { name: "WhatsApp", exact: true });
     await expect(wa).toHaveAttribute("href", /^https:\/\/wa\.me\/8801711000002\?text=/);
   });
 
@@ -34,9 +34,9 @@ test.describe("Home (Bangla)", () => {
   test("shows prices up front with government fees separate", async ({ page }) => {
     await page.goto("/");
     const pricing = page.locator("#pricing");
-    await expect(pricing.getByText("৳1,000")).toBeVisible();
-    await expect(pricing.getByText("৳6,000")).toBeVisible();
-    await expect(pricing.getByText("৳8,000")).toBeVisible();
+    await expect(pricing.getByText("৳1,000").first()).toBeVisible();
+    await expect(pricing.getByText("৳6,000").first()).toBeVisible();
+    await expect(pricing.getByText("৳8,000").first()).toBeVisible();
     await expect(pricing.getByText(/সরকারি ফি আলাদা/).first()).toBeVisible();
   });
 

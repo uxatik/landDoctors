@@ -49,3 +49,6 @@ The founder picked Attio's page as the style reference. Structure borrowed: cent
 ## D13 — Brand colour: deep teal instead of Designfoli violet (27 Sep 2026)
 The founder compared violet, deep teal and trust blue on the real page and chose teal: it reads as land and trust, not "tech app", and stays apart from government green, bKash pink and Nagad orange.
 Only the hue changed: the Designfoli primary scale, gradient partner, glow and shadow tints are overridden in the first block of `design/tokens.css` (the only place brand hex values live). Contrast: white on primary-600 5.6:1, primary-600 on white 5.6:1, on the soft tint 5.0:1, primary-300 on the dark section 10.6:1 — all AA. `CLAUDE.md` records the override so future UI work uses teal.
+
+## D14 — "What is your land problem?" moves into the hero (27 Sep 2026)
+Founder feedback: the first build was more actionable because the problem list came first. The six problem cards now sit directly under the headline, with call/WhatsApp and the three promises right after, so a visitor can act on the first screen. The offer sample moved down into the pricing section ("The offer you get after the free call"), and "How it works" now comes before pricing.

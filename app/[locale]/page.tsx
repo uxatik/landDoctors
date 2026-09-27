@@ -46,11 +46,11 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   const packages = t.raw("pricing.packages") as Pkg[];
   const steps = t.raw("how.steps") as Step[];
   const expertPoints = t.raw("experts.points") as string[];
+  const offerPoints = t.raw("pricing.offerPoints") as string[];
   const roles = t.raw("experts.roles") as string[];
   const safety = t.raw("safety.items") as Step[];
   const faqs = t.raw("faq.items") as Faq[];
   const num = (n: number) => new Intl.NumberFormat(bn ? "bn-BD" : "en").format(n);
-  const [wide, ...rest] = CATEGORY_SLUGS;
 
   const faqJsonLd = {
     "@context": "https://schema.org",
@@ -60,12 +60,12 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
   return (
     <div className="relative overflow-x-clip">
-      {/* ───────────── Hero ───────────── */}
-      <section aria-labelledby="home-title" className="relative overflow-hidden pb-16 pt-10 sm:pt-16">
+      {/* ───────────── Hero: promise, then straight to "what is your problem?" ───────────── */}
+      <section aria-labelledby="home-title" className="relative overflow-hidden pb-14 pt-8 sm:pb-20 sm:pt-14">
         <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[520px]" style={{ background: "var(--gradient-glow)" }} />
         <MouzaSketch className="pointer-events-none absolute -right-10 top-6 -z-10 hidden w-72 text-accent opacity-[0.08] lg:block" />
         <MouzaSketch className="pointer-events-none absolute -left-16 top-40 -z-10 hidden w-60 -scale-x-100 text-accent opacity-[0.06] lg:block" />
-        <Container className="flex flex-col items-center gap-6 text-center">
+        <Container className="flex flex-col items-center gap-5 text-center">
           <p className="inline-flex items-center gap-2 rounded-full border border-line bg-surface px-3 py-1 text-sm font-semibold text-ink shadow-[var(--shadow-sm-light)]">
             <span className="relative flex size-2">
               <span className="absolute inline-flex size-full animate-ping rounded-full bg-[var(--color-success)] opacity-60 motion-reduce:hidden" />
@@ -73,32 +73,72 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             </span>
             {th("serving")}
           </p>
-          <h1 id="home-title" className="max-w-4xl text-[2rem] font-bold min-[400px]:text-[2.25rem] leading-[1.15] tracking-tight text-ink sm:text-5xl lg:text-[4rem] lg:leading-[1.1]">
+          <h1 id="home-title" className="max-w-4xl text-[2rem] font-bold leading-[1.15] tracking-tight text-ink min-[400px]:text-[2.25rem] sm:text-5xl lg:text-[3.5rem] lg:leading-[1.1]">
             <span className="block">{t("hero.titleLead")}</span>{" "}
             <span className="block bg-clip-text text-transparent [-webkit-box-decoration-break:clone] [box-decoration-break:clone]" style={{ backgroundImage: "var(--gradient-brand-text)" }}>
               {t("hero.titleAccent")}
             </span>
           </h1>
-          <p className="max-w-2xl text-lg text-muted sm:text-xl">{t("hero.intro")}</p>
-          <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
-            <Link href="/help" className={BTN_PRIMARY}>{t("hero.primary")}</Link>
-            <a href={`tel:${hotline}`} className={BTN_SECONDARY}>
-              <LineIcon name="phone" size={18} />
-              {tContact("call")} <span dir="ltr" className="font-medium text-muted">{formatPhoneDisplay(hotline)}</span>
-            </a>
-          </div>
-          <ul className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-sm text-muted">
-            {assurance.map((a) => (
-              <li key={a} className="flex items-center gap-1.5">
-                <LineIcon name="check" size={16} className="text-verified" />
-                {a}
-              </li>
-            ))}
-          </ul>
+          <p className="max-w-2xl text-lg text-muted">{t("hero.intro")}</p>
         </Container>
-        <Container className="mt-12 sm:mt-16">
-          <HeroMock />
-        </Container>
+
+        <div id="services" className="scroll-mt-20">
+          <Container className="mt-10 flex flex-col gap-6 sm:mt-12">
+            <div className="flex flex-col items-center gap-1 text-center">
+              <h2 id="services-title" className="text-2xl font-bold tracking-tight text-ink sm:text-3xl">{t("services.title")}</h2>
+              <p className="text-muted">{t("services.intro")}</p>
+            </div>
+            <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {CATEGORY_SLUGS.map((slug, i) => (
+                <li key={slug}>
+                  <Link
+                    href={{ pathname: "/help", query: { category: slug } }}
+                    className="group flex h-full items-center gap-4 rounded-card border border-line bg-surface p-4 text-left no-underline shadow-[var(--shadow-sm-light)] transition hover:border-accent hover:shadow-[var(--shadow-md-light)] sm:p-5"
+                  >
+                    <span
+                      className={`flex size-12 shrink-0 items-center justify-center rounded-control transition-colors ${
+                        i === 0 ? "text-white" : "bg-accent-soft text-accent group-hover:bg-accent group-hover:text-on-accent"
+                      }`}
+                      style={i === 0 ? { background: "var(--gradient-brand-deep)" } : undefined}
+                    >
+                      <LineIcon name={CATEGORY_ICON[slug]} size={24} />
+                    </span>
+                    <span className="flex min-w-0 flex-1 flex-col gap-0.5">
+                      <span className="text-lg font-semibold text-ink">{tc(`${slug}.name`)}</span>
+                      <span className="text-sm text-muted">{tc(`${slug}.hint`)}</span>
+                    </span>
+                    <LineIcon name="arrowRight" size={20} className="shrink-0 text-accent transition-transform group-hover:translate-x-0.5" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <p className="flex flex-col items-center gap-1 text-center text-sm text-muted sm:flex-row sm:justify-center sm:gap-2">
+              <span className="inline-flex items-center gap-1.5"><LineIcon name="mapPin" size={16} className="hidden shrink-0 text-accent sm:block" /> {t("services.note")}</span>
+              <Link href="/help" className="font-semibold text-accent no-underline hover:underline">{t("services.waitlist")}</Link>
+            </p>
+
+            <div className="mx-auto flex w-full max-w-3xl flex-col items-center gap-4 rounded-panel border border-line bg-surface p-5 sm:flex-row sm:justify-between sm:p-6">
+              <p className="text-center font-semibold text-ink sm:text-left">{t("services.orTalk")}</p>
+              <div className="grid w-full grid-cols-2 gap-3 sm:flex sm:w-auto">
+                <a href={`tel:${hotline}`} className={`${BTN_PRIMARY} px-4`}>
+                  <LineIcon name="phone" size={18} /> {tContact("call")}
+                </a>
+                <a href={waHref} target="_blank" rel="noopener noreferrer" className={`${BTN_SECONDARY} px-4`}>
+                  {tContact("whatsapp")}
+                </a>
+              </div>
+            </div>
+            <p dir="ltr" className="-mt-2 text-center text-sm font-semibold text-ink">{formatPhoneDisplay(hotline)}</p>
+            <ul className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-sm text-muted">
+              {assurance.map((a) => (
+                <li key={a} className="flex items-center gap-1.5">
+                  <LineIcon name="check" size={16} className="text-verified" />
+                  {a}
+                </li>
+              ))}
+            </ul>
+          </Container>
+        </div>
       </section>
 
       {/* ───────────── Papers strip ───────────── */}
@@ -116,62 +156,24 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         </Container>
       </section>
 
-      {/* ───────────── Services ───────────── */}
-      <section id="services" aria-labelledby="services-title" className="scroll-mt-20 py-16 sm:py-24">
+      {/* ───────────── How it works ───────────── */}
+      <section id="how" aria-labelledby="how-title" className="scroll-mt-20 py-16 sm:py-24">
         <Container className="flex flex-col gap-10">
-          <SectionHeading id="services-title" eyebrow={t("services.eyebrow")} title={t("services.title")} intro={t("services.intro")} />
-          <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            <li className="sm:col-span-2">
-              <Link
-                href={{ pathname: "/help", query: { category: wide } }}
-                className="group relative flex h-full flex-col gap-5 overflow-hidden rounded-card border border-line bg-surface p-4 no-underline sm:p-6 transition hover:border-accent hover:shadow-[var(--shadow-md-light)] sm:flex-row sm:items-center"
-              >
-                <div className="flex flex-1 flex-col gap-3">
-                  <span className="flex size-11 items-center justify-center rounded-control text-white" style={{ background: "var(--gradient-brand-deep)" }}>
-                    <LineIcon name={CATEGORY_ICON[wide]} size={22} />
+          <SectionHeading id="how-title" eyebrow={t("how.eyebrow")} title={t("how.title")} />
+          <ol className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {steps.map((s, i) => (
+              <li key={s.title} className="flex flex-col gap-4 rounded-card border border-line bg-surface p-4">
+                <StepVisual step={i} />
+                <div className="flex flex-col gap-1.5 px-1 pb-1">
+                  <span className="text-sm font-semibold text-accent">
+                    {bn ? "ধাপ" : "Step"} {num(i + 1)}
                   </span>
-                  <h3 className="text-xl font-semibold text-ink">{tc(`${wide}.name`)}</h3>
-                  <p className="text-muted">{tc(`${wide}.hint`)}</p>
-                  <span className="mt-auto font-semibold text-accent">{t("services.start")} →</span>
+                  <h3 className="text-lg font-semibold text-ink">{s.title}</h3>
+                  <p className="text-sm text-muted">{s.body}</p>
                 </div>
-                <div aria-hidden="true" className="hidden flex-col gap-2 rounded-control border border-line bg-sunken p-4 sm:flex sm:w-60">
-                  {docs.slice(0, 5).map((d) => (
-                    <span key={d} className="flex items-center gap-2 text-sm text-ink">
-                      <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-verified-soft text-verified"><LineIcon name="check" size={12} /></span>
-                      {d}
-                    </span>
-                  ))}
-                </div>
-              </Link>
-            </li>
-            {rest.map((slug) => (
-              <li key={slug}>
-                <Link
-                  href={{ pathname: "/help", query: { category: slug } }}
-                  className="group grid h-full grid-cols-[auto_1fr_auto] items-start gap-x-4 gap-y-1 rounded-card border border-line bg-surface p-4 no-underline transition hover:border-accent hover:shadow-[var(--shadow-md-light)] sm:flex sm:flex-col sm:gap-3 sm:p-6"
-                >
-                  <span className="row-span-2 flex size-11 items-center justify-center rounded-control bg-accent-soft text-accent transition-colors group-hover:bg-accent group-hover:text-on-accent">
-                    <LineIcon name={CATEGORY_ICON[slug]} size={22} />
-                  </span>
-                  <h3 className="text-lg font-semibold text-ink">{tc(`${slug}.name`)}</h3>
-                  <span aria-hidden="true" className="row-span-2 self-center text-accent sm:hidden">→</span>
-                  <p className="text-sm text-muted sm:text-base">{tc(`${slug}.hint`)}</p>
-                  <span className="mt-auto hidden pt-1 font-semibold text-accent sm:block">{t("services.start")} →</span>
-                </Link>
               </li>
             ))}
-            <li className="sm:col-span-2">
-              <div className="flex h-full flex-col justify-center gap-3 rounded-card border border-dashed border-line bg-sunken p-6 sm:flex-row sm:items-center sm:gap-6">
-                <span className="flex size-11 shrink-0 items-center justify-center rounded-control bg-surface text-accent">
-                  <LineIcon name="mapPin" size={22} />
-                </span>
-                <p className="flex-1 text-muted">{t("services.note")}</p>
-                <Link href={{ pathname: "/help" }} className="shrink-0 font-semibold text-accent no-underline hover:underline">
-                  {t("services.waitlist")}
-                </Link>
-              </div>
-            </li>
-          </ul>
+          </ol>
         </Container>
       </section>
 
@@ -230,27 +232,20 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             <LineIcon name="receipt" size={18} className="mt-0.5 shrink-0" />
             {t("pricing.note")}
           </p>
-        </Container>
-      </section>
-
-      {/* ───────────── How it works ───────────── */}
-      <section id="how" aria-labelledby="how-title" className="scroll-mt-20 py-16 sm:py-24">
-        <Container className="flex flex-col gap-10">
-          <SectionHeading id="how-title" eyebrow={t("how.eyebrow")} title={t("how.title")} />
-          <ol className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {steps.map((s, i) => (
-              <li key={s.title} className="flex flex-col gap-4 rounded-card border border-line bg-surface p-4">
-                <StepVisual step={i} />
-                <div className="flex flex-col gap-1.5 px-1 pb-1">
-                  <span className="text-sm font-semibold text-accent">
-                    {bn ? "ধাপ" : "Step"} {num(i + 1)}
-                  </span>
-                  <h3 className="text-lg font-semibold text-ink">{s.title}</h3>
-                  <p className="text-sm text-muted">{s.body}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
+          <div className="mt-6 grid items-center gap-10 lg:grid-cols-[1fr_1.4fr] lg:gap-14">
+            <div className="flex flex-col gap-4">
+              <h3 className="text-2xl font-bold tracking-tight text-ink sm:text-3xl">{t("pricing.offerTitle")}</h3>
+              <ul className="flex flex-col gap-3">
+                {offerPoints.map((pt) => (
+                  <li key={pt} className="flex gap-3 text-ink">
+                    <span className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-accent-soft text-accent"><LineIcon name="check" size={14} /></span>
+                    {pt}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <HeroMock />
+          </div>
         </Container>
       </section>
 
