@@ -16,3 +16,19 @@ export function assertProductionEnv(env: NodeJS.ProcessEnv = process.env): void 
   }
   if (missing.length) throw new Error(`Production build is missing real values for: ${missing.join(", ")}`);
 }
+
+/**
+ * Vercel's Supabase integration adds SUPABASE_URL and SUPABASE_ANON_KEY (no NEXT_PUBLIC_ prefix).
+ * Accept those names too, so the founder doesn't have to enter the same values twice.
+ * Only the URL and the anon (publishable) key are copied: both are meant to be public.
+ * The service-role key is never given a public name.
+ */
+export function supabasePublicAliases(env: NodeJS.ProcessEnv = process.env): Record<string, string> {
+  const pick = (...keys: string[]) => keys.map((k) => env[k]).find((v) => typeof v === "string" && v !== "");
+  const out: Record<string, string> = {};
+  const url = pick("NEXT_PUBLIC_SUPABASE_URL", "SUPABASE_URL");
+  const anon = pick("NEXT_PUBLIC_SUPABASE_ANON_KEY", "SUPABASE_ANON_KEY", "NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY", "SUPABASE_PUBLISHABLE_KEY");
+  if (url) out.NEXT_PUBLIC_SUPABASE_URL = url;
+  if (anon) out.NEXT_PUBLIC_SUPABASE_ANON_KEY = anon;
+  return out;
+}
