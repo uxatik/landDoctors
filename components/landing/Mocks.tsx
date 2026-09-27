@@ -23,7 +23,7 @@ function Verified({ label }: { label: string }) {
 export async function OfferMock({ compact = false }: { compact?: boolean }) {
   const t = await mockT();
   return (
-    <div className="flex flex-col gap-3 rounded-card border border-line bg-surface p-4 shadow-[var(--shadow-md-light)] sm:p-5">
+    <div className="flex flex-col gap-3 rounded-card bg-surface p-4 shadow-[var(--shadow-md-light)] sm:p-5">
       <div className="flex items-center justify-between gap-2 text-xs text-muted">
         <span>
           {t("case")} <span dir="ltr" className="font-semibold text-ink">LD-0142</span>
@@ -43,7 +43,7 @@ export async function OfferMock({ compact = false }: { compact?: boolean }) {
         <div className="flex justify-between gap-3"><dt className="text-muted">{t("govt")}</dt><dd className="font-medium text-ink">{formatTaka(GOVT)}</dd></div>
         <div className="flex justify-between gap-3 border-t border-line pt-2 text-base font-bold text-ink"><dt>{t("total")}</dt><dd>{formatTaka(SERVICE + GOVT)}</dd></div>
       </dl>
-      <div className="hidden items-center gap-3 border-t border-line pt-3 sm:flex">
+      <div className="hidden items-center gap-3 pt-1 sm:flex">
         <span aria-hidden="true" className="flex size-9 shrink-0 items-center justify-center rounded-full text-sm font-bold text-white" style={{ background: "var(--gradient-brand-deep)" }}>
           <LineIcon name="ruler" size={16} />
         </span>
@@ -62,7 +62,7 @@ export async function StatusMock() {
   const t = await mockT();
   const statuses = t.raw("statuses") as string[];
   return (
-    <div className="flex flex-col gap-3 rounded-card border border-line bg-surface p-4 shadow-[var(--shadow-md-light)]">
+    <div className="flex flex-col gap-3 rounded-card bg-surface p-4 shadow-[var(--shadow-md-light)]">
       <p className="text-sm font-semibold text-ink">{t("statusTitle")}</p>
       <ol className="flex flex-col">
         {statuses.map((s, i) => {
@@ -88,7 +88,7 @@ export async function StatusMock() {
 export async function CallMock() {
   const t = await mockT();
   return (
-    <div className="flex items-center gap-3 rounded-card border border-line bg-surface p-4 shadow-[var(--shadow-md-light)]">
+    <div className="flex items-center gap-3 rounded-card bg-surface p-4 shadow-[var(--shadow-md-light)]">
       <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-verified-soft text-verified">
         <LineIcon name="phone" size={18} />
       </span>
@@ -104,13 +104,13 @@ export async function PaymentMock() {
   const t = await mockT();
   const methods = t.raw("payMethods") as string[];
   return (
-    <div className="flex flex-col gap-3 rounded-card border border-line bg-surface p-4 shadow-[var(--shadow-md-light)]">
+    <div className="flex flex-col gap-3 rounded-card bg-surface p-4 shadow-[var(--shadow-md-light)]">
       <p className="flex items-center gap-2 text-sm font-semibold text-ink">
         <LineIcon name="lock" size={16} className="text-accent" /> {t("payTitle")}
       </p>
       <div className="grid grid-cols-4 gap-2">
         {methods.map((m) => (
-          <span key={m} className="flex h-9 items-center justify-center rounded-control border border-line bg-bg text-xs font-semibold text-ink">{m}</span>
+          <span key={m} className="flex h-9 items-center justify-center rounded-control bg-sunken text-xs font-semibold text-ink">{m}</span>
         ))}
       </div>
       <p className="flex items-center gap-1.5 text-xs text-muted"><LineIcon name="receipt" size={14} /> {t("payNote")}</p>
@@ -123,8 +123,8 @@ export async function HeroMock() {
   return (
     <figure aria-labelledby="hero-mock-cap" className="relative mx-auto w-full max-w-5xl">
       <div aria-hidden="true" className="pointer-events-none absolute -inset-x-10 -top-10 bottom-10 -z-10 rounded-[48px] opacity-60" style={{ background: "var(--gradient-glow)" }} />
-      <div aria-hidden="true" className="overflow-hidden rounded-panel border border-line bg-surface shadow-[var(--shadow-xl-light)]">
-        <div className="flex items-center gap-2 border-b border-line bg-surface px-4 py-2.5">
+      <div aria-hidden="true" className="overflow-hidden rounded-panel bg-surface shadow-[var(--shadow-xl-light)]">
+        <div className="flex items-center gap-2 bg-surface px-4 py-2.5">
           <span className="size-2.5 rounded-full bg-[var(--color-neutral-200)]" />
           <span className="size-2.5 rounded-full bg-[var(--color-neutral-200)]" />
           <span className="size-2.5 rounded-full bg-[var(--color-neutral-200)]" />
@@ -147,14 +147,14 @@ export async function HeroMock() {
 /** Small visuals on top of each "how it works" card. */
 export async function StepVisual({ step }: { step: number }) {
   const t = await mockT();
-  const frame = "flex h-36 flex-col justify-center gap-2 rounded-control border border-line bg-surface p-3";
+  const frame = "flex h-36 flex-col justify-center gap-2 rounded-control bg-sunken p-3";
   if (step === 0)
     return (
       <div aria-hidden="true" className={frame}>
         {[t("formName"), t("formPhone"), t("formProblem")].map((l) => (
           <div key={l} className="flex items-center gap-2">
             <span className="w-14 shrink-0 text-xs text-muted">{l}</span>
-            <span className="h-6 flex-1 rounded-md border border-line bg-bg" />
+            <span className="h-6 flex-1 rounded-md bg-surface" />
           </div>
         ))}
         <span className="ml-auto h-6 w-20 rounded-full bg-accent" />
@@ -188,7 +188,7 @@ export async function StepVisual({ step }: { step: number }) {
         <span className="text-sm font-semibold text-ink">{t("expertRole")}</span>
       </div>
       <Verified label={t("verified")} />
-      <div className="h-2 w-full overflow-hidden rounded-full bg-sunken">
+      <div className="h-2 w-full overflow-hidden rounded-full bg-surface">
         <span className="block h-full w-2/3 rounded-full" style={{ background: "var(--gradient-primary)" }} />
       </div>
       <span className="text-xs font-semibold text-accent">{(t.raw("statuses") as string[])[3]}</span>
@@ -201,7 +201,7 @@ export async function ExpertCardMock() {
   const te = await getTranslations("landing.experts");
   const checks = te.raw("cardChecks") as string[];
   return (
-    <div aria-hidden="true" className="relative flex flex-col gap-4 rounded-panel border border-line bg-surface p-5 shadow-[var(--shadow-lg-light)] sm:p-6">
+    <div aria-hidden="true" className="relative flex flex-col gap-4 rounded-panel bg-surface p-5 shadow-[var(--shadow-lg-light)] sm:p-6">
       <span className="absolute right-4 top-4 rounded-full bg-sunken px-2 py-0.5 text-xs font-semibold text-muted">{t("sample")}</span>
       <div className="flex items-center gap-3">
         <span className="flex size-14 items-center justify-center rounded-full text-white" style={{ background: "var(--gradient-brand-deep)" }}>
@@ -216,7 +216,7 @@ export async function ExpertCardMock() {
         <dt className="text-muted">{te("cardAreas")}</dt><dd className="font-medium text-ink">{te("cardAreasValue")}</dd>
         <dt className="text-muted">{te("cardSkills")}</dt><dd className="font-medium text-ink">{te("cardSkillsValue")}</dd>
       </dl>
-      <ul className="flex flex-col gap-2 border-t border-line pt-4">
+      <ul className="flex flex-col gap-2 pt-1">
         {checks.map((c) => (
           <li key={c} className="flex items-center gap-2 text-sm text-ink">
             <span className="flex size-5 items-center justify-center rounded-full bg-verified-soft text-verified"><LineIcon name="check" size={12} /></span>

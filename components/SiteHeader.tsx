@@ -9,7 +9,7 @@ export async function SiteHeader() {
   const t = await getTranslations("site");
   const tn = await getTranslations("nav");
   return (
-    <header className="sticky top-0 z-40 border-b border-line/70 bg-[color-mix(in_srgb,var(--color-bg)_88%,transparent)] backdrop-blur-md">
+    <header className="sticky top-0 z-40 bg-[color-mix(in_srgb,var(--color-bg)_88%,transparent)] backdrop-blur-md">
       <div className="mx-auto flex h-16 w-full max-w-[var(--container-max)] items-center justify-between gap-4 px-4 sm:px-6">
         <Link href="/" className="flex items-center gap-2 text-lg font-bold text-ink no-underline">
           <LogoMark />

@@ -60,45 +60,52 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
   return (
     <div className="relative overflow-x-clip">
-      {/* ───────────── Hero: a brand panel with the promise, then straight to "what is your problem?" ───────────── */}
-      <section aria-labelledby="home-title" className="pb-12 pt-3 sm:pb-16 sm:pt-6">
+      {/* ───────────── Hero: the promise ───────────── */}
+      <section aria-labelledby="home-title" className="relative overflow-hidden pb-10 pt-8 sm:pb-12 sm:pt-14">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[520px]" style={{ background: "var(--gradient-glow)" }} />
+        <MouzaSketch className="pointer-events-none absolute -right-10 top-6 -z-10 hidden w-72 text-accent opacity-[0.08] lg:block" />
+        <MouzaSketch className="pointer-events-none absolute -left-16 top-40 -z-10 hidden w-60 -scale-x-100 text-accent opacity-[0.06] lg:block" />
+        <Container className="flex flex-col items-center gap-5 text-center">
+          <p className="inline-flex items-center gap-2 rounded-full bg-surface px-3 py-1 text-sm font-semibold text-ink shadow-[var(--shadow-sm-light)]">
+            <span className="relative flex size-2">
+              <span className="absolute inline-flex size-full animate-ping rounded-full bg-[var(--color-success)] opacity-60 motion-reduce:hidden" />
+              <span className="relative inline-flex size-2 rounded-full bg-[var(--color-success)]" />
+            </span>
+            {th("serving")}
+          </p>
+          <h1 id="home-title" className="max-w-4xl text-[1.625rem] font-bold leading-[1.2] tracking-tight text-ink min-[400px]:text-[2.25rem] sm:text-5xl lg:text-[3.5rem] lg:leading-[1.1]">
+            <span className="block">{t("hero.titleLead")}</span>{" "}
+            <span className="block bg-clip-text text-transparent [-webkit-box-decoration-break:clone] [box-decoration-break:clone]" style={{ backgroundImage: "var(--gradient-brand-text)" }}>
+              {t("hero.titleAccent")}
+            </span>
+          </h1>
+          <p className="max-w-2xl text-base text-muted min-[400px]:text-lg">{t("hero.intro")}</p>
+          <ul className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-sm text-muted">
+            {assurance.map((a) => (
+              <li key={a} className="flex items-center gap-1.5">
+                <LineIcon name="check" size={16} className="text-verified" />
+                {a}
+              </li>
+            ))}
+          </ul>
+        </Container>
+      </section>
+
+      {/* ───────────── Problem picker on a brand panel ───────────── */}
+      <section id="services" aria-labelledby="services-title" className="scroll-mt-20 pb-14 sm:pb-20">
         <Container>
-          <div className="relative overflow-hidden rounded-card px-4 pb-6 pt-8 text-white sm:rounded-panel sm:px-8 sm:pb-10 sm:pt-12 lg:px-12" style={{ background: "var(--gradient-brand-deep)" }}>
+          <div className="relative overflow-hidden rounded-card px-4 py-8 text-white sm:rounded-panel sm:px-8 sm:py-10 lg:px-12" style={{ background: "var(--gradient-brand-deep)" }}>
             <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{ background: "radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.14) 0%, transparent 60%)" }} />
-            <MouzaSketch className="pointer-events-none absolute -right-8 -top-4 w-56 text-white opacity-[0.12] sm:w-72" />
-            <MouzaSketch className="pointer-events-none absolute -left-12 top-40 hidden w-60 -scale-x-100 text-white opacity-[0.08] lg:block" />
-
-            <div className="relative flex flex-col items-center gap-4 text-center sm:gap-5">
-              <p className="inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1 text-sm font-semibold">
-                <span className="relative flex size-2">
-                  <span className="absolute inline-flex size-full animate-ping rounded-full bg-[var(--color-primary-200)] opacity-70 motion-reduce:hidden" />
-                  <span className="relative inline-flex size-2 rounded-full bg-[var(--color-primary-200)]" />
-                </span>
-                {th("serving")}
-              </p>
-              <h1 id="home-title" className="max-w-4xl text-[1.625rem] font-bold leading-[1.2] tracking-tight min-[400px]:text-[2.25rem] sm:text-5xl lg:text-[3.5rem] lg:leading-[1.1]">
-                <span className="block">{t("hero.titleLead")}</span>{" "}
-                <span className="block text-[var(--color-primary-200)]">{t("hero.titleAccent")}</span>
-              </h1>
-              <p className="max-w-2xl text-base text-white/90 min-[400px]:text-lg">{t("hero.intro")}</p>
-              <ul className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-sm text-white/90">
-                {assurance.map((a) => (
-                  <li key={a} className="flex items-center gap-1.5">
-                    <LineIcon name="check" size={16} className="text-[var(--color-primary-200)]" />
-                    {a}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div id="services" className="relative mt-10 scroll-mt-24 sm:mt-12">
-              <h2 id="services-title" className="mb-5 text-center text-[1.375rem] font-bold tracking-tight min-[400px]:text-2xl sm:text-3xl">{t("services.title")}</h2>
+            <MouzaSketch className="pointer-events-none absolute -right-8 -top-6 w-56 text-white opacity-[0.12] sm:w-72" />
+            <MouzaSketch className="pointer-events-none absolute -bottom-12 -left-10 hidden w-60 text-white opacity-[0.08] lg:block" />
+            <div className="relative">
+              <h2 id="services-title" className="mb-6 text-center text-[1.375rem] font-bold tracking-tight min-[400px]:text-2xl sm:text-3xl">{t("services.title")}</h2>
               <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
                 {CATEGORY_SLUGS.map((slug, i) => (
                   <li key={slug}>
                     <Link
                       href={{ pathname: "/help", query: { category: slug } }}
-                      className="group flex h-full flex-col gap-3 rounded-card bg-surface p-4 text-left no-underline shadow-[var(--shadow-md-light)] ring-1 ring-black/5 transition hover:-translate-y-0.5 hover:shadow-[var(--shadow-lg-light)] focus-visible:-translate-y-0.5 sm:p-5"
+                      className="group flex h-full flex-col gap-3 rounded-card bg-surface p-4 text-left no-underline shadow-[var(--shadow-md-light)] transition hover:-translate-y-0.5 hover:shadow-[var(--shadow-lg-light)] focus-visible:-translate-y-0.5 sm:p-5"
                     >
                       <span
                         className={`flex size-11 items-center justify-center rounded-control transition-colors ${
@@ -133,7 +140,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       </section>
 
       {/* ───────────── Papers strip ───────────── */}
-      <section aria-labelledby="docs-title" className="border-y border-line bg-surface py-8">
+      <section aria-labelledby="docs-title" className="bg-surface py-8">
         <Container className="flex flex-col items-center gap-5">
           <h2 id="docs-title" className="text-sm font-semibold text-muted">{t("docs.title")}</h2>
           <ul className="grid w-full grid-cols-2 gap-x-4 gap-y-3 sm:flex sm:flex-wrap sm:justify-center sm:gap-x-8">
@@ -153,7 +160,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           <SectionHeading id="how-title" eyebrow={t("how.eyebrow")} title={t("how.title")} />
           <ol className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {steps.map((s, i) => (
-              <li key={s.title} className="flex flex-col gap-4 rounded-card border border-line bg-surface p-4">
+              <li key={s.title} className="flex flex-col gap-4 rounded-card bg-surface p-4 shadow-[var(--shadow-sm-light)]">
                 <StepVisual step={i} />
                 <div className="flex flex-col gap-1.5 px-1 pb-1">
                   <span className="text-sm font-semibold text-accent">
@@ -169,7 +176,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       </section>
 
       {/* ───────────── Pricing ───────────── */}
-      <section id="pricing" aria-labelledby="pricing-title" className="scroll-mt-20 border-t border-line bg-surface py-16 sm:py-24">
+      <section id="pricing" aria-labelledby="pricing-title" className="scroll-mt-20 bg-surface py-16 sm:py-24">
         <Container className="flex flex-col gap-10">
           <SectionHeading id="pricing-title" eyebrow={t("pricing.eyebrow")} title={t("pricing.title")} intro={t("pricing.intro")} />
           <ul className="grid grid-cols-1 gap-4 md:grid-cols-3">
@@ -181,7 +188,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                 <li
                   key={p.name}
                   className={`relative flex flex-col gap-4 rounded-card p-6 ${
-                    featured ? "border-2 border-accent bg-surface shadow-[var(--shadow-lg-light)]" : "border border-line bg-bg"
+                    featured ? "border-2 border-accent bg-surface shadow-[var(--shadow-lg-light)]" : "bg-bg"
                   }`}
                 >
                   {featured && (
@@ -196,7 +203,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                     {p.from && bn && <span className="text-sm text-muted">{t("pricing.from")}</span>}
                   </p>
                   <p className="text-muted">{p.desc}</p>
-                  <ul className="flex flex-col gap-2 border-t border-line pt-4">
+                  <ul className="flex flex-col gap-2 pt-1">
                     {p.points.map((pt) => (
                       <li key={pt} className="flex gap-2 text-sm text-ink">
                         <LineIcon name="check" size={18} className="mt-0.5 shrink-0 text-accent" />
@@ -241,7 +248,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       </section>
 
       {/* ───────────── Experts ───────────── */}
-      <section aria-labelledby="experts-title" className="overflow-x-clip border-t border-line bg-surface py-16 sm:py-24">
+      <section aria-labelledby="experts-title" className="overflow-x-clip py-16 sm:py-24">
         <Container className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
           <div className="flex flex-col gap-6">
             <SectionHeading id="experts-title" eyebrow={t("experts.eyebrow")} title={t("experts.title")} intro={t("experts.intro")} />
@@ -257,7 +264,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
               <p className="text-sm font-semibold text-muted">{t("experts.rolesTitle")}</p>
               <ul className="flex flex-wrap gap-2">
                 {roles.map((r) => (
-                  <li key={r} className="rounded-full border border-line bg-bg px-3 py-1 text-sm text-ink">{r}</li>
+                  <li key={r} className="rounded-full bg-sunken px-3 py-1 text-sm text-ink">{r}</li>
                 ))}
               </ul>
             </div>
@@ -274,9 +281,9 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 h-80" style={{ background: "var(--gradient-glow)" }} />
         <Container className="relative flex flex-col gap-10">
           <SectionHeading id="safety-title" dark eyebrow={t("safety.eyebrow")} title={t("safety.title")} />
-          <ul className="grid grid-cols-1 gap-px overflow-hidden rounded-card border border-[var(--border-default)] bg-[var(--border-default)] sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {safety.map((s, i) => (
-              <li key={s.title} className="flex flex-col gap-3 bg-[var(--bg-base)] p-6">
+              <li key={s.title} className="flex flex-col gap-3 rounded-card bg-[var(--bg-surface)] p-6">
                 <span className="flex size-10 items-center justify-center rounded-control bg-[var(--bg-elevated)] text-[var(--color-primary-300)]">
                   <LineIcon name={SAFETY_ICONS[i] ?? "check"} size={20} />
                 </span>
@@ -297,7 +304,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       {/* ───────────── Living abroad ───────────── */}
       <section aria-labelledby="nrb-title" className="py-16 sm:py-20">
         <Container>
-          <div className="flex flex-col gap-5 rounded-panel border border-line bg-surface p-6 sm:flex-row sm:items-center sm:gap-8 sm:p-8">
+          <div className="flex flex-col gap-5 rounded-panel bg-surface p-6 shadow-[var(--shadow-sm-light)] sm:flex-row sm:items-center sm:gap-8 sm:p-8">
             <span className="flex size-14 shrink-0 items-center justify-center rounded-full bg-accent-soft text-accent">
               <LineIcon name="globe" size={28} />
             </span>
@@ -313,7 +320,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       </section>
 
       {/* ───────────── FAQ ───────────── */}
-      <section id="faq" aria-labelledby="faq-title" className="scroll-mt-20 border-t border-line bg-surface py-16 sm:py-24">
+      <section id="faq" aria-labelledby="faq-title" className="scroll-mt-20 bg-surface py-16 sm:py-24">
         <Container className="grid gap-10 lg:grid-cols-[1fr_1.6fr] lg:gap-16">
           <div className="contents lg:flex lg:flex-col lg:gap-6">
             <SectionHeading id="faq-title" eyebrow={t("faq.eyebrow")} title={t("faq.title")} />
@@ -330,12 +337,12 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
               <p dir="ltr" className="text-sm font-semibold text-ink [text-align:start]">{formatPhoneDisplay(hotline)}</p>
             </div>
           </div>
-          <div className="flex flex-col divide-y divide-line border-y border-line">
+          <div className="flex flex-col divide-y divide-line">
             {faqs.map((f) => (
               <details key={f.q} className="group py-1">
                 <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 py-3 text-lg font-semibold text-ink [&::-webkit-details-marker]:hidden">
                   {f.q}
-                  <span className="flex size-8 shrink-0 items-center justify-center rounded-full border border-line text-muted transition-transform duration-200 group-open:rotate-45">
+                  <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-sunken text-muted transition-transform duration-200 group-open:rotate-45">
                     <LineIcon name="plus" size={16} />
                   </span>
                 </summary>
@@ -367,7 +374,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       </section>
 
       {/* Phones: call and form always one tap away. Sticky inside the page, so it never covers the footer. */}
-      <nav aria-label={t("bar.label")} className="sticky bottom-0 z-30 border-t border-line bg-[color-mix(in_srgb,var(--color-surface)_92%,transparent)] px-4 py-3 backdrop-blur-md sm:hidden">
+      <nav aria-label={t("bar.label")} className="sticky bottom-0 z-30 shadow-[0_-4px_16px_rgba(0,0,0,0.06)] bg-[color-mix(in_srgb,var(--color-surface)_92%,transparent)] px-4 py-3 backdrop-blur-md sm:hidden">
         <div className="grid grid-cols-2 gap-3">
           <a href={`tel:${hotline}`} className={`${BTN_SECONDARY} px-3`}>
             <LineIcon name="phone" size={18} /> {tContact("call")}

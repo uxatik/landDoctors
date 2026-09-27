@@ -19,7 +19,7 @@ export async function SiteFooter() {
   const head = "text-sm font-semibold text-ink";
 
   return (
-    <footer className="border-t border-line bg-surface">
+    <footer className="bg-surface">
       <div className="mx-auto grid w-full max-w-[var(--container-max)] grid-cols-2 gap-x-6 gap-y-10 px-4 py-12 text-sm sm:px-6 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
         <div className="col-span-2 flex flex-col gap-3 lg:col-span-1">
           <p className="flex items-center gap-2 text-lg font-bold text-ink">
@@ -64,8 +64,8 @@ export async function SiteFooter() {
           </ul>
         </nav>
       </div>
-      <div className="border-t border-line">
-        <p className="mx-auto w-full max-w-[var(--container-max)] px-4 py-5 text-sm text-muted sm:px-6">
+      <div>
+        <p className="mx-auto w-full max-w-[var(--container-max)] px-4 pb-8 pt-2 text-sm text-muted sm:px-6">
           {t("note")} © {new Date().getFullYear()} {ts("name")}
         </p>
       </div>
