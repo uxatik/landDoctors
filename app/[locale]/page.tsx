@@ -7,7 +7,7 @@ import { formatTaka } from "@/lib/money";
 import { MouzaSketch } from "@/components/MouzaSketch";
 import { Container, SectionHeading } from "@/components/landing/Section";
 import { LineIcon, type IconName } from "@/components/landing/LineIcon";
-import { ExpertCardMock, HeroMock, StepVisual } from "@/components/landing/Mocks";
+import { ExpertCardMock, StepVisual } from "@/components/landing/Mocks";
 
 const CATEGORY_ICON: Record<CategorySlug, IconName> = {
   pre_purchase_check: "searchCheck",
@@ -46,7 +46,6 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   const packages = t.raw("pricing.packages") as Pkg[];
   const steps = t.raw("how.steps") as Step[];
   const expertPoints = t.raw("experts.points") as string[];
-  const offerPoints = t.raw("pricing.offerPoints") as string[];
   const roles = t.raw("experts.roles") as string[];
   const safety = t.raw("safety.items") as Step[];
   const faqs = t.raw("faq.items") as Faq[];
@@ -230,20 +229,6 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             <LineIcon name="receipt" size={18} className="mt-0.5 shrink-0" />
             {t("pricing.note")}
           </p>
-          <div className="mt-6 grid items-center gap-10 lg:grid-cols-[1fr_1.4fr] lg:gap-14">
-            <div className="flex flex-col gap-4">
-              <h3 className="text-2xl font-bold tracking-tight text-ink sm:text-3xl">{t("pricing.offerTitle")}</h3>
-              <ul className="flex flex-col gap-3">
-                {offerPoints.map((pt) => (
-                  <li key={pt} className="flex gap-3 text-ink">
-                    <span className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-accent-soft text-accent"><LineIcon name="check" size={14} /></span>
-                    {pt}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <HeroMock />
-          </div>
         </Container>
       </section>
 

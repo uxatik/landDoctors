@@ -327,14 +327,7 @@
         }
       ],
       "choose": "Start →",
-      "note": "Final price is in your offer. It may rise with land size. Government fees extra.",
-      "offerTitle": "What your offer shows",
-      "offerPoints": [
-        "Scope and timing",
-        "Price and government fees, separately",
-        "Your expert",
-        "A payment link"
-      ]
+      "note": "Final price is in your offer. It may rise with land size. Government fees extra."
     },
     "how": {
       "eyebrow": "How it works",

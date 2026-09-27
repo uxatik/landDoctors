@@ -105,3 +105,6 @@ Founder asked for a coloured first section like the closing call-to-action band,
 
 ## Iteration — Teal only behind the problem picker; fewer lines (27 Sep 2026)
 Founder correction: the teal background was meant only for "কোন কাজে সাহায্য লাগবে?", not the whole hero. The headline area is light again; the problem tiles and the call/WhatsApp line sit on the teal panel. Removed decorative borders across the page (section separators, card outlines, header and footer lines, dark-section grid lines, chips, mock frames). Kept only functional lines: button outlines, the recommended price card, the total line in the offer sample, the current-step ring and FAQ dividers. Sections are told apart by alternating backgrounds and soft shadows.
+
+## Iteration — Offer sample removed (27 Sep 2026)
+Founder asked to drop the "প্রস্তাবে যা যা থাকে" block and its browser-frame sample from the pricing section; unused sample components and strings deleted.
