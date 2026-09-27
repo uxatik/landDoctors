@@ -99,3 +99,6 @@ Founder asked to remove the clutter under the problem cards. Removed the "pick o
 
 ## Iteration — Natural Bangla (27 Sep 2026)
 Founder: the Bangla read like a translation. Rewrote every customer-facing Bangla string (home, form, thank-you, offer, payment result) in everyday spoken style, e.g. headline "জমির ঝামেলায় দালাল নয়, পাশে আছেন অভিজ্ঞ সার্ভেয়ার", "কোন কাজে সাহায্য লাগবে?", "খরচ আগেই জানুন", "হাতে হাতে টাকা নয়". Removed unused old home strings. Legal pages stay as drafts until the lawyer's review.
+
+## Iteration — Brand panel hero, tall problem tiles (27 Sep 2026)
+Founder asked for a coloured first section like the closing call-to-action band, and problem cards that grow downwards instead of sideways. The hero is now a deep-teal gradient panel (white text, light-teal accent line, mouza sketches) holding the promise, the three assurances, the six problem tiles and the call/WhatsApp line. Tiles are vertical (icon, name, short hint, arrow): 6 across on desktop, 3 on tablets, 2 on phones, so a phone shows all six in three rows.

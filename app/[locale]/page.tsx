@@ -60,77 +60,76 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
   return (
     <div className="relative overflow-x-clip">
-      {/* ───────────── Hero: promise, then straight to "what is your problem?" ───────────── */}
-      <section aria-labelledby="home-title" className="relative overflow-hidden pb-14 pt-8 sm:pb-20 sm:pt-14">
-        <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[520px]" style={{ background: "var(--gradient-glow)" }} />
-        <MouzaSketch className="pointer-events-none absolute -right-10 top-6 -z-10 hidden w-72 text-accent opacity-[0.08] lg:block" />
-        <MouzaSketch className="pointer-events-none absolute -left-16 top-40 -z-10 hidden w-60 -scale-x-100 text-accent opacity-[0.06] lg:block" />
-        <Container className="flex flex-col items-center gap-5 text-center">
-          <p className="inline-flex items-center gap-2 rounded-full border border-line bg-surface px-3 py-1 text-sm font-semibold text-ink shadow-[var(--shadow-sm-light)]">
-            <span className="relative flex size-2">
-              <span className="absolute inline-flex size-full animate-ping rounded-full bg-[var(--color-success)] opacity-60 motion-reduce:hidden" />
-              <span className="relative inline-flex size-2 rounded-full bg-[var(--color-success)]" />
-            </span>
-            {th("serving")}
-          </p>
-          <h1 id="home-title" className="max-w-4xl text-[2rem] font-bold leading-[1.15] tracking-tight text-ink min-[400px]:text-[2.25rem] sm:text-5xl lg:text-[3.5rem] lg:leading-[1.1]">
-            <span className="block">{t("hero.titleLead")}</span>{" "}
-            <span className="block bg-clip-text text-transparent [-webkit-box-decoration-break:clone] [box-decoration-break:clone]" style={{ backgroundImage: "var(--gradient-brand-text)" }}>
-              {t("hero.titleAccent")}
-            </span>
-          </h1>
-          <p className="max-w-2xl text-lg text-muted">{t("hero.intro")}</p>
-          <ul className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-sm text-muted">
-            {assurance.map((a) => (
-              <li key={a} className="flex items-center gap-1.5">
-                <LineIcon name="check" size={16} className="text-verified" />
-                {a}
-              </li>
-            ))}
-          </ul>
-        </Container>
+      {/* ───────────── Hero: a brand panel with the promise, then straight to "what is your problem?" ───────────── */}
+      <section aria-labelledby="home-title" className="pb-12 pt-3 sm:pb-16 sm:pt-6">
+        <Container>
+          <div className="relative overflow-hidden rounded-card px-4 pb-6 pt-8 text-white sm:rounded-panel sm:px-8 sm:pb-10 sm:pt-12 lg:px-12" style={{ background: "var(--gradient-brand-deep)" }}>
+            <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{ background: "radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.14) 0%, transparent 60%)" }} />
+            <MouzaSketch className="pointer-events-none absolute -right-8 -top-4 w-56 text-white opacity-[0.12] sm:w-72" />
+            <MouzaSketch className="pointer-events-none absolute -left-12 top-40 hidden w-60 -scale-x-100 text-white opacity-[0.08] lg:block" />
 
-        <div id="services" className="scroll-mt-20">
-          <Container className="mt-10 flex flex-col gap-6 sm:mt-12">
-            <div className="flex flex-col items-center gap-1 text-center">
-              <h2 id="services-title" className="text-2xl font-bold tracking-tight text-ink sm:text-3xl">{t("services.title")}</h2>
+            <div className="relative flex flex-col items-center gap-4 text-center sm:gap-5">
+              <p className="inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1 text-sm font-semibold">
+                <span className="relative flex size-2">
+                  <span className="absolute inline-flex size-full animate-ping rounded-full bg-[var(--color-primary-200)] opacity-70 motion-reduce:hidden" />
+                  <span className="relative inline-flex size-2 rounded-full bg-[var(--color-primary-200)]" />
+                </span>
+                {th("serving")}
+              </p>
+              <h1 id="home-title" className="max-w-4xl text-[1.625rem] font-bold leading-[1.2] tracking-tight min-[400px]:text-[2.25rem] sm:text-5xl lg:text-[3.5rem] lg:leading-[1.1]">
+                <span className="block">{t("hero.titleLead")}</span>{" "}
+                <span className="block text-[var(--color-primary-200)]">{t("hero.titleAccent")}</span>
+              </h1>
+              <p className="max-w-2xl text-base text-white/90 min-[400px]:text-lg">{t("hero.intro")}</p>
+              <ul className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-sm text-white/90">
+                {assurance.map((a) => (
+                  <li key={a} className="flex items-center gap-1.5">
+                    <LineIcon name="check" size={16} className="text-[var(--color-primary-200)]" />
+                    {a}
+                  </li>
+                ))}
+              </ul>
             </div>
-            <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              {CATEGORY_SLUGS.map((slug, i) => (
-                <li key={slug}>
-                  <Link
-                    href={{ pathname: "/help", query: { category: slug } }}
-                    className="group flex h-full items-center gap-4 rounded-card border border-line bg-surface p-4 text-left no-underline shadow-[var(--shadow-sm-light)] transition hover:border-accent hover:shadow-[var(--shadow-md-light)] sm:p-5"
-                  >
-                    <span
-                      className={`flex size-12 shrink-0 items-center justify-center rounded-control transition-colors ${
-                        i === 0 ? "text-white" : "bg-accent-soft text-accent group-hover:bg-accent group-hover:text-on-accent"
-                      }`}
-                      style={i === 0 ? { background: "var(--gradient-brand-deep)" } : undefined}
+
+            <div id="services" className="relative mt-10 scroll-mt-24 sm:mt-12">
+              <h2 id="services-title" className="mb-5 text-center text-[1.375rem] font-bold tracking-tight min-[400px]:text-2xl sm:text-3xl">{t("services.title")}</h2>
+              <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
+                {CATEGORY_SLUGS.map((slug, i) => (
+                  <li key={slug}>
+                    <Link
+                      href={{ pathname: "/help", query: { category: slug } }}
+                      className="group flex h-full flex-col gap-3 rounded-card bg-surface p-4 text-left no-underline shadow-[var(--shadow-md-light)] ring-1 ring-black/5 transition hover:-translate-y-0.5 hover:shadow-[var(--shadow-lg-light)] focus-visible:-translate-y-0.5 sm:p-5"
                     >
-                      <LineIcon name={CATEGORY_ICON[slug]} size={24} />
-                    </span>
-                    <span className="flex min-w-0 flex-1 flex-col gap-0.5">
-                      <span className="text-lg font-semibold text-ink">{tc(`${slug}.name`)}</span>
-                      <span className="text-sm text-muted">{tc(`${slug}.hint`)}</span>
-                    </span>
-                    <LineIcon name="arrowRight" size={20} className="shrink-0 text-accent transition-transform group-hover:translate-x-0.5" />
-                  </Link>
-                </li>
-              ))}
-            </ul>
-            <p className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-center text-muted">
-              <span>{t("services.orTalk")}</span>
-              <a href={`tel:${hotline}`} className="inline-flex items-center gap-1.5 font-semibold text-accent no-underline hover:underline">
-                <LineIcon name="phone" size={16} /> {tContact("call")} <span dir="ltr">{formatPhoneDisplay(hotline)}</span>
-              </a>
-              <span aria-hidden="true" className="hidden text-line sm:inline">·</span>
-              <a href={waHref} target="_blank" rel="noopener noreferrer" className="font-semibold text-accent no-underline hover:underline">
-                {tContact("whatsapp")}
-              </a>
-            </p>
-          </Container>
-        </div>
+                      <span
+                        className={`flex size-11 items-center justify-center rounded-control transition-colors ${
+                          i === 0 ? "text-white" : "bg-accent-soft text-accent group-hover:bg-accent group-hover:text-on-accent"
+                        }`}
+                        style={i === 0 ? { background: "var(--gradient-brand-deep)" } : undefined}
+                      >
+                        <LineIcon name={CATEGORY_ICON[slug]} size={22} />
+                      </span>
+                      <span className="flex flex-1 flex-col gap-1">
+                        <span className="font-semibold leading-snug text-ink sm:text-lg">{tc(`${slug}.name`)}</span>
+                        <span className="text-sm leading-snug text-muted">{tc(`${slug}.hint`)}</span>
+                      </span>
+                      <LineIcon name="arrowRight" size={18} className="self-end text-accent transition-transform group-hover:translate-x-0.5" />
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-6 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-center text-white/90">
+                <span>{t("services.orTalk")}</span>
+                <a href={`tel:${hotline}`} className="inline-flex items-center gap-1.5 font-semibold text-white underline decoration-white/40 underline-offset-4 hover:decoration-white">
+                  <LineIcon name="phone" size={16} /> {tContact("call")} <span dir="ltr">{formatPhoneDisplay(hotline)}</span>
+                </a>
+                <span aria-hidden="true" className="hidden text-white/50 sm:inline">·</span>
+                <a href={waHref} target="_blank" rel="noopener noreferrer" className="font-semibold text-white underline decoration-white/40 underline-offset-4 hover:decoration-white">
+                  {tContact("whatsapp")}
+                </a>
+              </p>
+            </div>
+          </div>
+        </Container>
       </section>
 
       {/* ───────────── Papers strip ───────────── */}
