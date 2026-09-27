@@ -20,7 +20,7 @@ test.describe("Intake form", () => {
     await expect(summary).toBeVisible();
     await expect(summary).toBeFocused();
     await expect(summary).toContainText("সমস্যার ধরন বেছে নিন");
-    await expect(summary).toContainText("জমি কোথায়, বেছে নিন");
+    await expect(summary).toContainText("জমিটা কোথায়, বেছে নিন");
     await expect(summary).toContainText("মোবাইল নম্বর লিখুন");
     await expect(page.locator("#phone")).toHaveAttribute("aria-invalid", "true");
   });

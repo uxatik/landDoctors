@@ -6,8 +6,8 @@ const CATEGORIES = ["pre_purchase_check", "mutation", "survey", "inheritance", "
 test.describe("Home (Bangla)", () => {
   test("leads with the promise and lists six categories", async ({ page }) => {
     await page.goto("/");
-    await expect(page.getByRole("heading", { level: 1, name: /জমির কাজে দালাল নয়,\s*যাচাই করা বিশেষজ্ঞ/ })).toBeVisible();
-    await expect(page.getByRole("heading", { level: 2, name: "আপনার জমির সমস্যা কী?" })).toBeVisible();
+    await expect(page.getByRole("heading", { level: 1, name: /জমির ঝামেলায় দালাল নয়,\s*পাশে আছেন অভিজ্ঞ সার্ভেয়ার/ })).toBeVisible();
+    await expect(page.getByRole("heading", { level: 2, name: "কোন কাজে সাহায্য লাগবে?" })).toBeVisible();
     for (const c of CATEGORIES) {
       await expect(page.locator(`#services a[href="/help?category=${c}"]`)).toHaveCount(1);
     }
@@ -26,9 +26,9 @@ test.describe("Home (Bangla)", () => {
 
   test("says where field work is available and that first call is free", async ({ page }) => {
     await page.goto("/");
-    await expect(page.getByText("এখন সেবা দিচ্ছি: সাভার ও গাজীপুর").first()).toBeVisible();
-    await expect(page.getByText(/প্রথম ১০ মিনিট ফ্রি/).first()).toBeVisible();
-    await expect(page.getByText(/হাতে নগদ নয়/).first()).toBeVisible();
+    await expect(page.getByText("সাভার ও গাজীপুরে এখন সেবা চালু").first()).toBeVisible();
+    await expect(page.getByText(/প্রথম ১০ মিনিটের কথা ফ্রি/).first()).toBeVisible();
+    await expect(page.getByText(/হাতে হাতে টাকা নয়/).first()).toBeVisible();
   });
 
   test("shows prices up front with government fees separate", async ({ page }) => {
@@ -44,7 +44,7 @@ test.describe("Home (Bangla)", () => {
     await page.goto("/");
     const q = page.locator("#faq summary").filter({ hasText: "ল্যান্ডডক্টর কি সরকারি অফিস?" });
     await q.click();
-    await expect(page.getByText(/এটি বেসরকারি সেবা/)).toBeVisible();
+    await expect(page.getByText(/বেসরকারি সেবা/)).toBeVisible();
     const ld = await page.locator('script[type="application/ld+json"]').textContent();
     expect(JSON.parse(ld ?? "{}")["@type"]).toBe("FAQPage");
   });

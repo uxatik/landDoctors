@@ -96,3 +96,6 @@ Rewrote every landing section in Bangla and English: one short line per idea, sa
 
 ## Iteration — Quieter hero (27 Sep 2026)
 Founder asked to remove the clutter under the problem cards. Removed the "pick one" line and the area/waiting-list line (area is in the badge and on the price cards; other areas are handled in the form). The contact box became one line (call with number · WhatsApp). The three promises moved up under the headline.
+
+## Iteration — Natural Bangla (27 Sep 2026)
+Founder: the Bangla read like a translation. Rewrote every customer-facing Bangla string (home, form, thank-you, offer, payment result) in everyday spoken style, e.g. headline "জমির ঝামেলায় দালাল নয়, পাশে আছেন অভিজ্ঞ সার্ভেয়ার", "কোন কাজে সাহায্য লাগবে?", "খরচ আগেই জানুন", "হাতে হাতে টাকা নয়". Removed unused old home strings. Legal pages stay as drafts until the lawyer's review.

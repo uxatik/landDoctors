@@ -11,11 +11,11 @@ test("unknown or malformed offer links are a 404 and never indexed", async ({ pa
 
 test.describe("payment result pages", () => {
   for (const [status, text] of [
-    ["success", "পেমেন্ট সফল হয়েছে"],
+    ["success", "পেমেন্ট হয়ে গেছে"],
     ["fail", "পেমেন্ট হয়নি"],
-    ["cancel", "পেমেন্ট বাতিল করেছেন"],
+    ["cancel", "আপনি পেমেন্ট বাতিল করেছেন"],
     ["review", "পেমেন্ট যাচাই হচ্ছে"],
-    ["whatever", "পেমেন্ট শুরু করা যায়নি"],
+    ["whatever", "পেমেন্ট শুরু করা গেল না"],
   ] as const) {
     test(`${status}`, async ({ page }) => {
       await page.goto(`/pay/result?status=${status}&ref=LD-0042`);

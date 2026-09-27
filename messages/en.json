@@ -7,27 +7,7 @@
     "skipToContent": "Skip to main content"
   },
   "home": {
-    "title": "What is your land problem?",
-    "intro": "Verified surveyors and land experts look at your papers and tell you the right way forward. Prices known upfront, no middlemen.",
-    "chooseLabel": "Choose your problem",
-    "serving": "Now serving Savar and Gazipur",
-    "servingNote": "Phone advice is available from anywhere in Bangladesh.",
-    "orTalk": "Prefer not to fill a form? Talk to us directly",
-    "howTitle": "How it works",
-    "trustTitle": "Why LandDoctor",
-    "steps": [
-      "Tell us the problem, on the form or by phone",
-      "We understand it on a free 10-minute call",
-      "We send a fixed-price offer, with government fees listed separately",
-      "After payment, a verified expert starts the work"
-    ],
-    "trust": [
-      "Verified experts, members of the surveyors' association",
-      "Price known upfront, government fees shown separately",
-      "First 10-minute call is free",
-      "You never hand cash to anyone"
-    ],
-    "fasterNote": "We don't promise to speed up government work. We help with the right advice, the right papers and field work."
+    "serving": "Now serving Savar and Gazipur"
   },
   "categories": {
     "pre_purchase_check": {
