@@ -27,8 +27,8 @@ test.describe("Home (Bangla)", () => {
   test("says where field work is available and that first call is free", async ({ page }) => {
     await page.goto("/");
     await expect(page.getByText("এখন সেবা দিচ্ছি: সাভার ও গাজীপুর").first()).toBeVisible();
-    await expect(page.getByText(/প্রথম ১০ মিনিটের কল ফ্রি/).first()).toBeVisible();
-    await expect(page.getByText(/নগদ টাকা/).first()).toBeVisible();
+    await expect(page.getByText(/প্রথম ১০ মিনিট ফ্রি/).first()).toBeVisible();
+    await expect(page.getByText(/হাতে নগদ নয়/).first()).toBeVisible();
   });
 
   test("shows prices up front with government fees separate", async ({ page }) => {
@@ -44,7 +44,7 @@ test.describe("Home (Bangla)", () => {
     await page.goto("/");
     const q = page.locator("#faq summary").filter({ hasText: "ল্যান্ডডক্টর কি সরকারি অফিস?" });
     await q.click();
-    await expect(page.getByText(/ল্যান্ডডক্টর একটি বেসরকারি সেবা/)).toBeVisible();
+    await expect(page.getByText(/এটি বেসরকারি সেবা/)).toBeVisible();
     const ld = await page.locator('script[type="application/ld+json"]').textContent();
     expect(JSON.parse(ld ?? "{}")["@type"]).toBe("FAQPage");
   });

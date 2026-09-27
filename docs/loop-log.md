@@ -90,3 +90,6 @@ Scores: Usability 5 · Trust 5 · Design-system fidelity 5 · Performance 4.
 
 ## Iteration — Problem picker first (27 Sep 2026)
 Moved the six problem cards into the hero (D14); on a 390×844 phone the headline and the first two problems are visible without scrolling, and the sticky bar keeps Call and the form one tap away. Offer sample moved to pricing with a four-point "what's in your offer" list.
+
+## Iteration — Shorter copy (27 Sep 2026)
+Rewrote every landing section in Bangla and English: one short line per idea, same facts (price, free 10 minutes, no cash, pilot areas, verified experts, fees separate, refunds). Page height down about 11% (desktop 7,234 → 6,440px; phone 11,370 → 10,176px). Category hints shortened (they appear only on the home page).

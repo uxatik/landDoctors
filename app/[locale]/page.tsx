@@ -327,7 +327,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           <div className="contents lg:flex lg:flex-col lg:gap-6">
             <SectionHeading id="faq-title" eyebrow={t("faq.eyebrow")} title={t("faq.title")} />
             <div className="order-last flex flex-col gap-3 rounded-card bg-sunken p-5 lg:order-none">
-              <p className="font-semibold text-ink">{th("orTalk")}</p>
+              <p className="font-semibold text-ink">{t("services.orTalk")}</p>
               <div className="flex flex-wrap gap-3">
                 <a href={`tel:${hotline}`} className={`${BTN} min-h-11 bg-accent px-5 text-on-accent hover:bg-accent-hover`}>
                   <LineIcon name="phone" size={18} /> {tContact("call")}
