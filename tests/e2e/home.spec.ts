@@ -6,8 +6,8 @@ const CATEGORIES = ["pre_purchase_check", "mutation", "survey", "inheritance", "
 test.describe("Home (Bangla)", () => {
   test("leads with the promise and lists six categories", async ({ page }) => {
     await page.goto("/");
-    await expect(page.getByRole("heading", { level: 1, name: /জমির ঝামেলায় দালাল নয়,\s*পাশে আছেন অভিজ্ঞ সার্ভেয়ার/ })).toBeVisible();
-    await expect(page.getByRole("heading", { level: 2, name: "কোন কাজে সাহায্য লাগবে?" })).toBeVisible();
+    await expect(page.getByRole("heading", { level: 1, name: /জমির সমস্যায়\s*যাচাইকৃত ভূমি বিশেষজ্ঞ/ })).toBeVisible();
+    await expect(page.getByRole("heading", { level: 2, name: "কোন সেবাটি প্রয়োজন?" })).toBeVisible();
     for (const c of CATEGORIES) {
       await expect(page.locator(`#services a[href="/help?category=${c}"]`)).toHaveCount(1);
     }
@@ -26,9 +26,9 @@ test.describe("Home (Bangla)", () => {
 
   test("says where field work is available and that first call is free", async ({ page }) => {
     await page.goto("/");
-    await expect(page.getByText("সাভার ও গাজীপুরে এখন সেবা চালু").first()).toBeVisible();
-    await expect(page.getByText(/প্রথম ১০ মিনিটের কথা ফ্রি/).first()).toBeVisible();
-    await expect(page.getByText(/হাতে হাতে টাকা নয়/).first()).toBeVisible();
+    await expect(page.getByText("বর্তমানে সাভার ও গাজীপুরে সেবা চালু").first()).toBeVisible();
+    await expect(page.getByText(/প্রথম ১০ মিনিটের পরামর্শ বিনামূল্যে/).first()).toBeVisible();
+    await expect(page.getByText(/নগদ লেনদেন নেই/).first()).toBeVisible();
   });
 
   test("shows prices up front with government fees separate", async ({ page }) => {
@@ -44,7 +44,7 @@ test.describe("Home (Bangla)", () => {
     await page.goto("/");
     const q = page.locator("#faq summary").filter({ hasText: "ল্যান্ডডক্টর কি সরকারি অফিস?" });
     await q.click();
-    await expect(page.getByText(/বেসরকারি সেবা/)).toBeVisible();
+    await expect(page.getByText(/বেসরকারি পরামর্শ সেবা/)).toBeVisible();
     const ld = await page.locator('script[type="application/ld+json"]').textContent();
     expect(JSON.parse(ld ?? "{}")["@type"]).toBe("FAQPage");
   });
@@ -63,7 +63,7 @@ test.describe("Home (Bangla)", () => {
 test.describe("Home (English)", () => {
   test("mirrors the Bangla page", async ({ page }) => {
     await page.goto("/en");
-    await expect(page.getByRole("heading", { level: 1, name: /Verified land experts\.\s*Not middlemen\./ })).toBeVisible();
+    await expect(page.getByRole("heading", { level: 1, name: /Verified land experts\s*for every land matter/ })).toBeVisible();
     for (const c of CATEGORIES) {
       await expect(page.locator(`#services a[href="/en/help?category=${c}"]`)).toHaveCount(1);
     }
