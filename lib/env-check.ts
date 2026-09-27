@@ -14,21 +14,34 @@ export function assertProductionEnv(env: NodeJS.ProcessEnv = process.env): void 
   for (const k of ["NEXT_PUBLIC_SITE_URL", "NEXT_PUBLIC_SUPABASE_URL", "NEXT_PUBLIC_SUPABASE_ANON_KEY", "SUPABASE_SERVICE_ROLE_KEY", "IP_HASH_SALT"]) {
     if (!env[k]) missing.push(k);
   }
-  if (missing.length) throw new Error(`Production build is missing real values for: ${missing.join(", ")}`);
+  if (missing.length) throw new Error(`Production build is missing real values for: ${missing.map((k) => k.replace(/^NEXT_PUBLIC_/, "")).join(", ")} (with or without the NEXT_PUBLIC_ prefix)`);
 }
 
 /**
- * Vercel's Supabase integration adds SUPABASE_URL and SUPABASE_ANON_KEY (no NEXT_PUBLIC_ prefix).
- * Accept those names too, so the founder doesn't have to enter the same values twice.
- * Only the URL and the anon (publishable) key are copied: both are meant to be public.
- * The service-role key is never given a public name.
+ * Settings can be given without the NEXT_PUBLIC_ prefix (HOTLINE, SITE_URL, SUPABASE_URL …).
+ * Vercel warns about NEXT_PUBLIC_ names, and its Supabase integration uses SUPABASE_URL and
+ * SUPABASE_ANON_KEY, so accept those names and map them onto the NEXT_PUBLIC_ names the code uses.
+ * Only values that are public by nature are mapped (phone numbers, site address, the Supabase URL,
+ * the anon key and analytics IDs). The service-role key and the salt are never given a public name.
  */
-export function supabasePublicAliases(env: NodeJS.ProcessEnv = process.env): Record<string, string> {
-  const pick = (...keys: string[]) => keys.map((k) => env[k]).find((v) => typeof v === "string" && v !== "");
+const PUBLIC_ALIASES: Record<string, string[]> = {
+  NEXT_PUBLIC_SITE_URL: ["NEXT_PUBLIC_SITE_URL", "SITE_URL"],
+  NEXT_PUBLIC_HOTLINE: ["NEXT_PUBLIC_HOTLINE", "HOTLINE"],
+  NEXT_PUBLIC_WHATSAPP: ["NEXT_PUBLIC_WHATSAPP", "WHATSAPP"],
+  NEXT_PUBLIC_SUPABASE_URL: ["NEXT_PUBLIC_SUPABASE_URL", "SUPABASE_URL"],
+  NEXT_PUBLIC_SUPABASE_ANON_KEY: ["NEXT_PUBLIC_SUPABASE_ANON_KEY", "SUPABASE_ANON_KEY", "NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY", "SUPABASE_PUBLISHABLE_KEY"],
+  NEXT_PUBLIC_GA_ID: ["NEXT_PUBLIC_GA_ID", "GA_ID"],
+  NEXT_PUBLIC_CLARITY_ID: ["NEXT_PUBLIC_CLARITY_ID", "CLARITY_ID"],
+};
+
+export function publicAliases(env: NodeJS.ProcessEnv = process.env): Record<string, string> {
   const out: Record<string, string> = {};
-  const url = pick("NEXT_PUBLIC_SUPABASE_URL", "SUPABASE_URL");
-  const anon = pick("NEXT_PUBLIC_SUPABASE_ANON_KEY", "SUPABASE_ANON_KEY", "NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY", "SUPABASE_PUBLISHABLE_KEY");
-  if (url) out.NEXT_PUBLIC_SUPABASE_URL = url;
-  if (anon) out.NEXT_PUBLIC_SUPABASE_ANON_KEY = anon;
+  for (const [target, names] of Object.entries(PUBLIC_ALIASES)) {
+    const v = names.map((k) => env[k]).find((x) => typeof x === "string" && x !== "");
+    if (v) out[target] = v;
+  }
   return out;
 }
+
+/** @deprecated kept for older imports; use publicAliases. */
+export const supabasePublicAliases = publicAliases;

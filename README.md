@@ -23,7 +23,7 @@ npm run dev                  # http://localhost:3000
 1. Supabase → **SQL Editor** → paste all of `supabase/setup.sql` → **Run**.
    - Already ran an older `setup.sql`? Run the files in `supabase/updates/` in order instead.
 2. Supabase → **Authentication → Sign In / Providers**: turn **off** "Allow new users to sign up". Make sure **MFA → TOTP** is enabled.
-3. Fill `.env.local`: `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `IP_HASH_SALT`, hotline and WhatsApp numbers.
+3. Fill `.env.local`: `SUPABASE_URL`, `SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `IP_HASH_SALT`, `HOTLINE`, `WHATSAPP`, `SITE_URL`. The `NEXT_PUBLIC_` prefix is optional for the public ones (both spellings work).
 4. Create staff logins:
    ```bash
    node --env-file=.env.local scripts/create-staff.mjs you@example.com "Your Name" super_admin
@@ -54,7 +54,7 @@ Payments are marked paid only after the server asks SSLCommerz's validation API,
 
 1. Push this folder to a **private** GitHub repository.
 2. Vercel → New Project → import the repository.
-3. Add every variable from `.env.local` in Vercel → Settings → Environment Variables. Set `NEXT_PUBLIC_SITE_URL` to the real address.
+3. In Vercel → Settings → Environment Variables add: `SUPABASE_URL`, `SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `IP_HASH_SALT`, `HOTLINE`, `WHATSAPP`, `SITE_URL` (the real address) and `PAYMENTS_ENABLED=false`. No `NEXT_PUBLIC_` prefix needed; Vercel's Supabase integration names are accepted as they are. A production build stops with a clear message if any of these is missing or the hotline is still the placeholder.
 4. Deploy.
 
 ## Design tokens

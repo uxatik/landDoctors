@@ -10,10 +10,10 @@ if (!email || !name || !["operations", "super_admin"].includes(role)) {
   console.error('Usage: node --env-file=.env.local scripts/create-staff.mjs <email> "<name>" <operations|super_admin>');
   process.exit(1);
 }
-const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const url = process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL;
 const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
 if (!url || !key) {
-  console.error("NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY must be set in .env.local");
+  console.error("SUPABASE_URL (or NEXT_PUBLIC_SUPABASE_URL) and SUPABASE_SERVICE_ROLE_KEY must be set in .env.local");
   process.exit(1);
 }
 
