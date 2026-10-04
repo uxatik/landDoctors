@@ -359,7 +359,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       </section>
 
       {/* Phones: call and form always one tap away. Sticky inside the page, so it never covers the footer. */}
-      <nav aria-label={t("bar.label")} className="sticky bottom-0 z-30 shadow-[0_-4px_16px_rgba(0,0,0,0.06)] bg-[color-mix(in_srgb,var(--color-surface)_92%,transparent)] px-4 py-3 backdrop-blur-md sm:hidden">
+      <nav aria-label={t("bar.label")} data-mobile-bar className="sticky bottom-0 z-30 shadow-[0_-4px_16px_rgba(0,0,0,0.06)] bg-[color-mix(in_srgb,var(--color-surface)_92%,transparent)] px-4 py-3 backdrop-blur-md sm:hidden">
         <div className="grid grid-cols-2 gap-3">
           <a href={`tel:${hotline}`} className={`${BTN_SECONDARY} px-3`}>
             <LineIcon name="phone" size={18} /> {tContact("call")}

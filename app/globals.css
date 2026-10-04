@@ -16,6 +16,8 @@
   --color-on-accent: var(--color-accent-contrast);
   --color-verified: var(--color-verified);
   --color-verified-soft: var(--color-verified-soft);
+  --color-chat: var(--color-chat);
+  --color-chat-hover: var(--color-chat-hover);
   --color-warning: var(--color-warning-text);
   --color-warning-soft: var(--color-warning-soft);
   --color-danger: var(--color-danger);
@@ -63,6 +65,39 @@ h1, h2, h3 {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* Floating WhatsApp button (components/WhatsAppFloat.tsx).
+   It sits in the bottom-right corner; on phones it moves above the action bar where a page has one,
+   and it hides where the page shows its own WhatsApp button with the customer's case number.
+   On phones it also hides on the request form, where it would cover the fields.
+   The footer leaves the same amount of room, so the button never covers footer text. */
+:root {
+  --wa-float-bottom: 1rem;
+}
+@media (width >= 40rem) {
+  :root {
+    --wa-float-bottom: 1.5rem;
+  }
+}
+@media (width < 40rem) {
+  body:has([data-mobile-bar]) {
+    --wa-float-bottom: 5.5rem;
+  }
+}
+[data-wa-float] {
+  bottom: calc(var(--wa-float-bottom) + env(safe-area-inset-bottom, 0px));
+}
+[data-footer-end] {
+  padding-bottom: calc(var(--wa-float-bottom) + var(--tap-min) + 1rem);
+}
+body:has([data-case-contact]) [data-wa-float] {
+  display: none;
+}
+@media (width < 40rem) {
+  body:has(form.intake) [data-wa-float] {
+    display: none;
   }
 }
 

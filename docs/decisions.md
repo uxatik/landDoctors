@@ -52,3 +52,6 @@ Only the hue changed: the Designfoli primary scale, gradient partner, glow and s
 
 ## D14 — "What is your land problem?" moves into the hero (27 Sep 2026)
 Founder feedback: the first build was more actionable because the problem list came first. The six problem cards now sit directly under the headline, with call/WhatsApp and the three promises right after, so a visitor can act on the first screen. The offer sample moved down into the pricing section ("The offer you get after the free call"), and "How it works" now comes before pricing.
+
+## D15 — Floating WhatsApp button uses the system green (4 Oct 2026)
+The floating button must be seen on light, teal and navy sections, and must not compete with the teal "Tell us" button. It uses Designfoli's success green (`--color-success`, exposed as `--color-chat`) with dark text (about 9:1; white text on that green would fail AA), a chat-bubble icon and the word "WhatsApp". This is the one place a second colour is used for a button; no new hex value was added.

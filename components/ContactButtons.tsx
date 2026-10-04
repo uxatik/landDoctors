@@ -13,7 +13,8 @@ export async function ContactButtons({ message }: { message?: string } = {}) {
     "inline-flex min-h-[var(--tap-min)] items-center justify-center gap-2 rounded-full px-4 font-semibold no-underline";
 
   return (
-    <div className="grid grid-cols-2 gap-3">
+    // With a case number, the floating WhatsApp button hides (app/globals.css) so the customer uses this one.
+    <div className="grid grid-cols-2 gap-3" data-case-contact={message ? "" : undefined}>
       <a href={`tel:${hotline}`} className={`${btn} bg-accent text-on-accent hover:bg-accent-hover`}>
         <PhoneIcon />
         <span>{t("call")}</span>

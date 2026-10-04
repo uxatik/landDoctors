@@ -114,3 +114,6 @@ Founder: remove slang ("দালাল"), money talk outside pricing, and casua
 
 ## Iteration — WhatsApp with real case numbers (4 Oct 2026)
 Founder asked whether the case number in WhatsApp quick replies can be dynamic; WhatsApp quick replies are fixed text. Added four ready-message buttons on the staff case page (received, call time, ask documents, work done) that open WhatsApp with the customer's name and real case number filled in (`lib/admin/wa-templates.ts`). On the customer side, the WhatsApp button on the thank-you and offer pages now pre-types "আমার কেস নম্বর LD-…". Footer shows the office (Mohammadpur, Dhaka).
+
+## Iteration — Floating WhatsApp button (4 Oct 2026)
+Founder asked for WhatsApp to float. A green "WhatsApp" pill now stays in the bottom-right corner of every public page (D15). On phones it sits above the Call / Tell-us bar on the home page, and it is hidden on the request form (a test showed it covering the fields) and on the thank-you and offer pages, which have their own WhatsApp button with the case number. The footer leaves room so the button never covers footer text. No JavaScript: position and exceptions are CSS (`app/globals.css`).

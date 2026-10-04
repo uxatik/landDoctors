@@ -66,7 +66,7 @@ export async function SiteFooter() {
         </nav>
       </div>
       <div>
-        <p className="mx-auto w-full max-w-[var(--container-max)] px-4 pb-8 pt-2 text-sm text-muted sm:px-6">
+        <p className="mx-auto w-full max-w-[var(--container-max)] px-4 pt-2 text-sm text-muted sm:px-6" data-footer-end>
           {t("note")} © {new Date().getFullYear()} {ts("name")}
         </p>
       </div>

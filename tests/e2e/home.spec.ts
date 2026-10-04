@@ -82,7 +82,54 @@ test.describe("Thank-you page", () => {
   });
   test("ignores a made-up case number", async ({ page }) => {
     await page.goto("/help/thanks?ref=<script>");
-    const href = (await page.getByRole("link", { name: "WhatsApp", exact: true }).getAttribute("href")) ?? "";
+    const href = (await page.locator("main").getByRole("link", { name: "WhatsApp", exact: true }).getAttribute("href")) ?? "";
     expect(decodeURIComponent(href)).not.toContain("script");
+  });
+});
+
+test.describe("Floating WhatsApp button", () => {
+  const float = "[data-wa-float]";
+
+  test("stays in the corner and never covers the phone action bar or the footer text", async ({ page }) => {
+    await page.goto("/");
+    const wa = page.locator(float);
+    await expect(wa).toBeVisible();
+    await expect(wa).toHaveAttribute("href", /^https:\/\/wa\.me\/8801711000002\?text=/);
+    await expect(wa).toBeInViewport({ ratio: 1 });
+
+    const bar = page.locator("[data-mobile-bar]");
+    if (await bar.isVisible()) {
+      const [f, b] = [await wa.boundingBox(), await bar.boundingBox()];
+      expect(f!.y + f!.height).toBeLessThanOrEqual(b!.y);
+    }
+
+    // At the very end of the page the button sits in empty footer space.
+    await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
+    const overlap = await page.evaluate((sel) => {
+      const f = document.querySelector(sel)!.getBoundingClientRect();
+      const range = document.createRange();
+      range.selectNodeContents(document.querySelector("[data-footer-end]")!);
+      const t = range.getBoundingClientRect();
+      return !(f.right <= t.left || f.left >= t.right || f.bottom <= t.top || f.top >= t.bottom);
+    }, float);
+    expect(overlap).toBe(false);
+  });
+
+  test("stays off the form on phones, where it would cover the fields", async ({ page }) => {
+    await page.goto("/help");
+    const phone = page.viewportSize()!.width < 640;
+    await expect(page.locator(float)).toBeVisible({ visible: !phone });
+  });
+
+  test("greets in English on the English site", async ({ page }) => {
+    await page.goto("/en");
+    const href = (await page.locator(float).getAttribute("href")) ?? "";
+    expect(decodeURIComponent(href)).toMatch(/\?text=[A-Za-z]/);
+  });
+
+  test("hides where the page has its own case-number WhatsApp button", async ({ page }) => {
+    await page.goto("/help/thanks?ref=LD-0042");
+    await expect(page.locator(float)).toBeHidden();
+    await expect(page.getByRole("link", { name: "WhatsApp", exact: true })).toHaveCount(1);
   });
 });

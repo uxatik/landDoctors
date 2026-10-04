@@ -60,6 +60,9 @@
   /* Semantic (text shades derived from the Designfoli semantic colours for AA) */
   --color-verified: color-mix(in srgb, var(--color-success) 55%, black);
   --color-verified-soft: var(--color-success-bg);
+  /* Floating WhatsApp button: the system green with dark text (9:1), so it reads on light, teal and navy sections. */
+  --color-chat: var(--color-success);
+  --color-chat-hover: color-mix(in srgb, var(--color-success) 88%, black);
   --color-success-text: color-mix(in srgb, var(--color-success) 55%, black);
   --color-warning-text: color-mix(in srgb, var(--color-warning) 55%, black);
   --color-warning-soft: var(--color-warning-bg);
