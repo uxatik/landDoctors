@@ -54,9 +54,18 @@ Payments are marked paid only after the server asks SSLCommerz's validation API,
 
 1. Push this folder to a **private** GitHub repository.
 2. Vercel → New Project → import the repository.
-3. In Vercel → Settings → Environment Variables add: `SUPABASE_URL`, `SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `IP_HASH_SALT`, `HOTLINE`, `WHATSAPP`, `SITE_URL` (the real address) and `PAYMENTS_ENABLED=false`. While `PAYMENTS_ENABLED=false`, the offer page shows how to pay by bKash: the number is `BKASH_NUMBER` (empty = the WhatsApp number) and `BKASH_ACCOUNT_TYPE` is `personal` (Send Money) or `merchant` (Payment). Call buttons and the hotline number stay hidden until you add `CALLS_ENABLED=true` (then `HOTLINE` must be a real number). No `NEXT_PUBLIC_` prefix needed; Vercel's Supabase integration names are accepted as they are. A production build stops with a clear message if any of these is missing or the hotline is still the placeholder.
+3. In Vercel → Settings → Environment Variables add: `SUPABASE_URL`, `SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `IP_HASH_SALT`, `HOTLINE`, `WHATSAPP`, `SITE_URL` (the real address) and `PAYMENTS_ENABLED=false`. `SITE_URL` must be the public address (`https://landdoctorbd.com`): the sitemap, canonical tags, share images and the redirect from the old `vercel.app` address are built from it. While `PAYMENTS_ENABLED=false`, the offer page shows how to pay by bKash: the number is `BKASH_NUMBER` (empty = the WhatsApp number) and `BKASH_ACCOUNT_TYPE` is `personal` (Send Money) or `merchant` (Payment). Call buttons and the hotline number stay hidden until you add `CALLS_ENABLED=true` (then `HOTLINE` must be a real number). No `NEXT_PUBLIC_` prefix needed; Vercel's Supabase integration names are accepted as they are. A production build stops with a clear message if any of these is missing or the hotline is still the placeholder.
 4. Deploy.
 
 ## Design tokens
 
 The design system is Designfoli (`.claude/skills/designfoli/`, CSS in `styles/designfoli.css`, fonts in `public/fonts/`). `design/tokens.css` maps the project's token names onto Designfoli variables. See `CLAUDE.md` and `docs/decisions.md` D11.
+
+## Search and content
+
+- `app/robots.ts`, `app/sitemap.ts`, `app/llms.txt/route.ts`: what search engines and AI assistants are told. All three read `SITE_URL`.
+- `lib/seo.ts`: every public page gets its title, description, canonical address, other-language address and share image from `pageMeta()`.
+- `lib/content/services.ts`: the six service pages. Repeat only facts the site already states.
+- `lib/content/guides/`: the guides. A guide with `review: null` is a draft (banner, not in search, not in the sitemap). After a land expert has checked it, set `review: { by: "name", role: "role", on: "YYYY-MM-DD" }`.
+- `lib/content/legal.ts`: set `LEGAL_DRAFT = false` after the lawyer's review to remove the banner and allow the pages in search.
+- Share images and icons: `node scripts/make-brand-images.mjs && python3 scripts/make-favicon.py`.

@@ -46,8 +46,8 @@ test.describe("Home (Bangla)", () => {
     const q = page.locator("#faq summary").filter({ hasText: "ল্যান্ডডক্টর কি সরকারি অফিস?" });
     await q.click();
     await expect(page.getByText(/বেসরকারি পরামর্শ সেবা/)).toBeVisible();
-    const ld = await page.locator('script[type="application/ld+json"]').textContent();
-    expect(JSON.parse(ld ?? "{}")["@type"]).toBe("FAQPage");
+    const blocks = await page.locator('script[type="application/ld+json"]').allTextContents();
+    expect(blocks.map((b) => JSON.parse(b)["@type"])).toContain("FAQPage");
   });
 
   test("has no serious accessibility problems and no sideways scroll", async ({ page }) => {

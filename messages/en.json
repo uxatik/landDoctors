@@ -405,8 +405,9 @@
     },
     "nrb": {
       "title": "For Bangladeshis abroad",
-      "body": "Consult on WhatsApp and pay online; our local expert handles the site work.",
-      "cta": "Contact on WhatsApp →"
+      "body": "Consult on WhatsApp; our local expert handles the site work.",
+      "cta": "Contact on WhatsApp →",
+      "more": "See how it works →"
     },
     "faq": {
       "eyebrow": "FAQ",
@@ -457,6 +458,87 @@
     "policies": "Policies",
     "contact": "Contact",
     "areas": "Field work: Savar and Gazipur",
-    "address": "Office: Mohammadpur, Dhaka"
+    "address": "Office: Mohammadpur, Dhaka",
+    "abroad": "For Bangladeshis abroad",
+    "guides": "Guides"
+  },
+  "meta": {
+    "homeTitle": "LandDoctor — Verified land experts in Savar and Gazipur",
+    "homeDescription": "Deed and khatian checks, mutation (namjari), land survey and inheritance support from verified land experts. Field work in Savar and Gazipur; phone consultations from anywhere. First 10 minutes free.",
+    "helpDescription": "Tell us about your land problem. Our team will call you; the first 10 minutes of consultation are free.",
+    "legalDescription": "LandDoctor's {title}.",
+    "imageAlt": "LandDoctor: verified land experts in Bangladesh"
+  },
+  "service": {
+    "eyebrow": "Service",
+    "price": "Price",
+    "time": "Time",
+    "area": "Area",
+    "includesTitle": "What's included",
+    "documentsTitle": "Papers that help",
+    "documentsNote": "Share only the ones you have. Photos can be sent on WhatsApp; we do not store your documents on our servers.",
+    "stepsTitle": "How it works",
+    "notesTitle": "Good to know",
+    "commonNotes": [
+      "The first 10 minutes of consultation are free.",
+      "The final price is stated in your written proposal; you pay only after approving it.",
+      "Government fees are separate and itemised with receipts.",
+      "We never promise to speed up government work."
+    ],
+    "disclaimerLink": "Read the disclaimer",
+    "cta": "Ask about this service →",
+    "otherTitle": "Other services"
+  },
+  "guide": {
+    "eyebrow": "Guide",
+    "indexTitle": "Land guides",
+    "indexIntro": "Plain answers to common land questions. Each guide is published after a land expert has reviewed it.",
+    "indexDescription": "Plain-language guides on mutation, document checks, land survey, inheritance and khatians, reviewed by land experts.",
+    "draftBadge": "Draft",
+    "draft": "DRAFT – awaiting expert review",
+    "draftNote": "A land expert has not yet checked the facts in this guide. Confirm them with an official source or an expert before you act.",
+    "reviewerTitle": "For the reviewer: points to confirm",
+    "reviewedBy": "Reviewed by {name}, {role}",
+    "reviewedOn": "Reviewed on {date}",
+    "updated": "Facts last checked: {date}",
+    "sourcesTitle": "Sources",
+    "disclaimer": "This guide is general information, not legal advice about any particular land. Government fees and rules change, so check land.gov.bd for the latest.",
+    "helpTitle": "How LandDoctor can help",
+    "helpBody": "A verified land expert will look at your papers and advise you. The first 10 minutes of consultation are free.",
+    "helpService": "About the service: {service}",
+    "helpCta": "Tell us your problem →",
+    "allGuides": "All guides"
+  },
+  "abroad": {
+    "metaTitle": "For Bangladeshis abroad",
+    "eyebrow": "For Bangladeshis abroad",
+    "title": "Land help for Bangladeshis living abroad",
+    "description": "Living abroad with land in Bangladesh? Consult a verified land expert on WhatsApp. Document checks and site work in Savar and Gazipur, with a written report.",
+    "lede": "You don't need to fly home to get a land question answered. Talk to an expert on WhatsApp; our local experts do the site work.",
+    "canTitle": "What you can get",
+    "can": [
+      "A 30-minute consultation with a written summary of next steps (৳1,000)",
+      "A check before buying: deed, khatian, mutation, tax and litigation checks with a written report (Savar and Gazipur)",
+      "A land survey: on-site measurement and boundary marking, with a written report and sketch (Savar and Gazipur)",
+      "Advice on mutation, inheritance and division, khatian corrections, and possession disputes"
+    ],
+    "howTitle": "How it works from abroad",
+    "how": [
+      "Message us on WhatsApp. Our online form needs a Bangladeshi mobile number, so WhatsApp is easier if you don't have one.",
+      "A free 10-minute consultation at a time that suits both sides.",
+      "Send photos of the relevant papers on WhatsApp. We do not store your documents on our servers.",
+      "You receive a written proposal with the scope, time and price.",
+      "After you approve and pay, a verified expert starts the work."
+    ],
+    "payTitle": "Payment",
+    "payBody": "We currently take payment by bKash in Bangladesh. If you can't use bKash from abroad, a family member in Bangladesh can pay with your case number. Never pay an expert in cash.",
+    "notesTitle": "Good to know",
+    "notes": [
+      "LandDoctor is not a government office and not a law firm.",
+      "We never promise to speed up government work.",
+      "Site work is currently available only in Savar and Gazipur."
+    ],
+    "whatsappText": "Hello, I'm writing from abroad and need advice about land in Bangladesh.",
+    "formCta": "Have a Bangladeshi number? Use the form →"
   }
 }

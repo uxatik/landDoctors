@@ -1,6 +1,9 @@
 // DRAFT legal texts. They must be reviewed by a lawyer in Bangladesh before launch.
 // Plain data (no Markdown/HTML) so nothing here can inject markup.
 
+/** While true, the legal pages show the draft banner and are kept out of search results. Set to false after the lawyer's review. */
+export const LEGAL_DRAFT = true;
+
 export const LEGAL_SLUGS = ["terms", "refund", "privacy", "disclaimer"] as const;
 export type LegalSlug = (typeof LEGAL_SLUGS)[number];
 

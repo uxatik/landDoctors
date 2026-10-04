@@ -4,6 +4,7 @@ import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { preload } from "react-dom";
 import { routing } from "@/i18n/routing";
+import { SITE_URL } from "@/lib/seo";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { Analytics } from "@/components/Analytics";
@@ -19,7 +20,13 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "site" });
-  return { title: { default: `${t("name")} — ${t("tagline")}`, template: `%s · ${t("name")}` }, description: t("tagline") };
+  const tm = await getTranslations({ locale, namespace: "meta" });
+  return {
+    metadataBase: new URL(SITE_URL),
+    title: { default: tm("homeTitle"), template: `%s · ${t("name")}` },
+    description: tm("homeDescription"),
+    applicationName: t("name"),
+  };
 }
 
 export const viewport: Viewport = { width: "device-width", initialScale: 1, themeColor: "#0E7563" };

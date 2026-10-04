@@ -2,12 +2,15 @@ import { randomUUID } from "node:crypto";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { isCategory } from "@/lib/content/categories";
+import { pageMeta } from "@/lib/seo";
 import { IntakeForm } from "./IntakeForm";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "help" });
-  return { title: t("metaTitle") };
+  const tm = await getTranslations({ locale, namespace: "meta" });
+  const ts = await getTranslations({ locale, namespace: "site" });
+  return pageMeta({ locale, path: "/help", title: t("metaTitle"), description: tm("helpDescription"), siteName: ts("name") });
 }
 
 export default async function HelpPage({

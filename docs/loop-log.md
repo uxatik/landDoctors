@@ -123,3 +123,12 @@ Founder: nobody is available to answer calls yet. Added the `CALLS_ENABLED` sett
 
 ## Iteration — bKash by hand on the offer page (4 Oct 2026)
 Offer page (online payment off) now shows the bKash number, total and case number, a "Send TrxID" WhatsApp button and a "pay only to this number" warning (D17). Checked on a temporary preview page at 360px in both languages: no overflow, no serious accessibility issues, floating button hidden. The real offer page needs the database, so it was not opened here; one test offer on the live site is on the launch checklist.
+
+## Iteration — Search setup, service pages, abroad page, guides (4 Oct 2026)
+Founder asked for all thirteen items from the search audit. Built in four passes, each with tests before moving on.
+1. Search basics (D18): robots.txt, sitemap.xml, canonical and other-language tags, real titles and descriptions, business markup, share images (`public/og-bn.png`, `og-en.png`), browser icons, `/llms.txt`, old-domain redirect, draft legal pages out of search.
+2. Six service pages in both languages (D19).
+3. `/abroad` page for expatriates; the home page block links to it. Corrected the home block's "pay online" wording, which is not true while payment is bKash by hand.
+4. Guides (D20): four research passes collected facts with sources and confidence marks; ten guides written from the facts marked reliable, with the unconfirmed points listed for the reviewer.
+Checks: 96 unit tests, 7 database tests, 150 browser tests (phone and desktop) including accessibility on a service page, the abroad page and a guide. Looked at phone screenshots of a service page and a guide; changed the step list so the step name and its description sit on separate lines.
+Not done here: Search Console, Bing and Google Business Profile (founder's accounts); expert review of the guides; About page (needs real names).

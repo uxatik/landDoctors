@@ -26,6 +26,11 @@ Tick these before real customers see the site.
 - [ ] Incoming calls: leave `CALLS_ENABLED` off until a person or a tested voice agent answers the hotline. When turning it on: real `HOTLINE` set, hotline hours decided and shown on the home page.
 - [ ] bKash: confirm the account on the number shown on the offer page is active and is ours (send ৳10 to it), and whether it is personal or merchant (`BKASH_ACCOUNT_TYPE`). Do not send any offer link before this.
 - [ ] Open one test offer on the live site and check the bKash block (number, total, case number, TrxID button).
+- [ ] `SITE_URL` in Vercel is `https://landdoctorbd.com` (sitemap, canonical tags and the old-address redirect all depend on it). Check: open `/robots.txt` and confirm the sitemap line shows the new address.
+- [ ] Google Search Console and Bing Webmaster Tools: verify the domain and submit `/sitemap.xml`.
+- [ ] Google Business Profile created with the same name, WhatsApp number and office as the site.
+- [ ] Guides: a named land expert reviews each guide (the draft page lists what to confirm); then set `review` in `lib/content/guides/`.
+- [ ] Legal pages: after the lawyer's review set `LEGAL_DRAFT = false` in `lib/content/legal.ts`.
 - [ ] Someone is assigned to call customers back (the site promises a free 10-minute call).
 - [x] Designfoli tokens swapped into `design/tokens.css`; contrast checked (AA, see D11).
 - [ ] Bangla copy read by a native speaker on a phone.

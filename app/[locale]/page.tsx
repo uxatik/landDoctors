@@ -1,9 +1,11 @@
+import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { CATEGORY_SLUGS, type CategorySlug } from "@/lib/content/categories";
 import { callsEnabled, publicEnv } from "@/lib/env";
 import { formatPhoneDisplay, toWhatsAppNumber } from "@/lib/phone";
 import { formatTaka } from "@/lib/money";
+import { absoluteUrl, pageMeta, SITE_URL } from "@/lib/seo";
 import { MouzaSketch } from "@/components/MouzaSketch";
 import { Container, SectionHeading } from "@/components/landing/Section";
 import { LineIcon, type IconName } from "@/components/landing/LineIcon";
@@ -24,6 +26,13 @@ type Pkg = { name: string; price: number; from: boolean; desc: string; points: s
 type Step = { title: string; body: string };
 type Faq = { q: string; a: string };
 
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "meta" });
+  const ts = await getTranslations({ locale, namespace: "site" });
+  return pageMeta({ locale, path: "/", title: t("homeTitle"), description: t("homeDescription"), absoluteTitle: true, siteName: ts("name") });
+}
+
 const BTN = "inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 font-semibold no-underline transition-colors duration-150";
 const BTN_PRIMARY = `${BTN} bg-accent text-on-accent shadow-[var(--shadow-glow-light)] hover:bg-accent-hover`;
 const BTN_SECONDARY = `${BTN} border border-line bg-surface text-ink hover:border-accent hover:text-accent`;
@@ -36,6 +45,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   const th = await getTranslations("home");
   const tc = await getTranslations("categories");
   const tContact = await getTranslations("contact");
+  const tMeta = await getTranslations("meta");
   const tFooter = await getTranslations("footer");
   const tn = await getTranslations("nav");
 
@@ -50,6 +60,30 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   const safety = t.raw("safety.items") as Step[];
   const faqs = t.raw("faq.items") as Faq[];
   const num = (n: number) => new Intl.NumberFormat(bn ? "bn-BD" : "en").format(n);
+
+  // The business as machines read it: name, area, contact and the published prices.
+  const businessJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "@id": `${SITE_URL}/#business`,
+    name: "LandDoctor",
+    alternateName: "ল্যান্ডডক্টর",
+    url: absoluteUrl(locale, "/"),
+    image: `${SITE_URL}/og-${bn ? "bn" : "en"}.png`,
+    description: tMeta("homeDescription"),
+    areaServed: [
+      { "@type": "City", name: "Savar" },
+      { "@type": "City", name: "Gazipur" },
+    ],
+    address: { "@type": "PostalAddress", addressLocality: "Mohammadpur, Dhaka", addressCountry: "BD" },
+    contactPoint: { "@type": "ContactPoint", contactType: "customer service", url: `https://wa.me/${toWhatsAppNumber(publicEnv.NEXT_PUBLIC_WHATSAPP)}`, availableLanguage: ["bn", "en"] },
+    makesOffer: packages.map((p) => ({
+      "@type": "Offer",
+      name: p.name,
+      priceCurrency: "BDT",
+      ...(p.from ? { priceSpecification: { "@type": "PriceSpecification", minPrice: p.price, priceCurrency: "BDT" } } : { price: p.price }),
+    })),
+  };
 
   const faqJsonLd = {
     "@context": "https://schema.org",
@@ -300,6 +334,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             <div className="flex flex-1 flex-col gap-2">
               <h2 id="nrb-title" className="text-xl font-semibold text-ink sm:text-2xl">{t("nrb.title")}</h2>
               <p className="text-muted">{t("nrb.body")}</p>
+              <Link href="/abroad" className="w-fit font-semibold text-accent no-underline hover:underline">{t("nrb.more")}</Link>
             </div>
             <a href={waHref} target="_blank" rel="noopener noreferrer" className={`${BTN_SECONDARY} shrink-0`}>
               {t("nrb.cta")}
@@ -343,6 +378,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           </div>
         </Container>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd).replace(/</g, "\\u003c") }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(businessJsonLd).replace(/</g, "\\u003c") }} />
       </section>
 
       {/* ───────────── Final call to action ───────────── */}

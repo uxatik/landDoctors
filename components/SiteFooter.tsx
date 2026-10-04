@@ -1,7 +1,9 @@
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { CATEGORY_SLUGS } from "@/lib/content/categories";
+import { PUBLISHED_GUIDES } from "@/lib/content/guides";
 import { LEGAL_SLUGS } from "@/lib/content/legal";
+import { SERVICE_SLUG } from "@/lib/content/services";
 import { callsEnabled, publicEnv } from "@/lib/env";
 import { formatPhoneDisplay, toWhatsAppNumber } from "@/lib/phone";
 import { LogoMark } from "./LogoMark";
@@ -45,7 +47,7 @@ export async function SiteFooter() {
           <h2 id="f-services" className={head}>{tx("services")}</h2>
           <ul className="flex flex-col gap-2">
             {CATEGORY_SLUGS.map((s) => (
-              <li key={s}><Link href={{ pathname: "/help", query: { category: s } }} className={link}>{tc(`${s}.name`)}</Link></li>
+              <li key={s}><Link href={`/services/${SERVICE_SLUG[s]}`} className={link}>{tc(`${s}.name`)}</Link></li>
             ))}
           </ul>
         </nav>
@@ -55,6 +57,8 @@ export async function SiteFooter() {
             {(["how", "pricing", "faq"] as const).map((k) => (
               <li key={k}><Link href={{ pathname: "/", hash: k }} className={link}>{tn(k)}</Link></li>
             ))}
+            <li><Link href="/abroad" className={link}>{tx("abroad")}</Link></li>
+            {PUBLISHED_GUIDES.length > 0 && <li><Link href="/guides" className={link}>{tx("guides")}</Link></li>}
             <li><Link href="/help" className={link}>{tn("start")}</Link></li>
           </ul>
         </nav>

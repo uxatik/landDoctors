@@ -21,6 +21,7 @@ export default defineConfig({
     env: {
       NEXT_PUBLIC_HOTLINE: "+8801711000001",
       NEXT_PUBLIC_WHATSAPP: "+8801711000002",
+      NEXT_PUBLIC_SITE_URL: "https://landdoctor.test",
     },
   },
 });
