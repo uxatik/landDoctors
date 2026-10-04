@@ -38,7 +38,8 @@
   "contact": {
     "call": "Call us",
     "whatsapp": "WhatsApp",
-    "whatsappText": "Hello, I need help with a land matter."
+    "whatsappText": "Hello, I need help with a land matter.",
+    "whatsappWithRef": "Hello, my case number is {ref}."
   },
   "help": {
     "title": "Tell us your problem",

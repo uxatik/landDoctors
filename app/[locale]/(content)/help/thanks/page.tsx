@@ -16,6 +16,7 @@ export default async function ThanksPage({
   setRequestLocale(locale);
   const { ref, waitlist } = await searchParams;
   const t = await getTranslations("thanks");
+  const tContact = await getTranslations("contact");
   const validRef = typeof ref === "string" && /^LD-\d{4,}$/.test(ref) ? ref : null;
   const next = t.raw("next") as string[];
 
@@ -48,7 +49,7 @@ export default async function ThanksPage({
         </section>
       )}
       <p className="rounded-card bg-warning-soft p-3 text-sm">{t("cashWarning")}</p>
-      <ContactButtons />
+      <ContactButtons message={validRef ? tContact("whatsappWithRef", { ref: validRef }) : undefined} />
       <Link href="/" className="text-accent underline">{t("home")}</Link>
     </div>
   );

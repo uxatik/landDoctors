@@ -72,3 +72,17 @@ test.describe("Home (English)", () => {
     expect(results.violations.filter((v) => v.impact === "serious" || v.impact === "critical")).toEqual([]);
   });
 });
+
+test.describe("Thank-you page", () => {
+  test("WhatsApp button carries the case number", async ({ page }) => {
+    await page.goto("/help/thanks?ref=LD-0042");
+    const wa = page.getByRole("link", { name: "WhatsApp", exact: true });
+    const href = (await wa.getAttribute("href")) ?? "";
+    expect(decodeURIComponent(href)).toContain("আমার কেস নম্বর LD-0042");
+  });
+  test("ignores a made-up case number", async ({ page }) => {
+    await page.goto("/help/thanks?ref=<script>");
+    const href = (await page.getByRole("link", { name: "WhatsApp", exact: true }).getAttribute("href")) ?? "";
+    expect(decodeURIComponent(href)).not.toContain("script");
+  });
+});

@@ -3,11 +3,12 @@ import { publicEnv } from "@/lib/env";
 import { formatPhoneDisplay, toWhatsAppNumber } from "@/lib/phone";
 import { ChatIcon, PhoneIcon } from "./icons";
 
-export async function ContactButtons() {
+/** `message` replaces the default greeting, e.g. to include the customer's case number. */
+export async function ContactButtons({ message }: { message?: string } = {}) {
   const t = await getTranslations("contact");
   const hotline = publicEnv.NEXT_PUBLIC_HOTLINE;
   const whatsapp = publicEnv.NEXT_PUBLIC_WHATSAPP;
-  const waHref = `https://wa.me/${toWhatsAppNumber(whatsapp)}?text=${encodeURIComponent(t("whatsappText"))}`;
+  const waHref = `https://wa.me/${toWhatsAppNumber(whatsapp)}?text=${encodeURIComponent(message ?? t("whatsappText"))}`;
   const btn =
     "inline-flex min-h-[var(--tap-min)] items-center justify-center gap-2 rounded-full px-4 font-semibold no-underline";
 

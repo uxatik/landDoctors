@@ -36,6 +36,7 @@ export default async function OfferPage({ params }: { params: Promise<{ locale: 
   if (!data) notFound();
 
   const t = await getTranslations("offer");
+  const tContact = await getTranslations("contact");
   const bn = locale === "bn";
   const o = data;
   const paymentsOn = serverEnv().PAYMENTS_ENABLED === "true";
@@ -120,7 +121,7 @@ export default async function OfferPage({ params }: { params: Promise<{ locale: 
       {o.state === "paid" && <Notice title={t("paidTitle")} body={t("paidBody")} tone="good" />}
 
       <p className="rounded-card bg-warning-soft p-3 text-sm">{t("cash")}</p>
-      {o.state !== "paid" && <ContactButtons />}
+      {o.state !== "paid" && <ContactButtons message={tContact("whatsappWithRef", { ref: o.ref })} />}
       <Link href="/legal/refund" className="text-sm text-accent underline">{t("refundLink")}</Link>
     </div>
   );

@@ -9,6 +9,7 @@ import { FIELD_CATEGORIES, type CategorySlug } from "@/lib/content/categories";
 import { publicEnv } from "@/lib/env";
 import { formatTaka } from "@/lib/money";
 import { formatPhoneDisplay, toWhatsAppNumber } from "@/lib/phone";
+import { WA_TEMPLATE_LABEL, waLink, waTemplate, type WaTemplateKey } from "@/lib/admin/wa-templates";
 import { staffClient } from "@/lib/supabase/server";
 import { CopyButton } from "@/components/admin/CopyButton";
 import { addNote, assignConsultant, changeStatus, createOffer, recordPayment, recordRefund } from "./actions";
@@ -112,6 +113,18 @@ export default async function CasePage({
             </dd>
           </dl>
           {c.description && <p className="whitespace-pre-wrap rounded-control bg-sunken p-3 text-sm">{c.description}</p>}
+          <div className="flex flex-col gap-2">
+            <h3 className="text-sm font-semibold text-muted">WhatsApp বার্তা · Ready messages</h3>
+            <div className="flex flex-wrap gap-2">
+              {(Object.keys(WA_TEMPLATE_LABEL) as WaTemplateKey[]).map((k) => (
+                <a key={k} className={BTN_2} target="_blank" rel="noopener noreferrer" data-wa-template={k}
+                  href={waLink(c.customer_phone, waTemplate(k, c))}>
+                  {WA_TEMPLATE_LABEL[k]}
+                </a>
+              ))}
+            </div>
+            <p className="text-xs text-muted">কেস নম্বর ও নাম নিজে থেকে বসে। WhatsApp খুলবে, আপনি শুধু Send চাপবেন। · Case number and name are filled in; you press send.</p>
+          </div>
         </section>
 
         <section className={BOX} aria-label="Status">

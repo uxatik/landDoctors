@@ -111,3 +111,6 @@ Founder asked to drop the "প্রস্তাবে যা যা থাক�
 
 ## Iteration — Professional tone in both languages (27 Sep 2026)
 Founder: remove slang ("দালাল"), money talk outside pricing, and casual phrasing. Rewrote headline ("জমির সমস্যায় যাচাইকৃত ভূমি বিশেষজ্ঞ" / "Verified land experts for every land matter"), services, steps (step 3 is now "লিখিত প্রস্তাব" with a scope/timeline/expert checklist instead of prices), pricing, experts, safety ("নিরাপত্তা ও স্বচ্ছতা"), FAQ, form, thank-you and payment messages. Money is mentioned only in the pricing section, the offer and payment pages. "জমি মাপজোখ" → "জমি পরিমাপ" everywhere.
+
+## Iteration — WhatsApp with real case numbers (4 Oct 2026)
+Founder asked whether the case number in WhatsApp quick replies can be dynamic; WhatsApp quick replies are fixed text. Added four ready-message buttons on the staff case page (received, call time, ask documents, work done) that open WhatsApp with the customer's name and real case number filled in (`lib/admin/wa-templates.ts`). On the customer side, the WhatsApp button on the thank-you and offer pages now pre-types "আমার কেস নম্বর LD-…". Footer shows the office (Mohammadpur, Dhaka).
