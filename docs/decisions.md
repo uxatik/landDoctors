@@ -55,3 +55,6 @@ Founder feedback: the first build was more actionable because the problem list c
 
 ## D15 — Floating WhatsApp button uses the system green (4 Oct 2026)
 The floating button must be seen on light, teal and navy sections, and must not compete with the teal "Tell us" button. It uses Designfoli's success green (`--color-success`, exposed as `--color-chat`) with dark text (about 9:1; white text on that green would fail AA), a chat-bubble icon and the word "WhatsApp". This is the one place a second colour is used for a button; no new hex value was added.
+
+## D16 — Incoming calls are off until someone answers (4 Oct 2026)
+Nobody answers the hotline yet, and an unanswered call costs more trust than no call button. `CALLS_ENABLED` (default off) hides every call button and the hotline number on the public site; WhatsApp and the form remain, and we still call customers back. Messages that told people to call now say "write to us on WhatsApp", which is true in both states. Turning it on is one setting in Vercel (`CALLS_ENABLED=true`) plus a redeploy; a production build then requires a real `HOTLINE`.

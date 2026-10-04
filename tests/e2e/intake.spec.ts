@@ -66,12 +66,12 @@ test.describe("Intake form", () => {
     await expect(page.locator("#form-errors")).toContainText("Enter your mobile number");
   });
 
-  test("tells people to call when the service is not connected", async ({ page }) => {
+  test("points people to WhatsApp when the service is not connected", async ({ page }) => {
     test.skip(HAS_DB, "only meaningful without a database");
     await page.goto("/help");
     await fillValid(page);
     await page.getByRole("button", { name: "পাঠান" }).click();
-    await expect(page.locator("#form-errors")).toContainText("কল বা WhatsApp করুন");
+    await expect(page.locator("#form-errors")).toContainText("WhatsApp-এ লিখুন");
   });
 });
 

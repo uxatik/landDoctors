@@ -1,7 +1,7 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { CATEGORY_SLUGS, type CategorySlug } from "@/lib/content/categories";
-import { publicEnv } from "@/lib/env";
+import { callsEnabled, publicEnv } from "@/lib/env";
 import { formatPhoneDisplay, toWhatsAppNumber } from "@/lib/phone";
 import { formatTaka } from "@/lib/money";
 import { MouzaSketch } from "@/components/MouzaSketch";
@@ -125,10 +125,14 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
               </ul>
               <p className="mt-6 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-center text-white/90">
                 <span>{t("services.orTalk")}</span>
-                <a href={`tel:${hotline}`} className="inline-flex items-center gap-1.5 font-semibold text-white underline decoration-white/40 underline-offset-4 hover:decoration-white">
-                  <LineIcon name="phone" size={16} /> {tContact("call")} <span dir="ltr">{formatPhoneDisplay(hotline)}</span>
-                </a>
-                <span aria-hidden="true" className="hidden text-white/50 sm:inline">·</span>
+                {callsEnabled && (
+                  <>
+                    <a href={`tel:${hotline}`} className="inline-flex items-center gap-1.5 font-semibold text-white underline decoration-white/40 underline-offset-4 hover:decoration-white">
+                      <LineIcon name="phone" size={16} /> {tContact("call")} <span dir="ltr">{formatPhoneDisplay(hotline)}</span>
+                    </a>
+                    <span aria-hidden="true" className="hidden text-white/50 sm:inline">·</span>
+                  </>
+                )}
                 <a href={waHref} target="_blank" rel="noopener noreferrer" className="font-semibold text-white underline decoration-white/40 underline-offset-4 hover:decoration-white">
                   {tContact("whatsapp")}
                 </a>
@@ -312,14 +316,16 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             <div className="order-last flex flex-col gap-3 rounded-card bg-sunken p-5 lg:order-none">
               <p className="font-semibold text-ink">{t("services.orTalk")}</p>
               <div className="flex flex-wrap gap-3">
-                <a href={`tel:${hotline}`} className={`${BTN} min-h-11 bg-accent px-5 text-on-accent hover:bg-accent-hover`}>
-                  <LineIcon name="phone" size={18} /> {tContact("call")}
-                </a>
-                <a href={waHref} target="_blank" rel="noopener noreferrer" className={`${BTN} min-h-11 border border-accent px-5 text-accent hover:bg-accent-soft`}>
+                {callsEnabled && (
+                  <a href={`tel:${hotline}`} className={`${BTN} min-h-11 bg-accent px-5 text-on-accent hover:bg-accent-hover`}>
+                    <LineIcon name="phone" size={18} /> {tContact("call")}
+                  </a>
+                )}
+                <a href={waHref} target="_blank" rel="noopener noreferrer" className={`${BTN} min-h-11 px-5 ${callsEnabled ? "border border-accent text-accent hover:bg-accent-soft" : "bg-accent text-on-accent hover:bg-accent-hover"}`}>
                   {tContact("whatsapp")}
                 </a>
               </div>
-              <p dir="ltr" className="text-sm font-semibold text-ink [text-align:start]">{formatPhoneDisplay(hotline)}</p>
+              {callsEnabled && <p dir="ltr" className="text-sm font-semibold text-ink [text-align:start]">{formatPhoneDisplay(hotline)}</p>}
             </div>
           </div>
           <div className="flex flex-col divide-y divide-line">
@@ -350,20 +356,28 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             <p className="relative max-w-xl text-lg text-white/90">{t("cta.body")}</p>
             <div className="relative flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
               <Link href="/help" className={`${BTN} bg-white text-[var(--color-primary-700)] hover:bg-[var(--color-primary-100)]`}>{t("hero.primary")}</Link>
-              <a href={`tel:${hotline}`} className={`${BTN} border border-white/60 text-white hover:bg-white/10`}>
-                <LineIcon name="phone" size={18} /> {tContact("call")}
-              </a>
+              {callsEnabled ? (
+                <a href={`tel:${hotline}`} className={`${BTN} border border-white/60 text-white hover:bg-white/10`}>
+                  <LineIcon name="phone" size={18} /> {tContact("call")}
+                </a>
+              ) : (
+                <a href={waHref} target="_blank" rel="noopener noreferrer" className={`${BTN} border border-white/60 text-white hover:bg-white/10`}>
+                  {tContact("whatsapp")}
+                </a>
+              )}
             </div>
           </div>
         </Container>
       </section>
 
-      {/* Phones: call and form always one tap away. Sticky inside the page, so it never covers the footer. */}
+      {/* Phones: the form (and the call button, when calls are on) always one tap away. Sticky inside the page, so it never covers the footer. */}
       <nav aria-label={t("bar.label")} data-mobile-bar className="sticky bottom-0 z-30 shadow-[0_-4px_16px_rgba(0,0,0,0.06)] bg-[color-mix(in_srgb,var(--color-surface)_92%,transparent)] px-4 py-3 backdrop-blur-md sm:hidden">
-        <div className="grid grid-cols-2 gap-3">
-          <a href={`tel:${hotline}`} className={`${BTN_SECONDARY} px-3`}>
-            <LineIcon name="phone" size={18} /> {tContact("call")}
-          </a>
+        <div className={`grid gap-3 ${callsEnabled ? "grid-cols-2" : ""}`}>
+          {callsEnabled && (
+            <a href={`tel:${hotline}`} className={`${BTN_SECONDARY} px-3`}>
+              <LineIcon name="phone" size={18} /> {tContact("call")}
+            </a>
+          )}
           <Link href="/help" className={`${BTN_PRIMARY} px-3`}>{tn("start")} →</Link>
         </div>
       </nav>

@@ -117,3 +117,6 @@ Founder asked whether the case number in WhatsApp quick replies can be dynamic; 
 
 ## Iteration — Floating WhatsApp button (4 Oct 2026)
 Founder asked for WhatsApp to float. A green "WhatsApp" pill now stays in the bottom-right corner of every public page (D15). On phones it sits above the Call / Tell-us bar on the home page, and it is hidden on the request form (a test showed it covering the fields) and on the thank-you and offer pages, which have their own WhatsApp button with the case number. The footer leaves room so the button never covers footer text. No JavaScript: position and exceptions are CSS (`app/globals.css`).
+
+## Iteration — Incoming calls switched off (4 Oct 2026)
+Founder: nobody is available to answer calls yet. Added the `CALLS_ENABLED` setting (D16), off by default: call buttons and the hotline number are gone from the hero panel, FAQ box, closing band, phone bar, footer and the thank-you, offer and payment pages. The phone bar is now one "Tell us" button with the floating WhatsApp button above it. Error, offer, payment and legal texts point to WhatsApp instead of calling. The floating button now hides on any page with its own contact block. Checked both states: off shows 0 call links, on shows 5 on the home page.

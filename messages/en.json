@@ -122,9 +122,9 @@
       }
     },
     "formErrors": {
-      "rate_limited": "Too many attempts. Try again in an hour, or call us directly.",
-      "unavailable": "The form isn't working right now. Please call or message us on WhatsApp.",
-      "unknown": "Something went wrong. Try again, or call us directly."
+      "rate_limited": "Too many attempts. Try again in an hour, or message us on WhatsApp.",
+      "unavailable": "The form isn't working right now. Please message us on WhatsApp.",
+      "unknown": "Something went wrong. Try again, or message us on WhatsApp."
     },
     "metaTitle": "Tell us your problem"
   },
@@ -139,7 +139,7 @@
       "If needed, a written proposal; you pay only once you approve it"
     ],
     "waitlistTitle": "You're on the waiting list",
-    "waitlistBody": "Field work hasn't started in your area yet. We'll call you when it does. Meanwhile, call us if you'd like advice by phone.",
+    "waitlistBody": "Field work hasn't started in your area yet. We'll call you when it does. Meanwhile, message us on WhatsApp if you'd like advice by phone and we'll call you.",
     "receivedTitle": "Thank you",
     "receivedBody": "We've received your details.",
     "cashWarning": "No one from LandDoctor will ever ask you for cash. If anyone does, please let us know.",
@@ -184,11 +184,11 @@
     "refundLink": "Refund policy",
     "expires": "Offer valid until {date}",
     "manualTitle": "How to pay",
-    "manualBody": "Online payment is coming soon. For now, call or message us on WhatsApp with your case number to pay.",
-    "unconfirmedTitle": "Call us to confirm the price",
-    "unconfirmedBody": "The price for this offer isn't final yet. Please call or message us before paying.",
+    "manualBody": "Online payment is coming soon. For now, message us on WhatsApp with your case number to pay.",
+    "unconfirmedTitle": "Contact us to confirm the price",
+    "unconfirmedBody": "The price for this offer isn't final yet. Please message us on WhatsApp before paying.",
     "expiredTitle": "This offer has expired",
-    "expiredBody": "Call or message us with your case number for a new offer.",
+    "expiredBody": "Message us on WhatsApp with your case number for a new offer.",
     "paidTitle": "Already paid",
     "paidBody": "Thank you. Your expert will start the work and we'll keep in touch."
   },
@@ -199,7 +199,7 @@
     },
     "fail": {
       "title": "Payment didn't go through",
-      "body": "No payment was taken. Try again from your offer link, or call us."
+      "body": "No payment was taken. Try again from your offer link, or message us on WhatsApp."
     },
     "cancel": {
       "title": "You cancelled the payment",
@@ -211,7 +211,7 @@
     },
     "error": {
       "title": "Couldn't start the payment",
-      "body": "Please call or message us on WhatsApp and we'll help."
+      "body": "Please message us on WhatsApp and we'll help."
     },
     "ref": "Case number"
   },
@@ -269,7 +269,7 @@
     },
     "services": {
       "title": "Which service do you need?",
-      "orTalk": "Prefer to talk?"
+      "orTalk": "Prefer to talk to us directly?"
     },
     "pricing": {
       "eyebrow": "Pricing",
@@ -320,7 +320,7 @@
       "steps": [
         {
           "title": "Tell us your need",
-          "body": "By online form or phone."
+          "body": "By online form or WhatsApp."
         },
         {
           "title": "Initial consultation",

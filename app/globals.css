@@ -70,7 +70,7 @@ h1, h2, h3 {
 
 /* Floating WhatsApp button (components/WhatsAppFloat.tsx).
    It sits in the bottom-right corner; on phones it moves above the action bar where a page has one,
-   and it hides where the page shows its own WhatsApp button with the customer's case number.
+   and it hides where the page shows its own contact block (thank-you, offer and payment pages).
    On phones it also hides on the request form, where it would cover the fields.
    The footer leaves the same amount of room, so the button never covers footer text. */
 :root {
@@ -92,7 +92,7 @@ h1, h2, h3 {
 [data-footer-end] {
   padding-bottom: calc(var(--wa-float-bottom) + var(--tap-min) + 1rem);
 }
-body:has([data-case-contact]) [data-wa-float] {
+body:has([data-own-contact]) [data-wa-float] {
   display: none;
 }
 @media (width < 40rem) {

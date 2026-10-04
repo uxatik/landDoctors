@@ -15,11 +15,12 @@ test.describe("Home (Bangla)", () => {
     await expect(page).toHaveURL(/\/help\?category=mutation$/);
   });
 
-  test("shows call and WhatsApp with the number as text", async ({ page }) => {
+  test("offers WhatsApp, and no phone number while incoming calls are off", async ({ page }) => {
     await page.goto("/");
-    const call = page.locator("#services").getByRole("link", { name: /কল করুন/ });
-    await expect(call).toHaveAttribute("href", "tel:+8801711000001");
-    await expect(page.getByText("01711-000001").first()).toBeVisible();
+    // Nobody answers the phone yet (CALLS_ENABLED is off), so the site must not invite calls.
+    await expect(page.locator('a[href^="tel:"]')).toHaveCount(0);
+    await expect(page.getByText("01711-000001")).toHaveCount(0);
+    await expect(page.getByText(/কল করুন|হটলাইন/)).toHaveCount(0);
     const wa = page.locator("#services").getByRole("link", { name: "WhatsApp", exact: true });
     await expect(wa).toHaveAttribute("href", /^https:\/\/wa\.me\/8801711000002\?text=/);
   });

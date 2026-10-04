@@ -8,6 +8,7 @@ const publicSchema = z.object({
   NEXT_PUBLIC_SITE_URL: z.string().url().default("http://localhost:3000"),
   NEXT_PUBLIC_HOTLINE: z.string().regex(/^\+8801[3-9]\d{8}$/).default("+8801700000000"),
   NEXT_PUBLIC_WHATSAPP: z.string().regex(/^\+8801[3-9]\d{8}$/).default("+8801700000000"),
+  NEXT_PUBLIC_CALLS_ENABLED: z.enum(["true", "false"]).default("false"),
   NEXT_PUBLIC_SUPABASE_URL: z.string().url().optional(),
   NEXT_PUBLIC_SUPABASE_ANON_KEY: z.string().min(20).optional(),
   NEXT_PUBLIC_GA_ID: z.string().optional(),
@@ -29,11 +30,19 @@ export const publicEnv = publicSchema.parse({
   NEXT_PUBLIC_SITE_URL: emptyToUndefined(process.env.NEXT_PUBLIC_SITE_URL),
   NEXT_PUBLIC_HOTLINE: emptyToUndefined(process.env.NEXT_PUBLIC_HOTLINE),
   NEXT_PUBLIC_WHATSAPP: emptyToUndefined(process.env.NEXT_PUBLIC_WHATSAPP),
+  NEXT_PUBLIC_CALLS_ENABLED: emptyToUndefined(process.env.NEXT_PUBLIC_CALLS_ENABLED),
   NEXT_PUBLIC_SUPABASE_URL: emptyToUndefined(process.env.NEXT_PUBLIC_SUPABASE_URL),
   NEXT_PUBLIC_SUPABASE_ANON_KEY: emptyToUndefined(process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY),
   NEXT_PUBLIC_GA_ID: emptyToUndefined(process.env.NEXT_PUBLIC_GA_ID),
   NEXT_PUBLIC_CLARITY_ID: emptyToUndefined(process.env.NEXT_PUBLIC_CLARITY_ID),
 });
+
+/**
+ * Whether the site invites people to phone us (call buttons and the hotline number).
+ * Off until someone, or something, answers the phone: set CALLS_ENABLED=true to turn it on.
+ * We still call customers back either way; this only controls calls coming in.
+ */
+export const callsEnabled = publicEnv.NEXT_PUBLIC_CALLS_ENABLED === "true";
 
 /** Call only from server code. Throws with the missing variable names if invalid. */
 export function serverEnv() {

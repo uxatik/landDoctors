@@ -22,8 +22,9 @@ Tick these before real customers see the site.
 - [ ] Same prices on the home page (`messages/bn.json` and `messages/en.json` → `landing.pricing.packages`).
 - [ ] Home page claims checked as true: association membership, how experts are checked, refund wording, payment methods (bKash, Nagad, Rocket, card) live on SSLCommerz.
 - [ ] Package scope and exclusions checked by the consultants who will deliver them.
-- [ ] Real hotline and WhatsApp numbers in the environment variables.
-- [ ] Hotline hours decided and added to the home page (currently not shown).
+- [ ] Real WhatsApp number in the environment variables.
+- [ ] Incoming calls: leave `CALLS_ENABLED` off until a person or a tested voice agent answers the hotline. When turning it on: real `HOTLINE` set, hotline hours decided and shown on the home page.
+- [ ] Someone is assigned to call customers back (the site promises a free 10-minute call).
 - [x] Designfoli tokens swapped into `design/tokens.css`; contrast checked (AA, see D11).
 - [ ] Bangla copy read by a native speaker on a phone.
 

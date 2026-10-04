@@ -2,7 +2,7 @@ import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { CATEGORY_SLUGS } from "@/lib/content/categories";
 import { LEGAL_SLUGS } from "@/lib/content/legal";
-import { publicEnv } from "@/lib/env";
+import { callsEnabled, publicEnv } from "@/lib/env";
 import { formatPhoneDisplay, toWhatsAppNumber } from "@/lib/phone";
 import { LogoMark } from "./LogoMark";
 
@@ -27,10 +27,12 @@ export async function SiteFooter() {
             {ts("name")}
           </p>
           <p className="text-muted">{tx("tagline")}</p>
-          <p>
-            {t("hotline")}:{" "}
-            <a href={`tel:${hotline}`} className="font-semibold text-ink" dir="ltr">{formatPhoneDisplay(hotline)}</a>
-          </p>
+          {callsEnabled && (
+            <p>
+              {t("hotline")}:{" "}
+              <a href={`tel:${hotline}`} className="font-semibold text-ink" dir="ltr">{formatPhoneDisplay(hotline)}</a>
+            </p>
+          )}
           <p>
             <a href={`https://wa.me/${toWhatsAppNumber(whatsapp)}`} target="_blank" rel="noopener noreferrer" className="font-semibold text-accent no-underline hover:underline">
               {tContact("whatsapp")} →

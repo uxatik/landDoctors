@@ -10,8 +10,12 @@ const good = {
 describe("assertProductionEnv", () => {
   it("passes with real values", () => expect(() => assertProductionEnv(good)).not.toThrow());
   it("ignores local and preview builds", () => expect(() => assertProductionEnv({} as unknown as NodeJS.ProcessEnv)).not.toThrow());
-  it("refuses the placeholder hotline", () =>
-    expect(() => assertProductionEnv({ ...good, NEXT_PUBLIC_HOTLINE: "+8801700000000" })).toThrow("HOTLINE"));
+  it("refuses the placeholder hotline when incoming calls are on", () =>
+    expect(() => assertProductionEnv({ ...good, NEXT_PUBLIC_CALLS_ENABLED: "true", NEXT_PUBLIC_HOTLINE: "+8801700000000" })).toThrow("HOTLINE"));
+  it("does not need a hotline while incoming calls are off", () =>
+    expect(() => assertProductionEnv({ ...good, NEXT_PUBLIC_HOTLINE: "" })).not.toThrow());
+  it("always needs a real WhatsApp number", () =>
+    expect(() => assertProductionEnv({ ...good, NEXT_PUBLIC_WHATSAPP: "+8801700000000" })).toThrow("WHATSAPP"));
   it("refuses a missing database key", () =>
     expect(() => assertProductionEnv({ ...good, SUPABASE_SERVICE_ROLE_KEY: "" })).toThrow("SUPABASE_SERVICE_ROLE_KEY"));
 });

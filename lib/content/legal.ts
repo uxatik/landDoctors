@@ -74,7 +74,7 @@ const en: Record<LegalSlug, LegalDoc> = {
       {
         heading: "How to ask",
         paragraphs: [
-          "Call or message us on WhatsApp with your case number (for example LD-0123). Refunds go back to the payment method you used, normally within 7 working days.",
+          "Message us on WhatsApp with your case number (for example LD-0123). Refunds go back to the payment method you used, normally within 7 working days.",
         ],
       },
     ],
@@ -116,7 +116,7 @@ const en: Record<LegalSlug, LegalDoc> = {
       },
       {
         heading: "Your choices",
-        paragraphs: ["Call or message us to see, correct or delete your information."],
+        paragraphs: ["Message us on WhatsApp to see, correct or delete your information."],
       },
     ],
   },
@@ -202,7 +202,7 @@ const bn: Record<LegalSlug, LegalDoc> = {
       {
         heading: "কীভাবে চাইবেন",
         paragraphs: [
-          "কেস নম্বর (যেমন LD-0123) সহ কল বা WhatsApp করুন। যে মাধ্যমে পেমেন্ট করেছেন সেখানেই টাকা ফেরত যাবে, সাধারণত ৭ কর্মদিবসের মধ্যে।",
+          "কেস নম্বর (যেমন LD-0123) সহ WhatsApp-এ লিখুন। যে মাধ্যমে পেমেন্ট করেছেন সেখানেই টাকা ফেরত যাবে, সাধারণত ৭ কর্মদিবসের মধ্যে।",
         ],
       },
     ],
@@ -236,7 +236,7 @@ const bn: Record<LegalSlug, LegalDoc> = {
         heading: "ব্যবহারের পরিসংখ্যান",
         paragraphs: ["সাইট কীভাবে ব্যবহার হচ্ছে বুঝতে আমরা Google Analytics ও Microsoft Clarity ব্যবহার করতে পারি। এরা আপনার ফর্মের উত্তর দেখে না।"],
       },
-      { heading: "আপনার অধিকার", paragraphs: ["আপনার তথ্য দেখতে, ঠিক করতে বা মুছে ফেলতে কল বা মেসেজ করুন।"] },
+      { heading: "আপনার অধিকার", paragraphs: ["আপনার তথ্য দেখতে, ঠিক করতে বা মুছে ফেলতে WhatsApp-এ লিখুন।"] },
     ],
   },
   disclaimer: {
