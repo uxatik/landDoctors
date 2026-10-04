@@ -24,6 +24,8 @@ Tick these before real customers see the site.
 - [ ] Package scope and exclusions checked by the consultants who will deliver them.
 - [ ] Real WhatsApp number in the environment variables.
 - [ ] Incoming calls: leave `CALLS_ENABLED` off until a person or a tested voice agent answers the hotline. When turning it on: real `HOTLINE` set, hotline hours decided and shown on the home page.
+- [ ] bKash: confirm the account on the number shown on the offer page is active and is ours (send ৳10 to it), and whether it is personal or merchant (`BKASH_ACCOUNT_TYPE`). Do not send any offer link before this.
+- [ ] Open one test offer on the live site and check the bKash block (number, total, case number, TrxID button).
 - [ ] Someone is assigned to call customers back (the site promises a free 10-minute call).
 - [x] Designfoli tokens swapped into `design/tokens.css`; contrast checked (AA, see D11).
 - [ ] Bangla copy read by a native speaker on a phone.

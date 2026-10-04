@@ -183,8 +183,18 @@
     "cash": "Never pay an expert in cash. If anyone asks, please let us know.",
     "refundLink": "Refund policy",
     "expires": "Offer valid until {date}",
-    "manualTitle": "How to pay",
-    "manualBody": "Online payment is coming soon. For now, message us on WhatsApp with your case number to pay.",
+    "manualTitle": "Pay by bKash",
+    "manual": {
+      "introPersonal": "In the bKash app, choose “Send Money” and use these details.",
+      "introMerchant": "In the bKash app, choose “Payment” and use these details.",
+      "number": "bKash number",
+      "amount": "Amount",
+      "reference": "Reference",
+      "after": "After paying, send us the transaction ID (TrxID) on WhatsApp. We'll check it and confirm your payment.",
+      "sendTrx": "Send TrxID",
+      "trxMessage": "Hello, I have paid for case {ref}. TrxID: ",
+      "onlyThisNumber": "Pay only to this number. If anyone asks you to pay to another number, tell us."
+    },
     "unconfirmedTitle": "Contact us to confirm the price",
     "unconfirmedBody": "The price for this offer isn't final yet. Please message us on WhatsApp before paying.",
     "expiredTitle": "This offer has expired",
@@ -420,7 +430,7 @@
         },
         {
           "q": "How do I pay?",
-          "a": "Through the link in your proposal, by bKash, Nagad, Rocket or card."
+          "a": "The link in your proposal shows how to pay. We currently take payment by bKash."
         },
         {
           "q": "How do I send my documents?",

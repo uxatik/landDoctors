@@ -22,6 +22,9 @@ const serverSchema = z.object({
   SSLCOMMERZ_STORE_ID: z.string().optional(),
   SSLCOMMERZ_STORE_PASSWORD: z.string().optional(),
   SSLCOMMERZ_SANDBOX: z.enum(["true", "false"]).default("true"),
+  // Paying by hand while online payment is off (lib/payments/manual.ts).
+  BKASH_NUMBER: z.string().optional(),
+  BKASH_ACCOUNT_TYPE: z.string().optional(),
 });
 
 const emptyToUndefined = (v: string | undefined) => (v === "" ? undefined : v);

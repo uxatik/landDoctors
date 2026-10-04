@@ -120,3 +120,6 @@ Founder asked for WhatsApp to float. A green "WhatsApp" pill now stays in the bo
 
 ## Iteration — Incoming calls switched off (4 Oct 2026)
 Founder: nobody is available to answer calls yet. Added the `CALLS_ENABLED` setting (D16), off by default: call buttons and the hotline number are gone from the hero panel, FAQ box, closing band, phone bar, footer and the thank-you, offer and payment pages. The phone bar is now one "Tell us" button with the floating WhatsApp button above it. Error, offer, payment and legal texts point to WhatsApp instead of calling. The floating button now hides on any page with its own contact block. Checked both states: off shows 0 call links, on shows 5 on the home page.
+
+## Iteration — bKash by hand on the offer page (4 Oct 2026)
+Offer page (online payment off) now shows the bKash number, total and case number, a "Send TrxID" WhatsApp button and a "pay only to this number" warning (D17). Checked on a temporary preview page at 360px in both languages: no overflow, no serious accessibility issues, floating button hidden. The real offer page needs the database, so it was not opened here; one test offer on the live site is on the launch checklist.

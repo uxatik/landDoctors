@@ -48,6 +48,6 @@ test.describe("offer page with the database", () => {
     await expect(page.getByText("সেবার দাম")).toBeVisible();
     await expect(page.getByText(/সরকারি ফি/)).toBeVisible();
     await expect(page.getByTestId("offer-total")).toContainText("৳");
-    await expect(page.getByText(/হাতে নগদ টাকা দেবেন না/)).toBeVisible();
+    await expect(page.getByText(/নগদ অর্থ দেবেন না/)).toBeVisible();
   });
 });

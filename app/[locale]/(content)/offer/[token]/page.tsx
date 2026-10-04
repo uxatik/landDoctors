@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { ContactButtons } from "@/components/ContactButtons";
+import { ManualPayment } from "@/components/ManualPayment";
 import { CheckIcon } from "@/components/icons";
 import { serverEnv } from "@/lib/env";
 import { formatTaka } from "@/lib/money";
@@ -115,7 +116,7 @@ export default async function OfferPage({ params }: { params: Promise<{ locale: 
           <p className="text-sm text-muted">{t("expires", { date: expires })}</p>
         </form>
       )}
-      {o.state === "open" && !paymentsOn && <Notice title={t("manualTitle")} body={t("manualBody")} />}
+      {o.state === "open" && !paymentsOn && <ManualPayment caseRef={o.ref} total={o.total} expires={expires} />}
       {o.state === "price_unconfirmed" && <Notice title={t("unconfirmedTitle")} body={t("unconfirmedBody")} />}
       {o.state === "expired" && <Notice title={t("expiredTitle")} body={t("expiredBody")} />}
       {o.state === "paid" && <Notice title={t("paidTitle")} body={t("paidBody")} tone="good" />}
