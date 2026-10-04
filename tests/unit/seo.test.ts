@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { absoluteUrl, localePath, pageMeta } from "@/lib/seo";
 import { oldHostRedirect } from "@/lib/canonical-host";
+import { siteOrigin } from "@/lib/env";
 
 describe("localePath", () => {
   it("keeps Bangla at the root and English under /en", () => {
@@ -12,6 +13,15 @@ describe("localePath", () => {
   it("builds full addresses without a doubled slash", () => {
     expect(absoluteUrl("bn", "/", "https://x.test")).toBe("https://x.test");
     expect(absoluteUrl("en", "/services/namjari", "https://x.test")).toBe("https://x.test/en/services/namjari");
+  });
+});
+
+describe("siteOrigin", () => {
+  it("keeps only the address, dropping a pasted path or trailing slash", () => {
+    expect(siteOrigin("https://landdoctorbd.com")).toBe("https://landdoctorbd.com");
+    expect(siteOrigin("https://landdoctorbd.com/")).toBe("https://landdoctorbd.com");
+    expect(siteOrigin("https://land-doctors.vercel.app/en")).toBe("https://land-doctors.vercel.app");
+    expect(siteOrigin("http://localhost:3000/en/help?x=1")).toBe("http://localhost:3000");
   });
 });
 

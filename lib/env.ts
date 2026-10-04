@@ -4,8 +4,15 @@ import { z } from "zod";
  * Public values are safe to show in the browser (phone numbers, IDs for analytics).
  * Server values are read only on the server and never prefixed NEXT_PUBLIC_.
  */
+/** "https://example.com/en/" → "https://example.com" */
+export function siteOrigin(url: string): string {
+  return new URL(url).origin;
+}
+
 const publicSchema = z.object({
-  NEXT_PUBLIC_SITE_URL: z.string().url().default("http://localhost:3000"),
+  // Only the address itself is kept (https://example.com): a pasted path such as "/en" or a trailing
+  // slash would otherwise end up inside every offer link, canonical tag and sitemap entry.
+  NEXT_PUBLIC_SITE_URL: z.string().url().default("http://localhost:3000").transform(siteOrigin),
   NEXT_PUBLIC_HOTLINE: z.string().regex(/^\+8801[3-9]\d{8}$/).default("+8801700000000"),
   NEXT_PUBLIC_WHATSAPP: z.string().regex(/^\+8801[3-9]\d{8}$/).default("+8801700000000"),
   NEXT_PUBLIC_CALLS_ENABLED: z.enum(["true", "false"]).default("false"),

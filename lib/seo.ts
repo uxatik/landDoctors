@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { publicEnv } from "@/lib/env";
 
 /** The one public address of the site, without a trailing slash (set by SITE_URL). */
-export const SITE_URL = publicEnv.NEXT_PUBLIC_SITE_URL.replace(/\/+$/, "");
+export const SITE_URL = publicEnv.NEXT_PUBLIC_SITE_URL;
 
 export type SiteLocale = "bn" | "en";
 export const SITE_LOCALES: readonly SiteLocale[] = ["bn", "en"];
