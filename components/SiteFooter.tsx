@@ -36,6 +36,7 @@ export async function SiteFooter() {
               {tContact("whatsapp")} →
             </a>
           </p>
+          <p className="text-muted">{tx("address")}</p>
           <p className="text-muted">{tx("areas")}</p>
         </div>
         <nav aria-labelledby="f-services" className="flex flex-col gap-3">
