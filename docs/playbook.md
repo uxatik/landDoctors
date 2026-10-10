@@ -141,11 +141,19 @@ docs/                  project-brief, plan, decisions, loop-log, launch-checklis
 - Write Bangla the way people speak, short and professional; a native speaker reads it on a phone before launch.
 - A page that exists in one language only does not link to the other language; that language's address redirects to its list page.
 
-**Design**
-- A design-system skill supplies tokens, fonts and rules; `design/tokens.css` maps the project onto it. Brand overrides live in one block in that file. No hard-coded colours in components.
+**Design system**
+- The brief names the design system and brand (colours, fonts, voice). If it names none, ask before any UI work.
+- Install the design system as a skill in `.claude/skills/` and load it before every UI task. Add a short "Design system" section to `CLAUDE.md` with its rules, so every session follows them.
+- `design/tokens.css` maps the project's token names (`accent`, `surface`, `ink`, `muted`, `radius-card` …) onto the design system's variables. Components use those names through Tailwind classes, never raw hex values.
+- Brand overrides (for example a different primary colour) live in one clearly marked block at the top of `tokens.css`, and are recorded as a decision in `docs/decisions.md`.
+- Use the design system plus Tailwind only. Do not add another UI library (shadcn, MUI, Bootstrap …) unless the brief says so.
+- Pick one theme (light or dark) for launch; add the second only if the brief asks.
+- Contrast: every text/background pair passes WCAG AA. If a brand colour fails, use a darker shade of it (e.g. the 600 step, or `color-mix` with black) for buttons, links and status text; log it as a decision.
+- Fonts: the design system's Latin font first, then a Bangla font (Hind Siliguri) as fallback, so Latin text and digits use the brand font and Bangla still renders.
 - Give every heading an explicit size; base styles from a design system can make bare headings huge.
-- Separate sections with background changes and soft shadows, not decorative borders.
+- Separate sections with background changes and soft shadows, not decorative borders. Pill buttons, verb-led button text.
 - No stock photos, fake testimonials or fake logos.
+- Review: screenshot key pages at 360, 768 and 1280 px after each UI step and check them against the design system before marking the step done.
 
 **Copy**
 - One short line per idea; facts stated plainly; never promise what the business cannot control.
