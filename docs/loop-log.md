@@ -132,3 +132,10 @@ Founder asked for all thirteen items from the search audit. Built in four passes
 4. Guides (D20): four research passes collected facts with sources and confidence marks; ten guides written from the facts marked reliable, with the unconfirmed points listed for the reviewer.
 Checks: 96 unit tests, 7 database tests, 150 browser tests (phone and desktop) including accessibility on a service page, the abroad page and a guide. Looked at phone screenshots of a service page and a guide; changed the step list so the step name and its description sit on separate lines.
 Not done here: Search Console, Bing and Google Business Profile (founder's accounts); expert review of the guides; About page (needs real names).
+
+## Vercel Web Analytics
+- Plan: count page views with Vercel Web Analytics (cookie-free, same-origin script, no CSP change).
+- Test: unit tests for `redactUrl` (offer tokens → `[token]`, query strings and hashes dropped).
+- Build: `@vercel/analytics@2.0.1` (exact), `components/VercelAnalytics.tsx` with `beforeSend` redaction, added to the public layout only (admin not tracked); privacy policy updated in bn and en.
+- Verify: typecheck, lint, 101 unit, 7 DB, 150 e2e passing.
+- Founder step: enable Web Analytics in the Vercel project (Analytics tab), then redeploy.

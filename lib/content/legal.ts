@@ -115,7 +115,7 @@ const en: Record<LegalSlug, LegalDoc> = {
       },
       {
         heading: "Analytics",
-        paragraphs: ["We may use Google Analytics and Microsoft Clarity to understand how the site is used. They do not see your form answers."],
+        paragraphs: ["We use Vercel Web Analytics to count page visits. It uses no cookies, does not identify you, and never receives private case links. We may also use Google Analytics and Microsoft Clarity to understand how the site is used. None of these see your form answers."],
       },
       {
         heading: "Your choices",
@@ -237,7 +237,7 @@ const bn: Record<LegalSlug, LegalDoc> = {
       },
       {
         heading: "ব্যবহারের পরিসংখ্যান",
-        paragraphs: ["সাইট কীভাবে ব্যবহার হচ্ছে বুঝতে আমরা Google Analytics ও Microsoft Clarity ব্যবহার করতে পারি। এরা আপনার ফর্মের উত্তর দেখে না।"],
+        paragraphs: ["কতজন কোন পাতা দেখছেন তা গুনতে আমরা Vercel Web Analytics ব্যবহার করি। এটি কোনো কুকি রাখে না, আপনাকে চেনে না, আর আপনার কেসের ব্যক্তিগত লিংক পায় না। সাইট কীভাবে ব্যবহার হচ্ছে বুঝতে আমরা Google Analytics ও Microsoft Clarity-ও ব্যবহার করতে পারি। এদের কেউই আপনার ফর্মের উত্তর দেখে না।"],
       },
       { heading: "আপনার অধিকার", paragraphs: ["আপনার তথ্য দেখতে, ঠিক করতে বা মুছে ফেলতে WhatsApp-এ লিখুন।"] },
     ],

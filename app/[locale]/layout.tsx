@@ -8,6 +8,7 @@ import { SITE_URL } from "@/lib/seo";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { Analytics } from "@/components/Analytics";
+import { VercelAnalytics } from "@/components/VercelAnalytics";
 import { WhatsAppFloat } from "@/components/WhatsAppFloat";
 import "@fontsource/hind-siliguri/400.css";
 import "@fontsource/hind-siliguri/700.css";
@@ -62,6 +63,7 @@ export default async function LocaleLayout({
           <SiteFooter />
           <WhatsAppFloat />
           <Analytics />
+          <VercelAnalytics />
         </NextIntlClientProvider>
       </body>
     </html>
